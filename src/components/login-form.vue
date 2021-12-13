@@ -43,7 +43,7 @@ export default {
       };
 
       xmlHttpRequest.onerror = function () {
-        console.log('Запрос не удался');
+        console.log('Запрос не удался!');
       };
 
       xmlHttpRequest.send(data)
