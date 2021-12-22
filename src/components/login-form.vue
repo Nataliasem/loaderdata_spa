@@ -8,6 +8,7 @@
 
 <script>
 import { BASE_URL } from '/src/constants.js'
+import axios from 'axios'
 
 export default {
   name: 'App',
@@ -16,44 +17,20 @@ export default {
     password: ''
   }),
   computed: {
-   disabled() {
-     return !this.username || !this.password
-   }
+    disabled() {
+      return !this.username || !this.password
+    }
   },
   methods: {
     loginUser() {
-      const data = JSON.stringify({
-        username: this.username,
-        password: this.password
-      });
-
       const url = `${BASE_URL.HOST}:${BASE_URL.PORT}/api/users/login`
 
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: data
+      axios.post(url, {
+        username: this.username,
+        password: this.password
       })
-          .then(response => {
-            if (!response.ok) {
-              return response.json().then(response => Promise.reject(new Error(response.message)))
-            }
-            return Promise.resolve(response.json())
-
-            // if (response.ok) {
-            //   return response.json()
-            // }
-            //
-            // return response.json().then(response => {
-            //   throw new Error(response.message)
-            // })
-          })
-          .then(response => console.log(response))
-          .catch(error => {
-            console.log(error.message)
-          })
+        .then(response => console.log(response))
+        .catch(error => console.log(error.response.data.message))
     }
   }
 }
