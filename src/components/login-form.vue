@@ -7,8 +7,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
-import axiosInstance from '../plugins/axios.js'
+import loginApi from '../api/login.js'
 
 export default {
   name: 'App',
@@ -23,12 +22,16 @@ export default {
   },
   methods: {
     loginUser() {
-      return axiosInstance.post('/users/login', {
-        username: this.username,
-        password: this.password
-      })
-        .then(response => console.log(response))
+      loginApi.login(this.username, this.password)
+        .then(user => this.saveUser(user))
         .catch(error => console.log(error))
+    },
+
+    saveUser(user) {
+      console.log(user)
+
+      const encoded = window.btoa(`${this.username}:${this.password}`)
+      console.log(encoded)
     }
   }
 }
