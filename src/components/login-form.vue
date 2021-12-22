@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import { BASE_URL } from '/src/constants.js'
-import axios from 'axios'
+// import axios from 'axios'
+import axiosInstance from '../plugins/axios.js'
 
 export default {
   name: 'App',
@@ -23,14 +23,12 @@ export default {
   },
   methods: {
     loginUser() {
-      const url = `${BASE_URL.HOST}:${BASE_URL.PORT}/api/users/login`
-
-      axios.post(url, {
+      return axiosInstance.post('/users/login', {
         username: this.username,
         password: this.password
       })
         .then(response => console.log(response))
-        .catch(error => console.log(error.response.data.message))
+        .catch(error => console.log(error))
     }
   }
 }
