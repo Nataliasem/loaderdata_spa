@@ -27,26 +27,33 @@ export default {
         password: this.password
       });
 
-      const xmlHttpRequest = new XMLHttpRequest();
+      const url = `${BASE_URL.HOST}:${BASE_URL.PORT}/api/users/login`
 
-      const url = `${BASE_URL.HOST}:${BASE_URL.PORT}`
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: data
+      })
+          .then(response => {
+            if (!response.ok) {
+              return response.json().then(response => Promise.reject(new Error(response.message)))
+            }
+            return Promise.resolve(response.json())
 
-      console.log(url)
-      xmlHttpRequest.open('POST', url);
-
-      xmlHttpRequest.onload = function () {
-        if(xmlHttpRequest.status !== 200) {
-          console.log(`${xmlHttpRequest.status}: ${xmlHttpRequest.statusText}`)
-        } else {
-          console.log(xmlHttpRequest.response)
-        }
-      };
-
-      xmlHttpRequest.onerror = function () {
-        console.log('Запрос не удался');
-      };
-
-      xmlHttpRequest.send(data)
+            // if (response.ok) {
+            //   return response.json()
+            // }
+            //
+            // return response.json().then(response => {
+            //   throw new Error(response.message)
+            // })
+          })
+          .then(response => console.log(response))
+          .catch(error => {
+            console.log(error.message)
+          })
     }
   }
 }
