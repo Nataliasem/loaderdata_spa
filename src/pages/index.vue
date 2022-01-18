@@ -9,16 +9,23 @@ export default {
   name: 'start-page',
   // layout: 'no-auth'
   // middleware: ['get-user']
-  // computed: {
-    // Флаг авторизации пользователя
-    // isAuthenticated() {
-    //   return this.$store.getters.isAuthenticated || false
-    // }
-  // },
+  computed: {
+    /**
+     * Флаг, что пользователь авторизован
+     * @returns {boolean}
+     */
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated || false
+    }
+  },
   mounted() {
+    /**
+     * Перенаправить пользователя
+     * @returns {void}
+     */
     this.$nextTick(() => {
-      // const url = this.isAuthenticated ? '/desktop' : '/auth/log-in'
-      this.$router.push('/auth/log-in')
+      const url = this.isAuthenticated ? '/desktop' : '/auth/log-in'
+      this.$router.push(url)
     })
   }
 }
