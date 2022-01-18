@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import loginApi from '../api/login.js'
+import logInApi from '../../api/login.js'
 
 export default {
   name: 'App',
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     loginUser() {
-      loginApi.login(this.username, this.password)
+      logInApi.login(this.username, this.password)
         .then(user => this.saveUser(user))
         .catch(error => console.log(error))
     },
@@ -32,7 +32,13 @@ export default {
 
       const encoded = window.btoa(`${this.username}:${this.password}`)
       console.log(encoded)
+
+      this.$router.push('/admin/dashboard')
     }
+
+    // Сохранить пользователя в сторе и локал сторадже
+    // проверить пермишены. Если админ - редирект на админ-панель
+    // если юзер - редирект на страницу аккаунта
   }
 }
 </script>
