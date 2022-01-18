@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import  { BASE_URL } from '/src/constants.js'
+import { BASE_URL } from '/src/constants.js'
 
 export default {
   name: 'App',
