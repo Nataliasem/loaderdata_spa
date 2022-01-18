@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { BASE_URL } from '/src/constants.js'
+import logInApi from '../../api/login.js'
 
 export default {
   name: 'App',
@@ -16,38 +16,29 @@ export default {
     password: ''
   }),
   computed: {
-   disabled() {
-     return !this.username || !this.password
-   }
+    disabled() {
+      return !this.username || !this.password
+    }
   },
   methods: {
     loginUser() {
-      const data = JSON.stringify({
-        username: this.username,
-        password: this.password
-      });
+      logInApi.login(this.username, this.password)
+        .then(user => this.saveUser(user))
+        .catch(error => console.log(error))
+    },
 
-      const xmlHttpRequest = new XMLHttpRequest();
+    saveUser(user) {
+      console.log(user)
 
-      const url = `${BASE_URL.HOST}:${BASE_URL.PORT}`
+      const encoded = window.btoa(`${this.username}:${this.password}`)
+      console.log(encoded)
 
-      console.log(url)
-      xmlHttpRequest.open('POST', url);
-
-      xmlHttpRequest.onload = function () {
-        if(xmlHttpRequest.status !== 200) {
-          console.log(`${xmlHttpRequest.status}: ${xmlHttpRequest.statusText}`)
-        } else {
-          console.log(xmlHttpRequest.response)
-        }
-      };
-
-      xmlHttpRequest.onerror = function () {
-        console.log('Запрос не удался');
-      };
-
-      xmlHttpRequest.send(data)
+      this.$router.push('/admin/dashboard')
     }
+
+    // Сохранить пользователя в сторе и локал сторадже
+    // проверить пермишены. Если админ - редирект на админ-панель
+    // если юзер - редирект на страницу аккаунта
   }
 }
 </script>

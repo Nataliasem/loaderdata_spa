@@ -1,14 +1,11 @@
 <template>
- <login-form />
+  <div id="app">
+    <router-view />
+  </div>
 </template>
 
 <script>
-import LoginForm from './components/login-form.vue'
-
 export default {
-  name: 'App',
-  components: {
-    LoginForm
-  }
+  name: 'app'
 }
 </script>
