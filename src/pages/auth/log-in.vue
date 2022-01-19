@@ -1,7 +1,7 @@
 <template>
   <form name="authentication" @submit.prevent="loginUser" class="login-form">
     <input name="username" id="username" placeholder="Логин" v-model="username" class="app-input">
-    <input name="password" id="password" type="password" placeholder="Пароль" v-model="password" class="app-input">
+    <input name="password" id="password" type="password" placeholder="Пароль" v-model="password" class="app-input" autocomplete="password">
     <button type="submit" :disabled="disabled" class="submit-button">Войти в систему</button>
   </form>
 </template>
@@ -20,25 +20,33 @@ export default {
       return !this.username || !this.password
     }
   },
+  beforeCreate() {
+    // Если пользователь авторизован, перенаправляем сразу
+    if (this.$store.getters.isAuthenticated) {
+      this.$router.push('/desktop')
+    }
+  },
   methods: {
+    /**
+     * Войти в систему
+     * @returns {void}
+     */
     loginUser() {
       logInApi.login(this.username, this.password)
-        .then(user => this.saveUser(user))
+        .then(user => this.setUser(user))
         .catch(error => console.log(error))
     },
 
-    saveUser(user) {
-      console.log(user)
+    /**
+     * Сохранить пользователя
+     * @param {object} user - информация о пользователе
+     * @returns {void}
+     */
+    setUser(user) {
+      this.$store.commit('SET_USER', user)
 
-      const encoded = window.btoa(`${this.username}:${this.password}`)
-      console.log(encoded)
-
-      this.$router.push('/admin/dashboard')
+      this.$router.push('/desktop')
     }
-
-    // Сохранить пользователя в сторе и локал сторадже
-    // проверить пермишены. Если админ - редирект на админ-панель
-    // если юзер - редирект на страницу аккаунта
   }
 }
 </script>
