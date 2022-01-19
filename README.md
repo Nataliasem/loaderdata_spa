@@ -1,4 +1,4 @@
-## Простое одностраничное приложение для хранения файлов.
+## Простое одностраничное приложение для хранения файлов
 
 Зачем вам Loaderdata:
 - создайте собственную библиотеку файлов,
@@ -23,7 +23,7 @@ npm run build
 
 # Loaderdata
 
-##Simple single-page-application for storing files.
+##Simple single-page-application for storing files
 
 Features:
 - create your oun library,
