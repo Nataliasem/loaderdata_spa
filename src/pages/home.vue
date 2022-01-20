@@ -2,13 +2,13 @@
 
 <template>
   <div>Стартовая страница</div>
+  <div v-if="isAuthenticated">Блок с информацией о пользователе</div>
+  <div>Динамическая статистика о проекте</div>
 </template>
 
 <script>
 export default {
-  name: 'start-page',
-  // layout: 'no-auth'
-  // middleware: ['get-user']
+  name: 'home-page',
   computed: {
     /**
      * Флаг, что пользователь авторизован
@@ -24,7 +24,7 @@ export default {
      * @returns {void}
      */
     this.$nextTick(() => {
-      const url = this.isAuthenticated ? '/desktop' : '/auth/log-in'
+      const url = this.isAuthenticated ? '/' : '/auth/log-in'
       this.$router.push(url)
     })
   }

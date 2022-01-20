@@ -21,9 +21,9 @@ export default {
     }
   },
   beforeCreate() {
-    // Если пользователь авторизован, перенаправляем сразу
+    // Если пользователь авторизован, сразу перенаправляем на главную
     if (this.$store.getters.isAuthenticated) {
-      this.$router.push('/desktop')
+      this.$router.push('/')
     }
   },
   methods: {
@@ -45,7 +45,8 @@ export default {
     setUser(user) {
       this.$store.commit('SET_USER', user)
 
-      this.$router.push('/desktop')
+      // На главную страницу
+      this.$router.push('/')
     }
   }
 }
