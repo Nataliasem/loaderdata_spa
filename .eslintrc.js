@@ -14,6 +14,9 @@ module.exports = {
         // TODO: плагин для jsdoc
     ],
     rules: {
+        'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+
         // Errors
         'eqeqeq': 'error', // Всегда используем строгие сравнения
         'no-self-compare': 'error', // Запрещаем сравнивать переменную с самой собой
