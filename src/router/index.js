@@ -5,6 +5,7 @@ import homePage from '../pages/home'
 import permissionDenied from '../pages/permission-denied'
 import logIn from '../pages/auth/log-in'
 import adminDashboard from '../pages/admin/dashboard'
+import notFound from '../pages/not-found'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -25,6 +26,10 @@ const router = createRouter({
             name: 'permission-denied',
             path: '/permission-denied',
             component: permissionDenied
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            component: notFound
         }
     ]
 })
