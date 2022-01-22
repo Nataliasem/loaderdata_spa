@@ -37,6 +37,11 @@ module.exports = {
         'eol-last': ['error', 'always'], // В конце файла всегда пустая строка
         'comma-style': 'error', // Запятую ставим всегда в той же строке, что и элемент списка
         'comma-dangle': 'error', // Не используем висячие запятые
-        'comma-spacing': 'error' //  Запретить пробелы перед запятыми
+        'comma-spacing': 'error', //  Запретить пробелы перед запятыми
+
+        // Vue plugins
+        'vue/multi-word-component-names': ['error', {
+            'ignores': ['index']
+        }]
     }
 }
