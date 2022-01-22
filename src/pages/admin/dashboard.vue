@@ -4,7 +4,8 @@
 
 <script>
 export default {
-  name: 'admin-dashboard'
+  name: 'admin-dashboard',
+  middleware: ['auth', 'admin']
 }
 </script>
 
