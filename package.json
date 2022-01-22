@@ -16,13 +16,13 @@
     "vuex-persistedstate": "4.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.5.0",
-    "@vue/cli-plugin-eslint": "4.5.0",
-    "@vue/cli-service": "4.5.0",
-    "@vue/compiler-sfc": "3.0.0",
+    "@vue/cli-plugin-babel": "4.5.15",
+    "@vue/cli-plugin-eslint": "4.5.15",
+    "@vue/cli-service": "4.5.15",
+    "@vue/compiler-sfc": "3.2.28",
     "babel-eslint": "10.1.0",
-    "eslint": "6.7.2",
-    "eslint-plugin-vue": "7.0.0"
+    "eslint": "7.32.0",
+    "eslint-plugin-vue": "8.3.0"
   },
   "browserslist": [
     "> 1%",
