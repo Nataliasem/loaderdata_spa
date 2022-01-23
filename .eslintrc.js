@@ -9,10 +9,13 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:vue/recommended',
     'eslint:recommended',
-    // TODO: плагин для jsdoc
+    'pplugin:vue/recommended',
+    'plugin:jsdoc/recommended',
+    'plugin:promise/recommended',
+    'plugin:import/recommended',
   ],
+  plugins: ['jsdoc', 'promise'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
