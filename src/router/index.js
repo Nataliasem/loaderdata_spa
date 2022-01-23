@@ -32,6 +32,7 @@ const router = createRouter({
             }
         },
         {
+            name: 'access-denied',
             path: '/access-denied',
             component: accessDenied,
             meta: {
@@ -104,7 +105,7 @@ router.beforeResolve((to, from, next) => {
     if (allowed) {
         next()
     } else {
-        next({name: 'permission-denied', params: { error: 'У вас нет прав доступа к этой странице' } })
+        next({name: 'access-denied', params: { error: 'У вас нет прав доступа к этой странице' } })
     }
 })
 
