@@ -1,10 +1,10 @@
 <template>
-  <div>Панель администратора</div>
+<div>Навбар</div>
 </template>
 
 <script>
 export default {
-  name: 'admin-dashboard'
+  name: 'app-navbar'
 }
 </script>
 

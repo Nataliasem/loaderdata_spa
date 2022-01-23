@@ -10,7 +10,7 @@
 import logInApi from '../../api/login.js'
 
 export default {
-  name: 'App',
+  name: 'auth-login',
   data: () => ({
     username: '',
     password: ''
@@ -18,12 +18,6 @@ export default {
   computed: {
     disabled() {
       return !this.username || !this.password
-    }
-  },
-  beforeCreate() {
-    // Если пользователь авторизован, перенаправляем сразу
-    if (this.$store.getters.isAuthenticated) {
-      this.$router.push('/desktop')
     }
   },
   methods: {
@@ -45,7 +39,8 @@ export default {
     setUser(user) {
       this.$store.commit('SET_USER', user)
 
-      this.$router.push('/desktop')
+      // На главную страницу
+      this.$router.push('/')
     }
   }
 }
