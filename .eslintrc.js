@@ -1,16 +1,16 @@
 module.exports = {
   root: true,
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: 'babel-eslint'
   },
   env: {
     browser: true,
     node: true,
-    jest: true,
+    jest: true
   },
   extends: [
     'plugin:vue/recommended',
-    'eslint:recommended',
+    'eslint:recommended'
     // TODO: плагин для jsdoc
   ],
   rules: {
@@ -46,8 +46,8 @@ module.exports = {
     'vue/multi-word-component-names': [
       'error',
       {
-        ignores: ['index'],
-      },
-    ],
-  },
+        ignores: ['index']
+      }
+    ]
+  }
 };

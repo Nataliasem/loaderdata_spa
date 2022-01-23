@@ -1,8 +1,32 @@
 <template>
-  <form name="authentication" @submit.prevent="loginUser" class="login-form">
-    <input name="username" id="username" placeholder="Логин" v-model="username" class="app-input">
-    <input name="password" id="password" type="password" placeholder="Пароль" v-model="password" class="app-input" autocomplete="password">
-    <button type="submit" :disabled="disabled" class="submit-button">Войти в систему</button>
+  <form
+    name="authentication"
+    class="login-form"
+    @submit.prevent="loginUser"
+  >
+    <input
+      id="username"
+      v-model="username"
+      name="username"
+      placeholder="Логин"
+      class="app-input"
+    >
+    <input
+      id="password"
+      v-model="password"
+      name="password"
+      type="password"
+      placeholder="Пароль"
+      class="app-input"
+      autocomplete="password"
+    >
+    <button
+      type="submit"
+      :disabled="disabled"
+      class="submit-button"
+    >
+      Войти в систему
+    </button>
   </form>
 </template>
 
@@ -10,7 +34,7 @@
 import logInApi from '../../api/login.js'
 
 export default {
-  name: 'auth-login',
+  name: 'AuthLogin',
   data: () => ({
     username: '',
     password: ''

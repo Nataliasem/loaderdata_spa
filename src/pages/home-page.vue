@@ -1,14 +1,18 @@
 <!-- Стартовая страница LoaderData -->
 
 <template>
-  <div>Стартовая страница</div>
-  <div v-if="isAuthenticated">Блок с информацией о пользователе</div>
-  <div>Динамическая статистика о проекте</div>
+  <div class="home-page">
+    <div>Стартовая страница</div>
+    <div v-if="isAuthenticated">
+      Блок с информацией о пользователе
+    </div>
+    <div>Динамическая статистика о проекте</div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'home-page',
+  name: 'HomePage',
   computed: {
     /**
      * Флаг, что пользователь авторизован

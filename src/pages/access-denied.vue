@@ -1,10 +1,10 @@
 <template>
-<div>{{ error }}</div>
+  <div>{{ error }}</div>
 </template>
 
 <script>
 export default {
-  name: 'access-denied',
+  name: 'AccessDenied',
   computed: {
     /**
      * Ошибка доступа
