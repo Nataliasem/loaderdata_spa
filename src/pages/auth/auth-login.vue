@@ -34,7 +34,7 @@
 import logInApi from '../../api/login.js'
 
 export default {
-  name: 'AuthLogin',
+  name: 'auth-login',
   data: () => ({
     username: '',
     password: ''

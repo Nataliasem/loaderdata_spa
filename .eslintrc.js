@@ -43,6 +43,7 @@ module.exports = {
     'comma-spacing': 'error', //  Запретить пробелы перед запятыми
 
     // Vue plugins
+    'vue/component-definition-name-casing': ['error', 'kebab-case'],
     'vue/multi-word-component-names': [
       'error',
       {
@@ -50,4 +51,4 @@ module.exports = {
       }
     ]
   }
-};
+}

@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'NotAuthLayout'
+  name: 'not-auth-layout'
 }
 </script>
