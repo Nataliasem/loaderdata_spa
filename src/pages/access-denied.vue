@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'permission-denied',
+  name: 'access-denied',
   computed: {
     /**
      * Ошибка доступа

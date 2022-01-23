@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '../store'
 
-import homePage from '../pages/home'
-import permissionDenied from '../pages/permission-denied'
-import logIn from '../pages/auth/log-in'
-import adminDashboard from '../pages/admin/dashboard'
+import homePage from '../pages/home-page'
+import accessDenied from '../pages/access-denied'
+import logIn from '../pages/auth/auth-login'
+import adminDashboard from '../pages/admin/admin-dashboard'
 import notFound from '../pages/not-found'
 
 const router = createRouter({
@@ -12,24 +12,39 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            component: homePage
+            component: homePage,
+            meta: {
+                layout: 'default-layout'
+            }
         },
         {
             path: '/auth/log-in',
-            component: logIn
+            component: logIn,
+            meta: {
+                layout: 'not-auth-layout'
+            }
         },
         {
             path: '/admin/dashboard',
-            component: adminDashboard
+            component: adminDashboard,
+            meta: {
+                layout: 'default-layout'
+            }
         },
         {
             name: 'permission-denied',
             path: '/permission-denied',
-            component: permissionDenied
+            component: accessDenied,
+            meta: {
+                layout: 'not-auth-layout'
+            }
         },
         {
             path: '/:pathMatch(.*)*',
-            component: notFound
+            component: notFound,
+            meta: {
+                layout: 'not-auth-layout'
+            }
         }
     ]
 })
