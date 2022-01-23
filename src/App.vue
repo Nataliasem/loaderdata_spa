@@ -27,5 +27,7 @@ export default {
 
 body {
   font-family: 'Nunito Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 </style>

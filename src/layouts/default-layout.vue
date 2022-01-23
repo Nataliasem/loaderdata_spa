@@ -1,8 +1,19 @@
 <template>
-  <app-navbar />
-  <div class="flex">
+  <div class="default-layout">
     <app-sidebar />
-    <slot />
+    <div class="page-wrapper">
+      <app-navbar>
+        <div class="navbar-item">
+          Аккаунт
+        </div>
+        <div class="navbar-item">
+          Выход
+        </div>
+      </app-navbar>
+      <div class="page-content">
+        <slot />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,9 +32,18 @@ export default {
 
 
 <style>
-.flex {
+.default-layout {
   display: flex;
+  height: 100vh;
 }
 
+.default-layout .page-wrapper {
+  background-color: #f0f0f0;
+  width: 100%;
+}
 
+.default-layout .page-content {
+  width: 100%;
+  padding: 20px;
+}
 </style>
