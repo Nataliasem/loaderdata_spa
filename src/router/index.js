@@ -32,8 +32,7 @@ const router = createRouter({
             }
         },
         {
-            name: 'permission-denied',
-            path: '/permission-denied',
+            path: '/access-denied',
             component: accessDenied,
             meta: {
                 layout: 'not-auth-layout'

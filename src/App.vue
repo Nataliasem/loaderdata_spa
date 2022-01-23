@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import Default from './layouts/default-layout'
-import NotAuthenticated from './layouts/not-auth-layout.vue'
+import DefaultLayout from './layouts/default-layout'
+import NotAuthLayout from './layouts/not-auth-layout.vue'
 
 export default {
   name: 'app',
   components: {
-    Default,
-    NotAuthenticated
+    DefaultLayout,
+    NotAuthLayout
   },
   computed: {
     layout() {

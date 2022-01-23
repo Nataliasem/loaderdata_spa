@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div>This is a default layout</div>
-    <slot />
-  </div>
+  <div>This is a default layout</div>
+  <slot />
 </template>
 
 <script>

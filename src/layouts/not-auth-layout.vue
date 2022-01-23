@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div>This is a layout for not-authenticated users</div>
-    <slot />
-  </div>
+  <div>This is a layout for not-authenticated users</div>
+  <slot />
 </template>
 
 <script>

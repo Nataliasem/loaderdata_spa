@@ -9,7 +9,7 @@ module.exports = {
     jest: true
   },
   extends: [
-    'plugin:vue/recommended',
+    'plugin:vue/vue3-recommended',
     'eslint:recommended'
     // TODO: плагин для jsdoc
   ],
