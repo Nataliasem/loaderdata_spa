@@ -38,7 +38,6 @@ export default {
 }
 
 .default-layout .page-wrapper {
-  background-color: #f0f0f0;
   width: 100%;
 }
 
