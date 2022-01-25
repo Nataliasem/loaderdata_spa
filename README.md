@@ -6,7 +6,7 @@
 - просматривайте, скачивайте файлы, делитесь с друзьями.
 
 ### Как запустить
-Сначала убедитесь, что у вас установлены Node и NPM
+Сначала убедитесь, что у вас установлены Node и NPM, затем запустите команду:
 ```
 npm install
 ```
@@ -31,7 +31,7 @@ Features:
 - preview, download and share files.
 
 ### How to start
-First make sure you have Node and NPM installed
+First make sure you have Node and NPM installed. Then run the command:
 ```
 npm install
 ```
