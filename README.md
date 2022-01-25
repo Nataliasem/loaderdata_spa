@@ -5,7 +5,7 @@
 - организуйте хранение так, как вам удобно,
 - просматривайте, скачивайте файлы, делитесь с друзьями.
 
-## Установите зависимости с помощью менеджера пакетов
+### Как запустить
 Сначала убедитесь, что у вас установлены Node и NPM
 ```
 npm install
@@ -30,7 +30,7 @@ Features:
 - organize files in the way you want,
 - preview, download and share files.
 
-## Install dependencies with package manager
+### How to start
 First make sure you have Node and NPM installed
 ```
 npm install
