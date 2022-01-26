@@ -1,5 +1,4 @@
 module.exports = {
-    mode: 'jit',
     purge: ['./src/**/*.{js,vue}'],
     theme: {
         spacing: {
@@ -56,10 +55,10 @@ module.exports = {
             /* THEME COLORS */
             'green-1': '#0b8c56',
             'green-2': '#e3d464',
-            'green-3': '#11613f',
-            'gray-1': '#6c6d6d',
-            'gray-2': '#f0f0f0',
-            'gray-3': '#27262c',
+            'green-3': '#198c56',
+            'grey-1': '#6c6d6d',
+            'grey-2': '#f0f0f0',
+            'grey-3': '#27262c',
             'orange': '#de6830',
             'pink': '#ff7171'
         }

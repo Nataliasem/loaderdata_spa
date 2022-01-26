@@ -25,7 +25,7 @@ export default {
 
 <style>
 .app-sidebar {
-  @apply p-5;
+  @apply p-5 bg-grey-2 h-screen;
   width: 300px;
 }
 
