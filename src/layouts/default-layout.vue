@@ -1,17 +1,14 @@
 <template>
   <div class="default-layout">
-    <app-sidebar />
     <div class="page-wrapper">
-      <app-navbar>
-        <div class="navbar-item">
-          Аккаунт
+      <app-navbar />
+
+      <div class="flex">
+        <app-sidebar />
+
+        <div class="page-content">
+          <slot />
         </div>
-        <div class="navbar-item">
-          Выход
-        </div>
-      </app-navbar>
-      <div class="page-content">
-        <slot />
       </div>
     </div>
   </div>
@@ -33,16 +30,14 @@ export default {
 
 <style>
 .default-layout {
-  display: flex;
-  height: 100vh;
+  @apply h-full;
 }
 
 .default-layout .page-wrapper {
-  width: 100%;
+  @apply w-full;
 }
 
 .default-layout .page-content {
-  width: 100%;
-  padding: 20px;
+  @apply p-8;
 }
 </style>

@@ -1,12 +1,18 @@
 <template>
   <div class="app-sidebar">
-    <span>Loaderdata</span>
     <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
+      <router-link
+        class="sidebar-link"
+        to="/admin/dashboard"
+      >
+        Панель администратора
+      </router-link>
+      <router-link
+        class="sidebar-link"
+        to="/admin/ui-kit"
+      >
+        Ui kit
+      </router-link>
     </ul>
   </div>
 </template>
@@ -19,7 +25,12 @@ export default {
 
 <style>
 .app-sidebar {
-  width: 100px;
-  padding: 20px;
+  @apply p-5;
+  width: 300px;
+}
+
+.app-sidebar .sidebar-link {
+  display: block;
+  @apply p-3;
 }
 </style>

@@ -5,6 +5,7 @@ import homePage from '../pages/home-page'
 import accessDenied from '../pages/access-denied'
 import logIn from '../pages/auth/auth-login'
 import adminDashboard from '../pages/admin/admin-dashboard'
+import uiKit from '../pages/admin/ui-kit'
 import notFound from '../pages/not-found'
 
 const router = createRouter({
@@ -27,6 +28,13 @@ const router = createRouter({
         {
             path: '/admin/dashboard',
             component: adminDashboard,
+            meta: {
+                layout: 'default-layout'
+            }
+        },
+        {
+            path: '/admin/ui-kit',
+            component: uiKit,
             meta: {
                 layout: 'default-layout'
             }

@@ -1,6 +1,14 @@
 <template>
   <div class="app-navbar">
-    <slot />
+    <span class="logo">Loaderdata</span>
+    <div class="flex">
+      <div class="navbar-item">
+        Аккаунт
+      </div>
+      <div class="navbar-item">
+        Выход
+      </div>
+    </div>
   </div>
 </template>
 
@@ -12,10 +20,13 @@ export default {
 
 <style>
 .app-navbar {
-  display: flex;
-  justify-content: end;
+  @apply flex justify-between;
   height: 70px;
   padding: 20px;
+}
+
+.app-navbar .logo {
+  @apply font-bold text-green-1 text-size-30;
 }
 
 .app-navbar .navbar-item {
