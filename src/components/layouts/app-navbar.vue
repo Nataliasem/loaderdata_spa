@@ -21,6 +21,7 @@ export default {
 <style>
 .app-navbar {
   @apply flex justify-between;
+  @apply border-b border-grey-2;
   height: 70px;
   padding: 20px;
 }
