@@ -1,19 +1,19 @@
 <template>
-  <div class="app-sidebar">
-    <ul>
+  <div class="top-menu">
+    <div class="flex space-x-8">
       <router-link
-        class="sidebar-link"
+        class="app-link"
         to="/admin/dashboard"
       >
         Панель администратора
       </router-link>
       <router-link
-        class="sidebar-link"
+        class="app-link active"
         to="/admin/ui-kit"
       >
         Ui kit
       </router-link>
-    </ul>
+    </div>
   </div>
 </template>
 
@@ -24,13 +24,7 @@ export default {
 </script>
 
 <style>
-.app-sidebar {
-  @apply p-5 bg-grey-2 h-screen;
-  width: 300px;
-}
-
-.app-sidebar .sidebar-link {
-  display: block;
-  @apply p-3;
+.top-menu {
+  @apply py-4 px-5 bg-gray-6;
 }
 </style>

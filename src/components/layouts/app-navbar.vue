@@ -1,13 +1,9 @@
 <template>
   <div class="app-navbar">
-    <span class="logo">Loaderdata</span>
-    <div class="flex">
-      <div class="navbar-item">
-        Аккаунт
-      </div>
-      <div class="navbar-item">
-        Выход
-      </div>
+    <span class="logo">Loader<span class="text-secondary">Data</span></span>
+    <div class="flex space-x-5">
+      <div>Аккаунт</div>
+      <div>Выход</div>
     </div>
   </div>
 </template>
@@ -20,17 +16,10 @@ export default {
 
 <style>
 .app-navbar {
-  @apply flex justify-between;
-  @apply border-b border-grey-2;
-  height: 70px;
-  padding: 20px;
+  @apply flex justify-between p-5;
 }
 
 .app-navbar .logo {
-  @apply font-bold text-green-1 text-size-30;
-}
-
-.app-navbar .navbar-item {
-  margin-left: 10px;
+  @apply font-bold text-size-30 text-primary;
 }
 </style>
