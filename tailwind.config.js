@@ -60,6 +60,11 @@ module.exports = {
             'warning': '#E2B93B',
             'error': '#EB5757',
 
+            'green-1': '#0B8C56',
+            'green-2': '#11613F',
+            'green-3': '#3da378',
+
+
             'black-1': '#000000',
             'black-2': '#1D1D1D',
             'black-3': '#282828',
@@ -68,7 +73,8 @@ module.exports = {
             'gray-2': '#4F4F4F',
             'gray-3': '#828282',
             'gray-4': '#BDBDBD',
-            'gray-5': '#E0E0E0'
+            'gray-5': '#E0E0E0',
+            'gray-6': '#F5F5F5'
         }
     }
 }
