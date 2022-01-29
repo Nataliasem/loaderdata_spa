@@ -17,7 +17,7 @@ const store = createStore({
          * @param {object} state - состояние хранилища Vuex
          * @returns {boolean}
          */
-        isAuthenticated: state => Boolean(state.user)
+        isAuthenticated: state => Boolean(state.user) || false
     },
     mutations: {
         /**
