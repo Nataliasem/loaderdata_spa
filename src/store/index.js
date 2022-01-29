@@ -8,7 +8,13 @@ const store = createStore({
              * Пользователь
              * @type {object|null}
              */
-            user: null
+            user: null,
+
+            /**
+             * Токен для базовой аутентификации
+             * @type {string}
+             */
+            basicAuthToken: ''
         }
     },
     getters: {
@@ -28,11 +34,21 @@ const store = createStore({
          */
         SET_USER(state, user) {
             state.user = user || null
+        },
+
+        /**
+         * Сохранить пользователя
+         * @param {object} state - состояние хранилища Vuex
+         * @param {string} token - токен аутентификации
+         * @returns {void}
+         */
+        SET_TOKEN(state, token) {
+            state.basicAuthToken = token || ''
         }
     },
     plugins: [
         // Сохраняем некоторые свойства хранилища в LocalStorage
-        createPersistedState({ paths: ['user']})
+        createPersistedState({ paths: ['user', 'token']})
     ]
 })
 

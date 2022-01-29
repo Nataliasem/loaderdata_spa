@@ -1,15 +1,13 @@
 // Экземпляр плагина axios с необходимыми настройками
 
 import axios from 'axios'
+import { BASE_URL } from '../constants';
 
-// TODO: Получать из env
-const HOST = 'http://localhost'
-const PORT = '8080'
-
-const API_URL = `${HOST}:${PORT}/api`
+const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}/api`
 
 const axiosInstance = axios.create({
-    baseURL: API_URL
+    baseURL: API_URL,
+    headers: { 'Authorization': 'Basic b3duZXI6MTIzNA=='}
 })
 
 const errorHandler = error => {

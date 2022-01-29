@@ -67,6 +67,7 @@ export default {
      */
     setUser(user) {
       this.$store.commit('SET_USER', user)
+      // TODO: setToken
 
       // На главную страницу
       this.$router.push('/')
