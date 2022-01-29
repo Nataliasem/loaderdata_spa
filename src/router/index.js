@@ -59,8 +59,8 @@ const router = createRouter({
 
 
 const MIDDLEWARE = {
-    'auth': () => store.isAuthenticated,
-    'admin': () => store.state.user.data.authorities.includes('admin')
+    'auth': () => store.getters.isAuthenticated,
+    'admin': () => store.state.user.data.authorities.includes('manage_settings')
 }
 
 const getComponentMiddleware = matched => {

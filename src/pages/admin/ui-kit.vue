@@ -63,7 +63,8 @@
 
 <script>
 export default {
-  name: 'ui-kit'
+  name: 'ui-kit',
+  middleware: 'auth'
 }
 </script>
 
