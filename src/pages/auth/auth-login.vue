@@ -50,7 +50,12 @@ export default {
      * @returns {void}
      */
     loginUser() {
-      logInApi.login(this.username, this.password)
+      const user = {
+        username: this.username,
+        password: this.password
+      }
+
+      logInApi.login(user)
         .then(user => this.setUser(user))
         .catch(error => console.log(error))
     },
