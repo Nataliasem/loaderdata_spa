@@ -1,14 +1,15 @@
 <template>
   <div class="default-layout">
     <div class="page-wrapper">
+      <!-- ЛОГОТИП + УПРАВЛЕНИЕ АККАУНТОМ-->
       <app-navbar />
 
-      <div class="flex">
-        <app-sidebar />
+      <!-- НАВИГАЦИЯ ПО ПРИЛОЖЕНИЮ-->
+      <top-menu />
 
-        <div class="page-content">
-          <slot />
-        </div>
+      <!-- СОДЕРЖИМОЕ СТРАНИЦЫ-->
+      <div class="page-content">
+        <slot />
       </div>
     </div>
   </div>
@@ -16,28 +17,25 @@
 
 <script>
 import AppNavbar from '../components/layouts/app-navbar.vue'
-import AppSidebar from '../components/layouts/app-sidebar.vue'
+import TopMenu from '../components/layouts/top-menu.vue'
 
 export default {
   name: 'default-layout',
   components: {
     AppNavbar,
-    AppSidebar
+    TopMenu
   }
 }
 </script>
 
 
 <style>
-.default-layout {
-  @apply h-full;
-}
-
-.default-layout .page-wrapper {
+/* Глобальные стили */
+.page-wrapper {
   @apply w-full;
 }
 
-.default-layout .page-content {
+.page-content {
   @apply p-8;
 }
 </style>

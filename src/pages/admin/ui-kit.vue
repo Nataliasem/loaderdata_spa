@@ -1,125 +1,130 @@
 <template>
-  <div class="page-title">
-    UI KIT
-  </div>
-  <!-- КНОПКИ -->
-  <div class="button-wrapper">
-    <!-- MAIN -->
-    <button
-      type="button"
-      class="app-button-main"
-    >
-      Main default
-    </button>
-    <button
-      type="button"
-      class="app-button-main hover"
-    >
-      Main hover
-    </button>
-    <button
-      type="button"
-      class="app-button-main active"
-    >
-      Main active
-    </button>
-    <button
-      type="button"
-      class="app-button-main disabled"
-    >
-      Main disabled
-    </button>
+  <div class="app-ui-kit space-y-40">
+    <!-- КНОПКИ -->
+    <div class="flex justify-center space-x-20">
+      <div class="font-bold text-size-42 w-1/4">
+        BUTTONS
+      </div>
 
-    <!-- SECONDARY -->
-    <button
-      type="button"
-      class="app-button-secondary"
-    >
-      Secondary default
-    </button>
-    <button
-      type="button"
-      class="app-button-secondary hover"
-    >
-      Secondary hover
-    </button>
-    <button
-      type="button"
-      class="app-button-secondary active"
-    >
-      Secondary active
-    </button>
-    <button
-      type="button"
-      class="app-button-secondary disabled"
-    >
-      Secondary disabled
-    </button>
-  </div>
+      <div class="flex flex-grow-1 space-x-10 w-3/4">
+        <!-- BUTTON-MAIN -->
+        <div class="flex flex-col space-y-6">
+          <button
+            type="button"
+            class="app-button-main"
+          >
+            Main default
+          </button>
+          <button
+            type="button"
+            class="app-button-main hover"
+          >
+            Main hover
+          </button>
+          <button
+            type="button"
+            class="app-button-main active"
+          >
+            Main active
+          </button>
+          <button
+            type="button"
+            class="app-button-main disabled"
+          >
+            Main disabled
+          </button>
+        </div>
 
-  <!-- TODO: Шрифт-->
-  <!-- TODO: Иконки-->
+        <!-- BUTTON-SECONDARY -->
+        <div class="flex flex-col space-y-6">
+          <button
+            type="button"
+            class="app-button-secondary"
+          >
+            Secondary default
+          </button>
+          <button
+            type="button"
+            class="app-button-secondary hover"
+          >
+            Secondary hover
+          </button>
+          <button
+            type="button"
+            class="app-button-secondary active"
+          >
+            Secondary active
+          </button>
+          <button
+            type="button"
+            class="app-button-secondary disabled"
+          >
+            Secondary disabled
+          </button>
+        </div>
+
+        <!-- BUTTON-ICON -->
+        <div class="flex flex-col space-y-6">
+          <button
+            type="button"
+            class="app-button-icon text-size-30"
+          >
+            &#9734;
+          </button>
+          <button
+            type="button"
+            class="app-button-icon text-size-30 hover"
+          >
+            &#9734;
+          </button>
+          <button
+            type="button"
+            class="app-button-icon text-size-30 active"
+          >
+            &#9734;
+          </button>
+          <button
+            type="button"
+            class="app-button-icon text-size-30 disabled"
+          >
+            &#9734;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ИКОНКИ -->
+    <div class="flex justify-center space-x-20">
+      <div class="font-bold text-size-42 w-1/4">
+        ICONS
+      </div>
+
+      <div class="flex w-3/4 space-x-8">
+        <app-icon-user class="text-green-1" />
+        <app-icon-login class="text-green-1" />
+        <app-icon-logout class="text-green-1" />
+        <app-icon-warning class="text-green-1" />
+      </div>
+    </div>
+    <!-- TODO: Шрифт-->
+  </div>
 </template>
 
+
 <script>
+import AppIconUser from '../../components/icons/app-icon-user.vue'
+import AppIconLogout from '../../components/icons/app-icon-logout.vue'
+import AppIconLogin from '../../components/icons/app-icon-login.vue'
+import AppIconWarning from '../../components/icons/app-icon-warning'
+
 export default {
   name: 'ui-kit',
+  components: {
+    AppIconWarning,
+    AppIconUser,
+    AppIconLogout,
+    AppIconLogin
+  },
   middleware: 'auth'
 }
 </script>
-
-<style>
-.page-title {
-  @apply font-bold pb-6;
-}
-
-.button-wrapper {
-  @apply grid grid-cols-4 gap-4;
-}
-
-.app-button-main {
-  @apply text-white bg-green-1 py-3 px-6;
-  @apply border border-transparent;
-  border-radius: 50px;
-}
-
-.app-button-main:hover,
-.app-button-main.hover {
-  background-color: #3da378;
-}
-
-.app-button-main:active,
-.app-button-main.active {
-  @apply border border-pink;
-}
-
-.app-button-main:disabled,
-.app-button-main.disabled {
-  color: #bcbcbc;
-  background-color: #dbdbdb;
-}
-
-.app-button-secondary {
-  @apply border-green-3 text-grey-3 py-3 px-6;
-  border-width: 2px;
-  border-radius: 50px;
-}
-
-.app-button-secondary:hover,
-.app-button-secondary.hover {
-  @apply border-green-1 text-green-1;
-}
-
-.app-button-secondary:active,
-.app-button-secondary.active {
-  border-color: #858585;
-  color: #858585;
-}
-
-.app-button-secondary:disabled,
-.app-button-secondary.disabled {
-  @apply text-grey-2;
-  border-color: #9c9c9c;
-}
-
-</style>

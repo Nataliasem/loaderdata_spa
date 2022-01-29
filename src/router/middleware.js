@@ -11,7 +11,9 @@ const checkIsAdmin = () => {
         return false
     }
 
-    return roleId === ROLES.ADMIN.ID
+    const requiredRolesIds = [ROLES.ADMIN.ID, ROLES.OWNER.ID]
+
+    return requiredRolesIds.includes(roleId)
 }
 
 

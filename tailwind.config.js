@@ -1,6 +1,13 @@
 module.exports = {
     purge: ['./src/**/*.{js,vue}'],
     theme: {
+        extend: {
+            borderRadius: {
+                'ld-xs': '1px',
+                'ld-sm': '2px',
+                'ld-md': '4px'
+            }
+        },
         spacing: {
             0: '0px',
             px: '1px',
@@ -53,14 +60,32 @@ module.exports = {
             'white': '#fff',
 
             /* THEME COLORS */
-            'green-1': '#0b8c56',
-            'green-2': '#e3d464',
-            'green-3': '#198c56',
-            'grey-1': '#6c6d6d',
-            'grey-2': '#f0f0f0',
-            'grey-3': '#27262c',
-            'orange': '#de6830',
-            'pink': '#ff7171'
+            'primary': '#092C4C',
+            'secondary': '#F2994A',
+            'info': '#2F80ED',
+            'success': '#27AE60',
+            'warning': '#E2B93B',
+
+
+            'red-1': '#EB5757',
+            'red-2': '#FFD8D8',
+            'red-3': '#FFF5F5',
+
+            'green-1': '#0B8C56',
+            'green-2': '#11613F',
+            'green-3': '#3da378',
+
+
+            'black-1': '#000000',
+            'black-2': '#1D1D1D',
+            'black-3': '#282828',
+
+            'gray-1': '#333333',
+            'gray-2': '#4F4F4F',
+            'gray-3': '#828282',
+            'gray-4': '#BDBDBD',
+            'gray-5': '#E0E0E0',
+            'gray-6': '#F5F5F5'
         }
     }
 }
