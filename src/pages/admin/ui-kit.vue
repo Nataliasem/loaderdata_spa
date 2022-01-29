@@ -103,6 +103,7 @@
         <app-icon-user class="text-green-1" />
         <app-icon-login class="text-green-1" />
         <app-icon-logout class="text-green-1" />
+        <app-icon-warning class="text-green-1" />
       </div>
     </div>
     <!-- TODO: Шрифт-->
@@ -111,13 +112,15 @@
 
 
 <script>
-import AppIconUser from '/src/components/icons/app-icon-user.vue'
-import AppIconLogout from '/src/components/icons/app-icon-logout.vue'
-import AppIconLogin from '/src/components/icons/app-icon-login.vue'
+import AppIconUser from '../../components/icons/app-icon-user.vue'
+import AppIconLogout from '../../components/icons/app-icon-logout.vue'
+import AppIconLogin from '../../components/icons/app-icon-login.vue'
+import AppIconWarning from '../../components/icons/app-icon-warning'
 
 export default {
   name: 'ui-kit',
   components: {
+    AppIconWarning,
     AppIconUser,
     AppIconLogout,
     AppIconLogin
@@ -125,9 +128,3 @@ export default {
   middleware: 'auth'
 }
 </script>
-
-<style>
-.button-wrapper {
-  @apply flex;
-}
-</style>

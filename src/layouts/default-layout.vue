@@ -30,15 +30,12 @@ export default {
 
 
 <style>
-.default-layout {
-  @apply h-full;
-}
-
-.default-layout .page-wrapper {
+/* Глобальные стили */
+.page-wrapper {
   @apply w-full;
 }
 
-.default-layout .page-content {
+.page-content {
   @apply p-8;
 }
 </style>
