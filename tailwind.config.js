@@ -1,6 +1,13 @@
 module.exports = {
     purge: ['./src/**/*.{js,vue}'],
     theme: {
+        extend: {
+            borderRadius: {
+                'ld-xs': '1px',
+                'ld-sm': '2px',
+                'ld-md': '4px'
+            }
+        },
         spacing: {
             0: '0px',
             px: '1px',
@@ -58,7 +65,11 @@ module.exports = {
             'info': '#2F80ED',
             'success': '#27AE60',
             'warning': '#E2B93B',
-            'error': '#EB5757',
+
+
+            'red-1': '#EB5757',
+            'red-2': '#FFD8D8',
+            'red-3': '#FFF5F5',
 
             'green-1': '#0B8C56',
             'green-2': '#11613F',

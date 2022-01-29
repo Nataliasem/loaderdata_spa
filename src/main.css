@@ -12,7 +12,7 @@ body {
 }
 
 .app-link {
-    @apply inline-block text-primary font-bold relative;
+    @apply inline-block text-primary relative;
 }
 
 .app-link:hover,
