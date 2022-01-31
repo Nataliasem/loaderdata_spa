@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import DefaultLayout from './layouts/default-layout'
+import DefaultLayout from './layouts/default-layout.vue'
 import NotAuthLayout from './layouts/not-auth-layout.vue'
 
 export default {

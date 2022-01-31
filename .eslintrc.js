@@ -1,12 +1,8 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint'
-  },
   env: {
-    browser: true,
-    node: true,
-    jest: true
+    jest: true,
+    es2021: true
   },
   extends: [
     'plugin:vue/vue3-recommended',
