@@ -3,6 +3,7 @@ module.exports = {
   env: {
     jest: true,
     es2021: true,
+    browser: true,
     node: true
   },
   extends: [
@@ -48,4 +49,4 @@ module.exports = {
       }
     ]
   }
-};
+}
