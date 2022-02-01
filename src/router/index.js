@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { checkMiddleware } from './middleware.js'
 
-import homePage from '../pages/home-page'
-import accessDenied from '../pages/access-denied'
-import logIn from '../pages/auth/auth-login'
-import adminDashboard from '../pages/admin/admin-dashboard'
-import uiKit from '../pages/admin/ui-kit'
-import notFound from '../pages/not-found'
+import homePage from '../pages/home-page.vue'
+import accessDenied from '../pages/access-denied.vue'
+import logIn from '../pages/auth/auth-login.vue'
+import adminDashboard from '../pages/admin/admin-dashboard.vue'
+import uiKit from '../pages/admin/ui-kit.vue'
+import notFound from '../pages/not-found.vue'
 
 const router = createRouter({
     history: createWebHistory(),

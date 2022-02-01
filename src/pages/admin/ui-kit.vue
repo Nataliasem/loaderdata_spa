@@ -115,7 +115,7 @@
 import AppIconUser from '../../components/icons/app-icon-user.vue'
 import AppIconLogout from '../../components/icons/app-icon-logout.vue'
 import AppIconLogin from '../../components/icons/app-icon-login.vue'
-import AppIconWarning from '../../components/icons/app-icon-warning'
+import AppIconWarning from '../../components/icons/app-icon-warning.vue'
 
 export default {
   name: 'ui-kit',

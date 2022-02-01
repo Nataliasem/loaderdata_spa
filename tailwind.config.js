@@ -1,5 +1,8 @@
 module.exports = {
-    purge: ['./src/**/*.{js,vue}'],
+    content: [
+        './index.html',
+        './src/**/*.{vue,js,ts,jsx,tsx}',
+    ],
     theme: {
         extend: {
             borderRadius: {
