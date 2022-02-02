@@ -10,16 +10,30 @@
 
     <div class="flex space-x-5">
       <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ-->
-      <button type="button">
+      <button
+        type="button"
+        class="text-gray-3 cursor-not-allowed"
+        disabled
+      >
         <app-icon-user class="inline-block" />
       </button>
 
       <!-- ВЫХОД ИЗ СИСТЕМЫ-->
       <button
+        v-if="isAuthenticated"
         type="button"
         @click="logout"
       >
         <app-icon-logout class="inline-block" />
+      </button>
+
+      <!-- ВОЙТИ -->
+      <button
+        v-else
+        type="button"
+        @click="$router.push('/auth/login')"
+      >
+        <app-icon-login class="inline-block" />
       </button>
     </div>
   </div>
@@ -28,12 +42,23 @@
 <script>
 import AppIconUser from '/src/components/icons/app-icon-user.vue'
 import AppIconLogout from '/src/components/icons/app-icon-logout.vue'
+import AppIconLogin from '/src/components/icons/app-icon-login.vue'
 
 export default {
   name: 'app-navbar',
   components: {
     AppIconUser,
-    AppIconLogout
+    AppIconLogout,
+    AppIconLogin
+  },
+  computed: {
+    /**
+     * Флаг, что пользователь авторизован
+     * @returns {boolean}
+     */
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated || false
+    }
   },
   methods: {
     /**
@@ -49,7 +74,7 @@ export default {
      * @returns {void}
      */
     logout() {
-      this.$store.state.user = null
+      this.$store.commit('SET_USER', null)
 
       this.backToHomePage()
     }

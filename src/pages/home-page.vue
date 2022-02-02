@@ -2,11 +2,14 @@
 
 <template>
   <div class="home-page">
-    <div>Стартовая страница</div>
     <div v-if="isAuthenticated">
-      Блок с информацией о пользователе
+      Привет, Username!
     </div>
-    <div>Динамическая статистика о проекте</div>
+    <div v-else class="text-center">
+      <router-link to="/auth/login?auth" class="underline">Войти</router-link>
+      или
+      <router-link to="/auth/login?register" class="underline">зарегистрироваться</router-link>
+    </div>
   </div>
 </template>
 
@@ -21,16 +24,6 @@ export default {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated || false
     }
-  },
-  mounted() {
-    /**
-     * Перенаправить пользователя
-     * @returns {void}
-     */
-    this.$nextTick(() => {
-      const url = this.isAuthenticated ? '/' : '/auth/log-in'
-      this.$router.push(url)
-    })
   }
 }
 </script>

@@ -5,7 +5,7 @@
       <app-navbar />
 
       <!-- НАВИГАЦИЯ ПО ПРИЛОЖЕНИЮ-->
-      <top-menu />
+      <top-menu v-if="isAuthenticated" />
 
       <!-- СОДЕРЖИМОЕ СТРАНИЦЫ-->
       <div class="page-content">
@@ -24,6 +24,15 @@ export default {
   components: {
     AppNavbar,
     TopMenu
+  },
+  computed: {
+    /**
+     * Флаг, что пользователь авторизован
+     * @returns {boolean}
+     */
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated || false
+    }
   }
 }
 </script>
