@@ -10,10 +10,11 @@ import axiosInstance from '../plugins/axios.js'
  */
 export default {
   login(user) {
-    return axiosInstance.post('/users/login', {
+    return axiosInstance.post('/api/users/login', {
       username: user.username,
       password: user.password
     })
+    .then(response => response.data)
     .then(response => response)
   }
 }

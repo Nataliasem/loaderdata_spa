@@ -6,7 +6,7 @@ const checkIsAdmin = () => {
     if(!user) {
         return false
     }
-    const roleId = (user.data && user.data.roleId)
+    const roleId = user.roleId
     if(!roleId) {
         return false
     }

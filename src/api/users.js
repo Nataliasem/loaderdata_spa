@@ -11,7 +11,7 @@ import axiosInstance from '../plugins/axios.js'
 export default {
     loadUsers() {
         return axiosInstance
-            .get('/users?sortColumn=name&sortDirection=DESC&active=true')
+            .get('/api/users')
             .then(response => response)
     }
 }
