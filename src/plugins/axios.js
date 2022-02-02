@@ -6,11 +6,11 @@ import store from '../store/index'
 
 const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 
-const token = store.state.user.basicAuthToken || ''
+const token = (store.state.user && store.state.user.basicAuthToken) || ''
 
 const axiosInstance = axios.create({
     baseURL: API_URL,
-    headers: { 'Authorization': `Basic ${token}`}
+    headers: token ? { 'Authorization': `Basic ${token}`} : {}
 })
 
 const errorHandler = error => {
