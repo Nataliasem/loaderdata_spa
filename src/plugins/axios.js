@@ -1,12 +1,16 @@
 // Экземпляр плагина axios с необходимыми настройками
 
 import axios from 'axios'
-import { BASE_URL } from '../constants';
+import { BASE_URL } from '../constants'
 import store from '../store/index'
 
 const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 
 const token = (store.state.user && store.state.user.basicAuthToken) || ''
+
+export const axiosBase = axios.create({
+    baseURL: API_URL
+})
 
 const axiosInstance = axios.create({
     baseURL: API_URL,

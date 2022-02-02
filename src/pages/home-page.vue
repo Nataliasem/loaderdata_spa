@@ -6,9 +6,9 @@
       Привет, Username!
     </div>
     <div v-else class="text-center">
-      <router-link to="/auth/login?auth" class="underline">Войти</router-link>
+      <router-link to="/auth/login?type=auth" class="underline">Войти</router-link>
       или
-      <router-link to="/auth/login?register" class="underline">зарегистрироваться</router-link>
+      <router-link to="/auth/login?type=register" class="underline">зарегистрироваться</router-link>
     </div>
   </div>
 </template>
