@@ -23,6 +23,11 @@ export default {
     .then(response => response)
   },
 
+  /**
+   * Зарегистрироваться в системе
+   * @param {object} user - пользовательские данные для входа
+   * @returns {Promise}
+   */
   register(user) {
     const data = {
       username: user.username,
@@ -30,7 +35,7 @@ export default {
       roleId: user.roleId
     }
 
-      return axios.post('/api/users', data, config)
+      return axios.post('/api/users/register', data, config)
           .then(response => response.data)
           .then(response => response)
   }
