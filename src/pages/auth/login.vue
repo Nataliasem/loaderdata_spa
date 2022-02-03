@@ -24,6 +24,7 @@
     <select
       v-model="roleId"
       name="register-role"
+      class="app-input"
     >
       <option :value="1">
         Owner

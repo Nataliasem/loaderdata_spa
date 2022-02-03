@@ -1,5 +1,10 @@
 // Документация http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
-import axiosBase from '../plugins/axios.js'
+import axios from 'axios'
+import { API_URL } from '../plugins/axios'
+
+const config = {
+    baseURL: API_URL
+}
 
 export default {
   /**
@@ -8,21 +13,25 @@ export default {
    * @returns {Promise}
    */
   login(user) {
-    return axiosBase.post('/api/users/login', {
+    const data = {
       username: user.username,
       password: user.password
-    })
+    }
+
+    return axios.post('/api/users/login', data, config)
     .then(response => response.data)
     .then(response => response)
   },
 
   register(user) {
-    return axiosBase.post('api/users', {
+    const data = {
       username: user.username,
       password: user.password,
       roleId: user.roleId
-    })
-        .then(response => response.data)
-        .then(response => response)
+    }
+
+      return axios.post('/api/users', data, config)
+          .then(response => response.data)
+          .then(response => response)
   }
 }

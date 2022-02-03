@@ -4,17 +4,10 @@ import axios from 'axios'
 import { BASE_URL } from '../constants'
 import store from '../store/index'
 
-const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
-
-const token = (store.state.user && store.state.user.basicAuthToken) || ''
-
-export const axiosBase = axios.create({
-    baseURL: API_URL
-})
+export const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 
 const axiosInstance = axios.create({
-    baseURL: API_URL,
-    headers: token ? { 'Authorization': `Basic ${token}`} : {}
+    baseURL: API_URL
 })
 
 const errorHandler = error => {
@@ -23,6 +16,17 @@ const errorHandler = error => {
     return Promise.reject(message)
 }
 
+const addBasicAuthToken = config => {
+    const token = (store.state.user && store.state.user.basicAuthToken) || ''
+
+    if (token) {
+        config.headers.common.Authorization = `Basic ${token}`
+    }
+
+    return config
+}
+
+axiosInstance.interceptors.request.use(addBasicAuthToken)
 axiosInstance.interceptors.response.use(response => response, errorHandler)
 
 export default axiosInstance
