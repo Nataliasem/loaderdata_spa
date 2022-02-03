@@ -3,7 +3,7 @@ import { checkMiddleware } from './middleware.js'
 
 import homePage from '../pages/home-page.vue'
 import accessDenied from '../pages/access-denied.vue'
-import logIn from '../pages/auth/auth-login.vue'
+import logIn from '../pages/auth/login.vue'
 import adminDashboard from '../pages/admin/admin-dashboard.vue'
 import uiKit from '../pages/admin/ui-kit.vue'
 import notFound from '../pages/not-found.vue'
@@ -19,7 +19,7 @@ const router = createRouter({
             }
         },
         {
-            path: '/auth/log-in',
+            path: '/auth/login',
             component: logIn,
             meta: {
                 layout: 'not-auth-layout'

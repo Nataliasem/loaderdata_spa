@@ -1,18 +1,68 @@
 <template>
   <form
+    v-if="formType === 'register'"
     name="authentication"
     class="login-form"
-    @submit.prevent="loginUser"
+    @submit.prevent="registerUser"
   >
     <input
-      id="username"
+      id="register-username"
       v-model="username"
       name="username"
       placeholder="Логин"
       class="app-input"
     >
     <input
-      id="password"
+      id="register-password"
+      v-model="password"
+      name="password"
+      type="password"
+      placeholder="Пароль"
+      class="app-input"
+      autocomplete="password"
+    >
+    <select
+      v-model="roleId"
+      name="register-role"
+      class="app-input"
+    >
+      <option :value="1">
+        Owner
+      </option>
+      <option :value="2">
+        Admin
+      </option>
+      <option :value="3">
+        Advanced user
+      </option>
+      <option :value="4">
+        Default user
+      </option>
+    </select>
+    <button
+      type="submit"
+      :disabled="disabled"
+      class="submit-button"
+    >
+      Зарегистрироваться
+    </button>
+  </form>
+
+  <form
+    v-else
+    name="authentication"
+    class="login-form"
+    @submit.prevent="loginUser"
+  >
+    <input
+      id="auth-username"
+      v-model="username"
+      name="username"
+      placeholder="Логин"
+      class="app-input"
+    >
+    <input
+      id="auth-password"
       v-model="password"
       name="password"
       type="password"
@@ -37,11 +87,16 @@ export default {
   name: 'auth-login',
   data: () => ({
     username: '',
-    password: ''
+    password: '',
+    roleId: null
   }),
   computed: {
     disabled() {
       return !this.username || !this.password
+    },
+
+    formType() {
+      return this.$route.query.type || ''
     }
   },
   methods: {
@@ -60,6 +115,18 @@ export default {
         .catch(error => console.log(error))
     },
 
+    registerUser() {
+      const user = {
+        username: this.username,
+        password: this.password,
+        roleId: this. roleId
+      }
+
+      logInApi.register(user)
+          .then(user => this.setUser(user))
+          .catch(error => console.log(error))
+    },
+
     /**
      * Сохранить пользователя
      * @param {object} user - информация о пользователе
@@ -67,7 +134,6 @@ export default {
      */
     setUser(user) {
       this.$store.commit('SET_USER', user)
-      // TODO: setToken
 
       // На главную страницу
       this.$router.push('/')
