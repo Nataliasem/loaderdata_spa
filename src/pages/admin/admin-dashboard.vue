@@ -47,7 +47,7 @@ export default {
      * @returns {void}
      */
     loadUsers() {
-      usersApi.loadUsers()
+      usersApi.loadUsersPaginated()
           .then(users => this.users = users)
           .catch(error => console.log(error))
     },
