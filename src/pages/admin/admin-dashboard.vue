@@ -1,27 +1,49 @@
 <template>
+  <!-- ЗАГОЛОВОК -->
   <div>Панель администратора</div>
-  <div
-    v-for="user in users"
-    :key="user.userId"
-    class="user-card"
-  >
-    <div :class="user.isActive ? 'text-green-1' : 'text-red-1'">
-      {{ getFormattedStatus(user.isActive) }}
-    </div>
-    <div>{{ user.username }}</div>
-    <div>{{ getFormattedRole(user.roleId) }}</div>
-    <div class="space-x-5">
-      <button type="button">
-        Редактировать
-      </button>
-      <button
-        type="button"
-        @click="deleteUser"
-      >
-        Удалить
-      </button>
-    </div>
+
+  <!-- ЗАГРУЗЧИК -->
+  <div v-if="loading">
+    Загрузка
   </div>
+
+  <!-- КАРТОЧКИ ПОЛЬЗОВАТЕЛЕЙ -->
+  <template v-else>
+    <div
+      v-for="user in users"
+      :key="user.userId"
+      class="user-card"
+    >
+      <!-- СТАТУС -->
+      <div :class="user.isActive ? 'text-green-1' : 'text-red-1'">
+        {{ getFormattedStatus(user.isActive) }}
+      </div>
+
+      <!-- ИМЯ -->
+      <div>{{ user.username }}</div>
+
+      <!-- РОЛЬ -->
+      <div>{{ getFormattedRole(user.roleId) }}</div>
+
+      <div class="space-x-5">
+        <!-- РЕДАКТИРОВАТЬ -->
+        <button type="button">
+          Редактировать
+        </button>
+
+        <!-- УДАЛИТЬ -->
+        <button
+          type="button"
+          :title="checkDeleteButtonDisabled(user) ? 'Нельзя удалить самого себя' : ''"
+          :class="{ 'text-gray-3 cursor-not-allowed' : checkDeleteButtonDisabled(user)}"
+          :disabled="checkDeleteButtonDisabled(user)"
+          @click="deleteUser(user.userId)"
+        >
+          Удалить
+        </button>
+      </div>
+    </div>
+  </template>
 </template>
 
 <script>
@@ -36,7 +58,19 @@ export default {
      * Список пользователей
      * @type {Array}
      */
-    users: []
+    users: [],
+
+    /**
+     * Флаг загрузки
+     * @type {boolean}
+     */
+    loading: false,
+
+    /**
+     * Флаг сохранения
+     * @type {boolean}
+     */
+    saving: false
   }),
   mounted() {
     this.loadUsers()
@@ -47,9 +81,12 @@ export default {
      * @returns {void}
      */
     loadUsers() {
+      this.loading = true
+
       usersApi.loadUsersPaginated()
           .then(users => this.users = users)
           .catch(error => console.log(error))
+          .finally(() => (this.loading = false))
     },
 
     /**
@@ -62,7 +99,7 @@ export default {
     },
 
     /**
-     * Получить отображение роли пользователя
+     * Получить отображение статуса пользователя
      * @param {boolean} isActive - статус
      * @returns {string}
      */
@@ -71,11 +108,35 @@ export default {
     },
 
     /**
+     * Проверить блокировку кнопки удаления
+     * @param {object} user - пользователь
+     * @returns {boolean}
+     */
+    checkDeleteButtonDisabled(user) {
+      if (!user) {
+        return false
+      }
+
+      // Нельзя удалить самого себя
+      const currentUserId = this.$store.state.user && this.$store.state.user.userId
+
+      // Нельзя удалить, если уже удалён (деактивирован)
+      const isDeleted = user.isActive === false
+
+      return user.userId === currentUserId || isDeleted || this.saving
+    },
+
+    /**
      * Удалить пользователя
+     * @param {number} id - идентификатор пользователя
      * @returns {void}
      */
-    deleteUser() {
+    deleteUser(id) {
+      this.saving = true
 
+      usersApi.deleteUser(id)
+          .catch(error => console.log(error))
+          .finally(() => (this.saving = false))
     }
   }
 }

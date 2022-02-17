@@ -55,12 +55,12 @@ export default {
 
     /**
      * Удалить пользователя
-     * @param {string} id - идентификатор пользователя
+     * @param {number} id - идентификатор пользователя
      * @returns {Promise}
      */
     deleteUser(id) {
         return axiosInstance
-            .delete(`/api/admin/users/${id}`)
+            .delete(`/api/admin/user/${id}`)
             .then(response => response.data)
             .then(response => response)
     }
