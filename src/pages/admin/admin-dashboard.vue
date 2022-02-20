@@ -1,6 +1,11 @@
 <template>
   <!-- ЗАГОЛОВОК -->
-  <div>Панель администратора</div>
+  <div class="flex space-x-5">
+    <div>Пользователи</div>
+    <router-link :to="`/admin/admin-user-edit`">
+      Создать
+    </router-link>
+  </div>
 
   <!-- ЗАГРУЗЧИК -->
   <div v-if="loading">
@@ -11,7 +16,7 @@
   <template v-else>
     <div
       v-for="user in users"
-      :key="user.userId"
+      :key="user.id"
       class="user-card"
     >
       <!-- СТАТУС -->
@@ -20,16 +25,16 @@
       </div>
 
       <!-- ИМЯ -->
-      <div>{{ user.username }}</div>
+      <div>{{ user.name }}</div>
 
       <!-- РОЛЬ -->
       <div>{{ getFormattedRole(user.roleId) }}</div>
 
       <div class="space-x-5">
         <!-- РЕДАКТИРОВАТЬ -->
-        <button type="button">
+        <router-link :to="`/admin/admin-user-edit?id=${user.id}`">
           Редактировать
-        </button>
+        </router-link>
 
         <!-- УДАЛИТЬ -->
         <button
@@ -37,7 +42,7 @@
           :title="getDeleteButtonDisabledText(user)"
           :class="{ 'text-gray-3 cursor-not-allowed' : checkDeleteButtonDisabled(user)}"
           :disabled="checkDeleteButtonDisabled(user)"
-          @click="deleteUser(user.userId)"
+          @click="deleteUser(user.id)"
         >
           Удалить
         </button>
@@ -118,8 +123,8 @@ export default {
       }
 
       // Нельзя удалить самого себя
-      const currentUserId = this.$store.state.user && this.$store.state.user.userId
-      const deleteSelf = user.userId === currentUserId
+      const currentUserId = this.$store.state.user && this.$store.state.user.id
+      const deleteSelf = user.id === currentUserId
 
       // Нельзя удалить, если уже удалён (деактивирован)
       const isDeleted = user.isActive === false
@@ -138,8 +143,8 @@ export default {
       }
 
       // Нельзя удалить самого себя
-      const currentUserId = this.$store.state.user && this.$store.state.user.userId
-      const deleteSelf = user.userId === currentUserId
+      const currentUserId = this.$store.state.user && this.$store.state.user.id
+      const deleteSelf = user.id === currentUserId
 
       // Нельзя удалить, если уже удалён (деактивирован)
       const isDeleted = user.isActive === false

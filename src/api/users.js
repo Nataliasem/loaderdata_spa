@@ -60,7 +60,7 @@ export default {
      */
     deleteUser(id) {
         return axiosInstance
-            .delete(`/api/admin/user/${id}`)
+            .delete(`/api/admin/users/${id}`)
             .then(response => response.data)
             .then(response => response)
     }
