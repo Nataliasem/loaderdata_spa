@@ -11,7 +11,7 @@ import axiosInstance from '../plugins/axios.js'
 export default {
     loadUsers() {
         return axiosInstance
-            .get('/api/users')
+            .get('/api/admin/users')
             .then(response => response)
     }
 }
