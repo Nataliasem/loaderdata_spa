@@ -34,7 +34,7 @@
         <!-- УДАЛИТЬ -->
         <button
           type="button"
-          :title="checkDeleteButtonDisabled(user) ? 'Нельзя удалить самого себя' : ''"
+          :title="getDeleteButtonDisabledText(user)"
           :class="{ 'text-gray-3 cursor-not-allowed' : checkDeleteButtonDisabled(user)}"
           :disabled="checkDeleteButtonDisabled(user)"
           @click="deleteUser(user.userId)"
@@ -114,16 +114,49 @@ export default {
      */
     checkDeleteButtonDisabled(user) {
       if (!user) {
+        return ''
+      }
+
+      // Нельзя удалить самого себя
+      const currentUserId = this.$store.state.user && this.$store.state.user.userId
+      const deleteSelf = user.userId === currentUserId
+
+      // Нельзя удалить, если уже удалён (деактивирован)
+      const isDeleted = user.isActive === false
+
+      return deleteSelf || isDeleted || this.saving
+    },
+
+    /**
+     * Проверить блокировку кнопки удаления
+     * @param {object} user - пользователь
+     * @returns {string}
+     */
+    getDeleteButtonDisabledText(user) {
+      if (!user) {
         return false
       }
 
       // Нельзя удалить самого себя
       const currentUserId = this.$store.state.user && this.$store.state.user.userId
+      const deleteSelf = user.userId === currentUserId
 
       // Нельзя удалить, если уже удалён (деактивирован)
       const isDeleted = user.isActive === false
 
-      return user.userId === currentUserId || isDeleted || this.saving
+      if(deleteSelf) {
+        return 'Нельзя удалить самого себя'
+      }
+
+      if(isDeleted) {
+        return 'Нельзя удалить деактивированного пользователя'
+      }
+
+      if(this.saving) {
+        return 'Нельзя удалить, пока идёт сохранение'
+      }
+
+      return 'Пользователя нельзя удалить'
     },
 
     /**
