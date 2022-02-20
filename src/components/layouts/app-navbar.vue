@@ -15,8 +15,12 @@
         class="text-gray-3 cursor-not-allowed"
         disabled
       >
-        <app-icon-user class="inline-block" />
+        <span class="flex space-x-3">
+          <app-icon-user class="inline-block" />
+          <span>{{ user && user.name || '' }}</span>
+        </span>
       </button>
+
 
       <!-- ВЫХОД ИЗ СИСТЕМЫ-->
       <button
@@ -58,6 +62,14 @@ export default {
      */
     isAuthenticated() {
       return this.$store.getters.isAuthenticated || false
+    },
+
+    /**
+     * Текущий пользователь
+     * @returns {object}
+     */
+    user() {
+      return this.$store.state.user || null
     }
   },
   methods: {
