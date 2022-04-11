@@ -1,10 +1,13 @@
 // Документация http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 import axios from 'axios'
 import { API_URL } from '../plugins/axios'
+import { useToast } from 'vue-toastification';
 
 const config = {
     baseURL: API_URL
 }
+
+const toast = useToast();
 
 export default {
   /**
@@ -19,8 +22,9 @@ export default {
     }
 
     return axios.post('/api/users/login', data, config)
-    .then(response => response.data)
-    .then(response => response)
+        .then(response => response.data)
+        .then(response => response)
+        .catch(error => toast.error(error.response.data.message))
   },
 
   /**
