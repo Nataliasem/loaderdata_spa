@@ -112,7 +112,7 @@ export default {
 
       logInApi.login(user)
         .then(user => this.setUser(user))
-        .catch(error => console.log(error))
+        .catch(error => toast.error(error.response.data.message))
     },
 
     registerUser() {
