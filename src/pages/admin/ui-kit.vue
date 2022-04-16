@@ -112,6 +112,7 @@
 
 
 <script>
+// TODO: Настроить импорты
 import AppIconUser from '../../components/icons/app-icon-user.vue'
 import AppIconLogout from '../../components/icons/app-icon-logout.vue'
 import AppIconLogin from '../../components/icons/app-icon-login.vue'

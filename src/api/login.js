@@ -1,6 +1,5 @@
 // Документация http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
-import axios from 'axios'
-import { API_URL } from '../plugins/axios'
+import axiosInstance, { API_URL } from '../plugins/axios'
 
 const config = {
     baseURL: API_URL
@@ -18,9 +17,9 @@ export default {
       password: user.password
     }
 
-    return axios.post('/api/users/login', data, config)
-    .then(response => response.data)
-    .then(response => response)
+    return axiosInstance.post('/api/users/login', data, config)
+        .then(response => response.data)
+        .then(response => response)
   },
 
   /**
@@ -35,7 +34,7 @@ export default {
       roleId: user.roleId
     }
 
-      return axios.post('/api/users/register', data, config)
+      return axiosInstance.post('/api/users/register', data, config)
           .then(response => response.data)
           .then(response => response)
   }

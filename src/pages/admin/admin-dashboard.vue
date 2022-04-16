@@ -54,6 +54,7 @@
 <script>
 import usersApi from '../../api/users.js'
 import { ROLES } from '../../constants.js'
+import notify from '../../plugins/notify.js';
 
 export default {
   name: 'admin-dashboard',
@@ -90,7 +91,7 @@ export default {
 
       usersApi.loadUsersPaginated()
           .then(users => this.users = users)
-          .catch(error => console.log(error))
+          .catch(error => notify.error(error))
           .finally(() => (this.loading = false))
     },
 
@@ -173,7 +174,7 @@ export default {
       this.saving = true
 
       usersApi.deleteUser(id)
-          .catch(error => console.log(error))
+          .catch(error => notify.error(error))
           .finally(() => (this.saving = false))
     }
   }

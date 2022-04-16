@@ -82,6 +82,7 @@
 
 <script>
 import logInApi from '../../api/login.js'
+import notify from '../../plugins/notify.js'
 
 export default {
   name: 'auth-login',
@@ -112,7 +113,7 @@ export default {
 
       logInApi.login(user)
         .then(user => this.setUser(user))
-        .catch(error => console.log(error))
+        .catch(error => notify.error(error))
     },
 
     registerUser() {
@@ -124,7 +125,7 @@ export default {
 
       logInApi.register(user)
           .then(user => this.setUser(user))
-          .catch(error => console.log(error))
+          .catch(error => notify.error(error))
     },
 
     /**
