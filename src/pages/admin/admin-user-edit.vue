@@ -70,6 +70,7 @@
 <script>
 import usersApi from '../../api/users.js'
 import { ROLES } from '../../constants.js'
+import notify from '../../plugins/notify';
 
 export default {
   name: 'admin-user-edit',
@@ -116,7 +117,7 @@ export default {
 
       usersApi.loadUser(this.id)
           .then(user => this.user = user)
-          .catch(error => console.log(error))
+          .catch(error => notify.error(error))
           .finally(() => (this.loading = false))
     },
 
@@ -127,7 +128,7 @@ export default {
           ? usersApi.updateUser(this.user)
           : usersApi.createUser(this.user)
               .then(user => (this.user = user))
-              .catch(error => console.log(error))
+              .catch(error => notify.error(error))
               .finally(() => (this.saving = false))
     }
   }

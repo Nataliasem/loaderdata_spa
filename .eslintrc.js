@@ -10,6 +10,7 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended'
     // TODO: плагин для jsdoc
+    // TODO: Правило, чтобы в импортах всегда было указано расширение
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

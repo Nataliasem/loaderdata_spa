@@ -11,6 +11,12 @@ const axiosInstance = axios.create({
 })
 
 const errorHandler = error => {
+    if(!error || !error.response) {
+        return Promise.reject('Не удалось подключиться к серверу')
+    }
+
+    // TODO: Обрабатывать разные статусы ошибок
+    debugger
     const message = error.response.data.message
 
     return Promise.reject(message)

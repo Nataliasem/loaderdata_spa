@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { checkMiddleware } from './middleware.js'
 
+// TODO: Добавить алиас для корневого каталога
 import homePage from '../pages/home-page.vue'
 import accessDenied from '../pages/access-denied.vue'
 import logIn from '../pages/auth/login.vue'

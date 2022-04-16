@@ -1,2 +1,4 @@
 import { useToast } from 'vue-toastification';
-const toast = useToast()
+
+const notify = useToast()
+export default notify
