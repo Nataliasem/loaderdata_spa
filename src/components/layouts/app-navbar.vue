@@ -44,16 +44,14 @@
 </template>
 
 <script>
-import AppIconUser from '/src/components/icons/app-icon-user.vue'
-import AppIconLogout from '/src/components/icons/app-icon-logout.vue'
-import AppIconLogin from '/src/components/icons/app-icon-login.vue'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'app-navbar',
   components: {
-    AppIconUser,
-    AppIconLogout,
-    AppIconLogin
+    AppIconUser: defineAsyncComponent(() => import('/src/components/icons/app-icon-user.vue')),
+    AppIconLogout: defineAsyncComponent(() => import('/src/components/icons/app-icon-logout.vue')),
+    AppIconLogin: defineAsyncComponent(() => import('/src/components/icons/app-icon-login.vue'))
   },
   computed: {
     /**

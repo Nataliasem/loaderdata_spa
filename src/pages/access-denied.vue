@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import AppIconWarning from '../components/icons/app-icon-warning.vue'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'access-denied',
   components: {
-    AppIconWarning
+    AppIconWarning: defineAsyncComponent(() => import('../components/icons/app-icon-warning.vue'))
   },
   computed: {
     /**
