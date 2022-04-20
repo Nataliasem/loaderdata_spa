@@ -10,8 +10,9 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
     'plugin:jsdoc/recommended',
-    'plugin:sonarjs/recommended'
-    // TODO: Правило, чтобы в импортах всегда было указано расширение
+    'plugin:sonarjs/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings'
   ],
   plugins: [
     'sonarjs',
@@ -44,6 +45,20 @@ module.exports = {
     'comma-style': 'error', // Запятую ставим всегда в той же строке, что и элемент списка
     'comma-dangle': 'error', // Не используем висячие запятые
     'comma-spacing': 'error', //  Запретить пробелы перед запятыми
+
+
+    // [IMPORT]
+    'import/no-unresolved': 'error', // Проверять импорты на существование файлов
+    'import/no-named-as-default-member': 'off', // Использовать именованные импорты вместо дефолтного обращения к свойствам
+    'import/extensions': ['error', 'always', { ignorePackages: true }], // Импорты с расширениями файлов
+    'import/no-absolute-path': 'error', // Никаких импортов со слэша
+    'import/no-webpack-loader-syntax': 'error', // Никакой настройки webpack в импорте
+    'import/no-self-import': 'error', // Никакого импорта самого себя
+    'import/no-useless-path-segments': 'error', // Никаких лишних сегментов в пути
+    'import/no-extraneous-dependencies': 'error', // Никаких библиотек, не указанных в package.json
+    'import/newline-after-import': 'error', // Пустая строка после импортов
+    'import/order': ['error', { alphabetize: { order: 'asc', caseInsensitive: true } }], // Импорты в едином порядке
+    'import/named': 'error', // Проверяет существование именованных импортов
 
     // [SONARJS]
     'sonarjs/cognitive-complexity': 'warn',
