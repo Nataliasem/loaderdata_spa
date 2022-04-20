@@ -112,11 +112,10 @@
 
 
 <script>
-// TODO: Настроить импорты
-import AppIconUser from '../../components/icons/app-icon-user.vue'
-import AppIconLogout from '../../components/icons/app-icon-logout.vue'
-import AppIconLogin from '../../components/icons/app-icon-login.vue'
-import AppIconWarning from '../../components/icons/app-icon-warning.vue'
+import AppIconUser from '~/components/icons/app-icon-user.vue'
+import AppIconLogout from '~/components/icons/app-icon-logout.vue'
+import AppIconLogin from '~/components/icons/app-icon-login.vue'
+import AppIconWarning from '~/components/icons/app-icon-warning.vue'
 
 export default {
   name: 'ui-kit',

@@ -81,8 +81,8 @@
 </template>
 
 <script>
-import logInApi from '../../api/login.js'
-import notify from '../../plugins/notify.js'
+import logInApi from '~/api/login.js'
+import notify from '~/plugins/notify.js'
 
 export default {
   name: 'auth-login',

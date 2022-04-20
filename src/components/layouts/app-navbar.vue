@@ -49,9 +49,9 @@ import { defineAsyncComponent } from 'vue'
 export default {
   name: 'app-navbar',
   components: {
-    AppIconUser: defineAsyncComponent(() => import('/src/components/icons/app-icon-user.vue')),
-    AppIconLogout: defineAsyncComponent(() => import('/src/components/icons/app-icon-logout.vue')),
-    AppIconLogin: defineAsyncComponent(() => import('/src/components/icons/app-icon-login.vue'))
+    AppIconUser: defineAsyncComponent(() => import('~/components/icons/app-icon-user.vue')),
+    AppIconLogout: defineAsyncComponent(() => import('~/components/icons/app-icon-logout.vue')),
+    AppIconLogin: defineAsyncComponent(() => import('~/components/icons/app-icon-login.vue'))
   },
   computed: {
     /**
