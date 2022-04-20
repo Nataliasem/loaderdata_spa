@@ -18,8 +18,8 @@ export default {
     }
 
     return axiosInstance.post('/api/users/login', data, config)
-    .then(response => response.data)
-    .then(response => response)
+        .then(response => response.data)
+        .then(response => response)
   },
 
   /**
