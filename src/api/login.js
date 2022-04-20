@@ -1,5 +1,5 @@
 // Документация http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
-import axiosInstance, { API_URL } from '../plugins/axios'
+import axiosInstance, { API_URL } from '~/plugins/axios'
 
 const config = {
     baseURL: API_URL

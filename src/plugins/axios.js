@@ -1,8 +1,8 @@
 // Экземпляр плагина axios с необходимыми настройками
 
 import axios from 'axios'
-import { BASE_URL } from '../constants'
-import store from '../store/index'
+import { BASE_URL } from '~/constants'
+import store from '~/store/index'
 
 export const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 
@@ -11,6 +11,12 @@ const axiosInstance = axios.create({
 })
 
 const errorHandler = error => {
+    if(!error || !error.response) {
+        return Promise.reject('Не удалось подключиться к серверу')
+    }
+
+    // TODO: Обрабатывать разные статусы ошибок
+    debugger
     const message = error.response.data.message
 
     return Promise.reject(message)

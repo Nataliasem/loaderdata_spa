@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import AppIconWarning from '../components/icons/app-icon-warning.vue'
+import AppIconWarning from '~/components/icons/app-icon-warning.vue'
 
 export default {
   name: 'access-denied',
