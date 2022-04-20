@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import usersApi from '../../api/users.js'
-import { ROLES } from '../../constants.js'
-import notify from '../../plugins/notify.js';
+import usersApi from '~/api/users.js'
+import { ROLES } from '~/constants.js'
+import notify from '~/plugins/notify.js';
 
 export default {
   name: 'admin-dashboard',
