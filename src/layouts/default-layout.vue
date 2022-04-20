@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import AppNavbar from '../components/layouts/app-navbar.vue'
-import TopMenu from '../components/layouts/top-menu.vue'
+import AppNavbar from '~/components/layouts/app-navbar.vue'
+import TopMenu from '~/components/layouts/top-menu.vue'
 
 export default {
   name: 'default-layout',

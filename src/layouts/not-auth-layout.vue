@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import AppNavbar from '../components/layouts/app-navbar.vue'
+import AppNavbar from '~/components/layouts/app-navbar.vue'
 
 export default {
   name: 'not-auth-layout',
