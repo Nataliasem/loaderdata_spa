@@ -68,9 +68,9 @@
 </template>
 
 <script>
-import usersApi from '../../api/users.js'
-import { ROLES } from '../../constants.js'
-import notify from '../../plugins/notify';
+import usersApi from '~/api/users.js'
+import { ROLES } from '~/constants.js'
+import notify from '~/plugins/notify';
 
 export default {
   name: 'admin-user-edit',

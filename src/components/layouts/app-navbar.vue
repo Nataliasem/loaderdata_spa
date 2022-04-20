@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import AppIconUser from '/src/components/icons/app-icon-user.vue'
-import AppIconLogout from '/src/components/icons/app-icon-logout.vue'
-import AppIconLogin from '/src/components/icons/app-icon-login.vue'
+import AppIconUser from '~/components/icons/app-icon-user.vue'
+import AppIconLogout from '~/components/icons/app-icon-logout.vue'
+import AppIconLogin from '~/components/icons/app-icon-login.vue'
 
 export default {
   name: 'app-navbar',
