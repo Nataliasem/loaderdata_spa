@@ -120,7 +120,7 @@ export default {
      */
     checkDeleteButtonDisabled(user) {
       if (!user) {
-        return ''
+        return false
       }
 
       // Нельзя удалить самого себя
