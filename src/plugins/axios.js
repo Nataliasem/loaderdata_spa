@@ -1,8 +1,8 @@
 // Экземпляр плагина axios с необходимыми настройками
 
 import axios from 'axios'
-import { BASE_URL } from '~/constants'
-import store from '~/store/index'
+import { BASE_URL } from '~/constants.js'
+import store from '~/store/index.js'
 
 export const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 
@@ -16,7 +16,6 @@ const errorHandler = error => {
     }
 
     // TODO: Обрабатывать разные статусы ошибок
-    debugger
     const message = error.response.data.message
 
     return Promise.reject(message)

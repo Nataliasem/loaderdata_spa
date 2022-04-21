@@ -10,21 +10,21 @@
       Загрузка
     </div>
 
-    <!-- ПОЛЬЗОВАТЕЛЬ-->
+    <!-- ПОЛЬЗОВАТЕЛЬ -->
     <form
       v-else-if="loading === false && user"
       name="edit-user"
       class="user-form"
       @submit.prevent="saveUser"
     >
-      <!-- ИМЯ-->
+      <!-- ИМЯ -->
       <input
         id="edit-name"
         v-model="user.name"
         name="name"
         placeholder="Имя пользователя"
         class="app-input"
-      >
+      />
 
       <!-- ПАРОЛЬ -->
       <input
@@ -35,7 +35,7 @@
         placeholder="Пароль"
         class="app-input"
         autocomplete="password"
-      >
+      />
 
       <!-- РОЛЬ -->
       <select
@@ -70,7 +70,7 @@
 <script>
 import usersApi from '~/api/users.js'
 import { ROLES } from '~/constants.js'
-import notify from '~/plugins/notify';
+import notify from '~/plugins/notify.js';
 
 export default {
   name: 'admin-user-edit',

@@ -1,5 +1,5 @@
-import store from '~/store';
-import { ROLES } from '~/constants';
+import { ROLES } from '~/constants.js';
+import store from '~/store/index.js';
 
 const checkIsAdmin = () => {
     const user = store.state.user

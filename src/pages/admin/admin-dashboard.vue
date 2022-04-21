@@ -2,7 +2,7 @@
   <!-- ЗАГОЛОВОК -->
   <div class="flex space-x-5">
     <div>Пользователи</div>
-    <router-link :to="`/admin/admin-user-edit`">
+    <router-link to="/admin/admin-user-edit">
       Создать
     </router-link>
   </div>

@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
-import store from './store'
-import router from './router'
-import './main.css'
 import Toast from 'vue-toastification';
+import App from './App.vue'
+import router from './router/index.js'
+import store from './store/index.js'
+import './main.css'
+
 import 'vue-toastification/dist/index.css';
 
 // TODO: Вынести настройки в файл notify.js
@@ -13,7 +15,7 @@ const options = {
     timeout: 2000
 };
 
-import App from './App.vue'
+
 
 const app = createApp(App)
 
