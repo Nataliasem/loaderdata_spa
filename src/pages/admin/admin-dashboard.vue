@@ -57,8 +57,8 @@ import { ROLES } from '~/constants.js'
 import notify from '~/plugins/notify.js';
 
 export default {
-  middleware: ['auth', 'admin'],
   name: 'admin-dashboard',
+  middleware: ['auth', 'admin'],
   data: () => ({
     /**
      * Список пользователей
@@ -78,6 +78,9 @@ export default {
      */
     saving: false
   }),
+  mounted() {
+    this.loadUsers()
+  },
   mounted() {
     this.loadUsers()
   },
