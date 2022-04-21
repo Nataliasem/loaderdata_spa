@@ -1,6 +1,6 @@
 <template>
   <div class="app-navbar">
-    <!-- ЛОГОТИП-->
+    <!-- ЛОГОТИП -->
     <div
       class="logo"
       @click="backToHomePage"
@@ -9,7 +9,7 @@
     </div>
 
     <div class="flex space-x-5">
-      <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ-->
+      <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
       <button
         type="button"
         class="text-gray-3 cursor-not-allowed"
@@ -22,7 +22,7 @@
       </button>
 
 
-      <!-- ВЫХОД ИЗ СИСТЕМЫ-->
+      <!-- ВЫХОД ИЗ СИСТЕМЫ -->
       <button
         v-if="isAuthenticated"
         type="button"
@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import AppIconUser from '~/components/icons/app-icon-user.vue'
-import AppIconLogout from '~/components/icons/app-icon-logout.vue'
 import AppIconLogin from '~/components/icons/app-icon-login.vue'
+import AppIconLogout from '~/components/icons/app-icon-logout.vue'
+import AppIconUser from '~/components/icons/app-icon-user.vue'
 
 export default {
   name: 'app-navbar',

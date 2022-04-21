@@ -1,4 +1,3 @@
-const path = require("path");
 module.exports = {
   root: true,
   env: {
@@ -60,22 +59,6 @@ module.exports = {
     'import/newline-after-import': 'error', // Пустая строка после импортов
     'import/order': ['error', { alphabetize: { order: 'asc', caseInsensitive: true } }], // Импорты в едином порядке
     'import/named': 'error', // Проверяет существование именованных импортов
-
-    // [IMPORT] Чтобы ESLint понимал импорты файлов с ~
-    'import/resolver': {
-      // Чтобы стандартные библиотеки node, например path не считались неизвестными зависимостями
-      node: {},
-      // Чтобы распознавал алиасы нашего проекта
-      webpack: {
-        config: {
-          resolve: {
-            alias: {
-              '~': path.resolve(__dirname, 'src/')
-            }
-          }
-        }
-      }
-    },
 
     // [SONARJS]
     'sonarjs/cognitive-complexity': 'warn',
@@ -184,5 +167,13 @@ module.exports = {
 
     // [VUE] Порядок опций в компонентах
     'vue/order-in-components': 'error'
+  },
+  settings: {
+    // [IMPORT] Чтобы ESLint понимал импорты файлов с ~
+    'import/resolver': {
+      alias: {
+        map: [['~', './src']]
+      }
+    }
   }
 }

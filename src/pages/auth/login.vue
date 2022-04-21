@@ -11,7 +11,7 @@
       name="username"
       placeholder="Логин"
       class="app-input"
-    >
+    />
     <input
       id="register-password"
       v-model="password"
@@ -20,7 +20,7 @@
       placeholder="Пароль"
       class="app-input"
       autocomplete="password"
-    >
+    />
     <select
       v-model="roleId"
       name="register-role"
@@ -60,7 +60,7 @@
       name="username"
       placeholder="Логин"
       class="app-input"
-    >
+    />
     <input
       id="auth-password"
       v-model="password"
@@ -69,7 +69,7 @@
       placeholder="Пароль"
       class="app-input"
       autocomplete="password"
-    >
+    />
     <button
       type="submit"
       :disabled="disabled"

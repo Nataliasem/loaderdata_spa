@@ -1,13 +1,13 @@
 <template>
   <div class="default-layout">
     <div class="page-wrapper">
-      <!-- ЛОГОТИП + УПРАВЛЕНИЕ АККАУНТОМ-->
+      <!-- ЛОГОТИП + УПРАВЛЕНИЕ АККАУНТОМ -->
       <app-navbar />
 
-      <!-- НАВИГАЦИЯ ПО ПРИЛОЖЕНИЮ-->
+      <!-- НАВИГАЦИЯ ПО ПРИЛОЖЕНИЮ -->
       <top-menu v-if="isAuthenticated" />
 
-      <!-- СОДЕРЖИМОЕ СТРАНИЦЫ-->
+      <!-- СОДЕРЖИМОЕ СТРАНИЦЫ -->
       <div class="page-content">
         <slot />
       </div>
