@@ -81,9 +81,6 @@ export default {
   mounted() {
     this.loadUsers()
   },
-  mounted() {
-    this.loadUsers()
-  },
   methods: {
     /**
      * Загрузить пользователей
