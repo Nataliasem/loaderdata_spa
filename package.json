@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "prepare": "husky install"
   },
   "dependencies": {
     "axios": "0.25.0",
@@ -27,7 +28,7 @@
     "eslint-plugin-sonarjs": "0.13.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-vue": "8.6.0",
-    "esm": "^3.2.25",
+    "husky": "7.0.4",
     "vite": "2.7.13"
   }
 }
