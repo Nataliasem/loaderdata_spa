@@ -57,8 +57,8 @@ import { ROLES } from '~/constants.js'
 import notify from '~/plugins/notify.js';
 
 export default {
-  name: 'admin-dashboard',
   middleware: ['auth', 'admin'],
+  name: 'admin-dashboard',
   data: () => ({
     /**
      * Список пользователей
