@@ -1,7 +1,7 @@
 <template>
   <form
     v-if="formType === 'register'"
-    name="authentication"
+    name="registration"
     class="login-form"
     @submit.prevent="registerUser"
   >
@@ -12,14 +12,10 @@
       placeholder="Логин"
       class="app-input"
     />
-    <input
+    <ld-field-input-password
       id="register-password"
       v-model="password"
-      name="password"
-      type="password"
       placeholder="Пароль"
-      class="app-input"
-      autocomplete="password"
     />
     <select
       v-model="roleId"
@@ -61,14 +57,10 @@
       placeholder="Логин"
       class="app-input"
     />
-    <input
+    <ld-field-input-password
       id="auth-password"
       v-model="password"
-      name="password"
-      type="password"
       placeholder="Пароль"
-      class="app-input"
-      autocomplete="password"
     />
     <button
       type="submit"
@@ -82,10 +74,14 @@
 
 <script>
 import logInApi from '~/api/login.js'
+import LdFieldInputPassword from '~/components/fields/ld-field-input-password.vue'
 import notify from '~/plugins/notify.js'
 
 export default {
   name: 'auth-login',
+  components: {
+    LdFieldInputPassword
+  },
   data: () => ({
     username: '',
     password: '',
