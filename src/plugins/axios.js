@@ -15,7 +15,10 @@ const errorHandler = error => {
         return Promise.reject('Не удалось подключиться к серверу')
     }
 
-    // TODO: Обрабатывать разные статусы ошибок
+    if (error.response.status >= 500) {
+        error.message = 'Извините, возникла ошибка на сервере'
+    }
+
     const message = error.response.data.message
 
     return Promise.reject(message)
