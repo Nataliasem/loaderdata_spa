@@ -69,7 +69,7 @@ module.exports = {
 
     // [JSDOC]
     'jsdoc/newline-after-description': ['warn', 'never'],
-    'jsdoc/require-description': 'warn',
+    'jsdoc/require-description': 'warn', // Обязательно описываем параметры
     'jsdoc/require-returns-description': 'off',
     'jsdoc/require-returns': ['warn', { forceRequireReturn: true }],
     'jsdoc/valid-types': 'error',
