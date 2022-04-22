@@ -125,6 +125,7 @@ export default {
 
       logInApi.register(user)
           .then(user => this.setUser(user))
+          .then(() => notify.success('Вы успешно зарегистрировались в системе'))
           .catch(error => notify.error(error))
     },
 

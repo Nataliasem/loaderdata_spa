@@ -128,6 +128,7 @@ export default {
           ? usersApi.updateUser(this.user)
           : usersApi.createUser(this.user)
               .then(user => (this.user = user))
+              .then(() => notify.success('Данные сохранены'))
               .catch(error => notify.error(error))
               .finally(() => (this.saving = false))
     }

@@ -174,6 +174,7 @@ export default {
       this.saving = true
 
       usersApi.deleteUser(id)
+          .then(() => notify.success('Пользователь удалён'))
           .catch(error => notify.error(error))
           .finally(() => (this.saving = false))
     }
