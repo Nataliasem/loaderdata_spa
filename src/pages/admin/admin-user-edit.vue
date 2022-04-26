@@ -69,7 +69,7 @@
 
 <script>
 import usersApi from '~/api/users.js'
-import { ROLES } from '~/constants.js'
+import { ROLES } from '~/constants.ts'
 import notify from '~/plugins/notify.js';
 
 export default {

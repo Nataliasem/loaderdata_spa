@@ -1,4 +1,4 @@
-import { ROLES } from '~/constants.js';
+import { ROLES } from '~/constants.ts';
 import store from '~/store/index.js';
 
 const checkIsAdmin = () => {
