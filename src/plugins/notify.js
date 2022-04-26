@@ -1,11 +1,11 @@
-import { useToast } from 'vue-toastification';
-import 'vue-toastification/dist/index.css';
+import { useToast } from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 
 const options = {
     hideProgressBar: true,
     showCloseButtonOnHover: true,
     timeout: 2000
-};
+}
 
 const toast = useToast()
 

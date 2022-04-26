@@ -6,7 +6,13 @@ module.exports = {
     browser: true,
     node: true
   },
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: {
+      ts: '@typescript-eslint/parser',
+      '<template>': 'espree'
+    }
+  },
   plugins: [
     '@typescript-eslint',
     'sonarjs',
