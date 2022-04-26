@@ -6,18 +6,21 @@ module.exports = {
     browser: true,
     node: true
   },
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+    'sonarjs',
+    'jsdoc',
+    'promise'
+  ],
   extends: [
-    'plugin:vue/vue3-recommended',
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
     'plugin:jsdoc/recommended',
     'plugin:sonarjs/recommended',
     'plugin:import/errors',
     'plugin:import/warnings'
-  ],
-  plugins: [
-    'sonarjs',
-    'jsdoc',
-    'promise'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
