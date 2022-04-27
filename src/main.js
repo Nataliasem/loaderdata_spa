@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import Toast from 'vue-toastification';
+import Toast from 'vue-toastification'
 import App from './App.vue'
 import router from './router/index.js'
 import store from './store/index.js'

@@ -1,7 +1,7 @@
 // Экземпляр плагина axios с необходимыми настройками
 
 import axios from 'axios'
-import { BASE_URL } from '~/constants.js'
+import { BASE_URL } from '~/constants.ts'
 import store from '~/store/index.js'
 
 export const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
