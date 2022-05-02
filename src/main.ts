@@ -12,5 +12,3 @@ app.use(store)
 app.use(Toast, {transition: 'Vue-Toastification__fade'})
 
 app.mount('#app')
-
-
