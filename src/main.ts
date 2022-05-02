@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import Toast from 'vue-toastification'
 import App from './App.vue'
-import router from './router/index.js'
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import router from './router'
 import store from './store/index.js'
 import './main.css'
 
