@@ -1,23 +1,17 @@
 <template>
-  <component :is="layout">
+  <component :is="layout === 'default-layout' ? DefaultLayout : NotAuthLayout">
     <router-view />
   </component>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import DefaultLayout from './layouts/default-layout.vue'
 import NotAuthLayout from './layouts/not-auth-layout.vue'
 
-export default {
-  name: 'app',
-  components: {
-    DefaultLayout,
-    NotAuthLayout
-  },
-  computed: {
-    layout() {
-      return this.$route.meta.layout || 'default-layout'
-    }
-  }
-}
+const layout = computed(() => {
+  const route = useRoute()
+  return route.meta.layout || 'default-layout'
+})
 </script>
