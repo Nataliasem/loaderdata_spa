@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
+import { State } from '../types/store'
 
-const store = createStore({
+const store = createStore<State>({
     state() {
         return {
             /**

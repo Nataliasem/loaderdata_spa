@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import { BASE_URL } from '~/constants.ts'
-import store from '~/store'
+import store from '~/store/index.ts'
 
 export const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 

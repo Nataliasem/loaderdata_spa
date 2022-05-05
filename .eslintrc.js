@@ -58,9 +58,9 @@ module.exports = {
 
 
     // [IMPORT]
-    'import/no-unresolved': 'error', // Проверять импорты на существование файлов
+    'import/no-unresolved': 1, // Проверять импорты на существование файлов
     'import/no-named-as-default-member': 'off', // Использовать именованные импорты вместо дефолтного обращения к свойствам
-    'import/extensions': ['error', 'always', { ignorePackages: true }], // Импорты с расширениями файлов
+    'import/extensions': [1, 'always', { ignorePackages: true }], // Импорты с расширениями файлов
     'import/no-absolute-path': 'error', // Никаких импортов со слэша
     'import/no-webpack-loader-syntax': 'error', // Никакой настройки webpack в импорте
     'import/no-self-import': 'error', // Никакого импорта самого себя
