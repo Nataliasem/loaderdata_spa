@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import AppNavbar from '~/components/layouts/app-navbar.vue'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'not-auth-layout',
   components: {
-    AppNavbar
+    AppNavbar: defineAsyncComponent(() => import('~/components/layouts/app-navbar.vue'))
   }
 }
 </script>

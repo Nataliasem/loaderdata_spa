@@ -112,18 +112,15 @@
 
 
 <script>
-import AppIconLogin from '~/components/icons/app-icon-login.vue'
-import AppIconLogout from '~/components/icons/app-icon-logout.vue'
-import AppIconUser from '~/components/icons/app-icon-user.vue'
-import AppIconWarning from '~/components/icons/app-icon-warning.vue'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'ui-kit',
   components: {
-    AppIconWarning,
-    AppIconUser,
-    AppIconLogout,
-    AppIconLogin
+    AppIconWarning: defineAsyncComponent(() => import('~/components/icons/app-icon-warning.vue')),
+    AppIconUser: defineAsyncComponent(() => import('~/components/icons/app-icon-user.vue')),
+    AppIconLogout: defineAsyncComponent(() => import('~/components/icons/app-icon-logout.vue')),
+    AppIconLogin: defineAsyncComponent(() => import('~/components/icons/app-icon-login.vue'))
   },
   middleware: 'auth'
 }

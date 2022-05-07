@@ -16,14 +16,13 @@
 </template>
 
 <script>
-import AppNavbar from '~/components/layouts/app-navbar.vue'
-import TopMenu from '~/components/layouts/top-menu.vue'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'default-layout',
   components: {
-    AppNavbar,
-    TopMenu
+    AppNavbar: defineAsyncComponent(() => import('~/components/layouts/app-navbar.vue')),
+    TopMenu: defineAsyncComponent(() => import('~/components/layouts/top-menu.vue')),
   },
   computed: {
     /**
