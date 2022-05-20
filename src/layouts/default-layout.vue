@@ -22,7 +22,7 @@ export default {
   name: 'default-layout',
   components: {
     AppNavbar: defineAsyncComponent(() => import('~/components/layouts/app-navbar.vue')),
-    TopMenu: defineAsyncComponent(() => import('~/components/layouts/top-menu.vue')),
+    TopMenu: defineAsyncComponent(() => import('~/components/layouts/top-menu.vue'))
   },
   computed: {
     /**

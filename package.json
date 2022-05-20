@@ -15,8 +15,7 @@
     "vue": "3.2.29",
     "vue-router": "4.0.12",
     "vue-toastification": "v2.0.0-rc.5",
-    "vuex": "4.0.2",
-    "vuex-persistedstate": "4.1.0"
+    "vuex": "4.0.2"
   },
   "devDependencies": {
     "typescript": "4.6.3",
@@ -35,10 +34,5 @@
     "husky": "7.0.4",
     "lint-staged": "12.4.0",
     "autoprefixer": "10.4.2"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --no-fix"
-    ]
   }
 }
