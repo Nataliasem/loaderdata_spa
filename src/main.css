@@ -76,3 +76,18 @@ body {
     @apply border border-gray-5 px-2 py-1;
     border-radius: 12px;
 }
+
+.ld-input {
+    border: 1px solid #DBE2EA;
+    border-radius: 3px;
+    padding: 10px 15px;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.ld-input:focus {
+    outline: none;
+    border-color: #0880AE;
+    border-width: 2px;
+}
