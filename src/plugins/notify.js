@@ -1,25 +1,16 @@
-import { useToast } from 'vue-toastification'
-import 'vue-toastification/dist/index.css'
-
-const options = {
-    hideProgressBar: true,
-    showCloseButtonOnHover: true,
-    timeout: 2000
-}
-
-const toast = useToast()
+// TODO: сделать простые уведомления
 
 export default {
     info(message) {
-        toast.info(message, options)
+        alert(message)
     },
     success(message) {
-        toast.success(message, options)
+        alert(message)
     },
     warning(message) {
-        toast.warning(message, options)
+        alert(message)
     },
     error(message) {
-        toast.error(message, options)
+        alert(message)
     }
 }

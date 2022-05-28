@@ -6,38 +6,19 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint --ext .js,.ts,.vue, --ignore-path .gitignore --fix src",
-    "prepare": "husky install"
+    "lint": "eslint --ext .js,.vue, --ignore-path .gitignore --fix src"
   },
   "dependencies": {
-    "axios": "0.25.0",
-    "tailwindcss": "3.0.18",
-    "vue": "3.2.29",
-    "vue-router": "4.0.12",
-    "vue-toastification": "v2.0.0-rc.5",
+    "axios": "0.27.2",
+    "tailwindcss": "3.0.24",
+    "vue": "3.2.36",
+    "vue-router": "4.0.15",
     "vuex": "4.0.2"
   },
   "devDependencies": {
-    "typescript": "4.6.3",
-    "vite": "2.7.13",
-    "@vitejs/plugin-vue": "2.1.0",
-    "eslint": "8.14.0",
-    "@typescript-eslint/parser": "5.21.0",
-    "vue-eslint-parser": "8.3.0",
-    "@typescript-eslint/eslint-plugin": "5.21.0",
-    "eslint-import-resolver-alias": "1.1.2",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsdoc": "39.2.3",
-    "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-sonarjs": "0.13.0",
-    "eslint-plugin-vue": "8.6.0",
-    "husky": "7.0.4",
-    "lint-staged": "12.4.0",
-    "autoprefixer": "10.4.2"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --no-fix"
-    ]
+    "vite": "2.9.9",
+    "@vitejs/plugin-vue": "2.3.3",
+    "eslint": "8.16.0",
+    "autoprefixer": "10.4.7"
   }
 }
