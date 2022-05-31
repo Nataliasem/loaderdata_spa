@@ -17,7 +17,7 @@
       >
         <span class="flex space-x-3">
           <app-icon-user class="inline-block" />
-          <span>{{ user && user.name || '' }}</span>
+          <span>{{ userName }}</span>
         </span>
       </button>
 
@@ -44,7 +44,9 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, computed } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'AppNavbar',
@@ -53,40 +55,34 @@ export default {
     AppIconLogout: defineAsyncComponent(() => import('~/components/icons/app-icon-logout.vue')),
     AppIconLogin: defineAsyncComponent(() => import('~/components/icons/app-icon-login.vue'))
   },
-  computed: {
-    /**
-     * Флаг, что пользователь авторизован
-     * @returns {boolean}
-     */
-    isAuthenticated() {
-      return this.$store.getters.isAuthenticated || false
-    },
+  setup() {
+    const store = useStore()
+    const router = useRouter()
 
-    /**
-     * Текущий пользователь
-     * @returns {object}
-     */
-    user() {
-      return this.$store.state.user || null
+    const isAuthenticated = computed(() => {
+      return store.getters.isAuthenticated || false
+    })
+
+    const userName = computed(() => {
+      const user = store.state.user || null
+      return user && user.name || ''
+    })
+
+    const logout = () => {
+      store.commit('SET_USER', null)
+
+      backToHomePage()
     }
-  },
-  methods: {
-    /**
-     * Вернуться на домашнюю страницу
-     * @returns {void}
-     */
-    backToHomePage() {
-      this.$router.push('/')
-    },
 
-    /**
-     * Выйти из системы
-     * @returns {void}
-     */
-    logout() {
-      this.$store.commit('SET_USER', null)
+    const backToHomePage = () => {
+      router.push('/')
+    }
 
-      this.backToHomePage()
+    return {
+      isAuthenticated,
+      userName,
+      logout,
+      backToHomePage
     }
   }
 }

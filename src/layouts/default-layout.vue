@@ -1,13 +1,10 @@
 <template>
   <div class="default-layout">
     <div class="page-wrapper">
-      <!-- ЛОГОТИП + УПРАВЛЕНИЕ АККАУНТОМ -->
       <app-navbar />
 
-      <!-- НАВИГАЦИЯ ПО ПРИЛОЖЕНИЮ -->
       <top-menu v-if="isAuthenticated" />
 
-      <!-- СОДЕРЖИМОЕ СТРАНИЦЫ -->
       <div class="page-content">
         <slot />
       </div>
@@ -16,7 +13,9 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent } from 'vue';
+import { useStore } from 'vuex';
+import { computed } from 'vue/dist/vue';
 
 export default {
   name: 'DefaultLayout',
@@ -24,21 +23,20 @@ export default {
     AppNavbar: defineAsyncComponent(() => import('~/components/layouts/app-navbar.vue')),
     TopMenu: defineAsyncComponent(() => import('~/components/layouts/top-menu.vue'))
   },
-  computed: {
-    /**
-     * Флаг, что пользователь авторизован
-     * @returns {boolean}
-     */
-    isAuthenticated() {
-      return this.$store.getters.isAuthenticated || false
-    }
+  setup() {
+    const store = useStore()
+
+    const isAuthenticated = computed(() => {
+      return store.getters.isAuthenticated || false
+    })
+
+    return { isAuthenticated }
   }
 }
 </script>
 
 
 <style>
-/* Глобальные стили */
 .page-wrapper {
   @apply w-full;
 }

@@ -41,6 +41,7 @@ module.exports = {
     'promise/no-return-wrap': ['warn', { allowReject: true }],
 
     // VUE
-    'vue/no-multiple-template-root': 'off'
+    'vue/no-multiple-template-root': 'off',
+    'vue/component-api-style': ['warn', ['script-setup', 'composition']]
   }
 }

@@ -29,85 +29,61 @@
 </template>
 
 <script>
-import AppIconEyeClosed from '~/components/icons/app-icon-eye-closed.vue'
-import AppIconEyeOpened from '~/components/icons/app-icon-eye-opened.vue'
+import { defineAsyncComponent, ref, computed } from 'vue'
 
 export default {
   name: 'LdFieldPassword',
   components: {
-    AppIconEyeOpened,
-    AppIconEyeClosed
+    AppIconEyeOpened: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-eye-opened.vue')
+    ),
+    AppIconEyeClosed: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-eye-closed.vue')
+    )
   },
   props: {
-    /**
-     * Текущее значение
-     * @type {string | null}
-     */
     value: {
       type: String,
       default: null
     },
 
-    /**
-     * ID для тестирования
-     * @type {string}
-     */
     id: {
       type: String,
       default: ''
     },
 
-    /**
-     * Флаг блокировки
-     * @type {boolean}
-     */
     disabled: {
       type: Boolean,
       default: false
     },
 
-    /**
-     * Значение для плейсхолдера
-     * @type {string}
-     */
     placeholder: {
       type: String,
       default: ''
     }
   },
-  data: () => ({
-    /**
-     * Флаг, показывать ли пароль
-     * @type {boolean}
-     */
-    showPassword: false
-  }),
-  computed: {
-    /**
-     * Тип поля пароля
-     * @type {string}
-     */
-    type() {
-      return this.showPassword ? 'text' : 'password'
-    },
+  setup() {
+    const showPassword = ref(false)
 
-    /**
-     * Текст атрибута title кнопки 'Показать/Скрыть пароль'
-     * @type {string}
-     */
-    title() {
-      return this.showPassword ? 'Скрыть пароль' : 'Показать пароль'
+    const type = computed(() => {
+      return showPassword.value ? 'text' : 'password'
+    })
+
+    const title = computed(() => {
+      return showPassword.value ? 'Скрыть пароль' : 'Показать пароль'
+    })
+
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value
+    }
+
+    return {
+      showPassword,
+      type,
+      title,
+      togglePasswordVisibility
     }
   },
-  methods: {
-    /**
-     * Переключение видимости пароля
-     * @returns {void}
-     */
-    togglePasswordVisibility() {
-      this.showPassword = !this.showPassword
-    }
-  }
 }
 </script>
 
