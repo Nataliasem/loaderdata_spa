@@ -71,66 +71,77 @@
 import usersApi from '~/api/users.js'
 import { ROLES } from '~/constants.ts'
 import notify from '~/plugins/notify.js';
+import { ref, reactive, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'AdminUserEdit',
   middleware: ['auth', 'admin'],
-  data: () => ({
-    loading: true,
-    saving: false,
-    userModel: {
-      name: '',
-      password: '',
-      roleId: null
-    },
-    user: null,
-    roleOptions: [
+  setup() {
+    const route = useRouter()
+
+    const roleOptions = ref([
       {id: ROLES.ADMIN.ID, name: ROLES.ADMIN.NAME},
       {id: ROLES.DEFAULT_USER.ID, name: ROLES.DEFAULT_USER.NAME}
-    ]
-  }),
-  computed: {
-    /**
-     * Идентификатор пользователя
-     * @type {string}
-     */
-    id() {
-      return this.$route.query.id || ''
-    },
+    ])
 
-    title() {
-      return this.id ? 'Редактировать пользователя' : 'Создать пользователя'
-    }
-  },
-  mounted() {
-    this.loadUser()
-  },
-  methods: {
-    loadUser() {
-      if(!this.id) {
-        this.user = this.userModel
-        this.loading = false
+    const loading = ref(true)
+    const saving = ref(false)
+
+    const user = ref(null)
+    const userModel = reactive({
+        name: '',
+        password: '',
+        roleId: null
+      }
+    )
+
+    const id = computed(() => {
+      return route.query.id || ''
+    })
+
+    const title = computed(() => {
+      return id.value ? 'Редактировать пользователя' : 'Создать пользователя'
+    })
+
+    onMounted(() => {
+      loadUser()
+    })
+
+   const loadUser = () => {
+      if(!id.value) {
+        user.value = userModel
+        loading.value = false
         return
       }
 
-      this.loading = true
+      loading.value = true
 
-      usersApi.loadUser(this.id)
-          .then(user => this.user = user)
-          .catch(error => notify.error(error))
-          .finally(() => (this.loading = false))
-    },
+      usersApi.loadUser(id.value)
+        .then(user => user.value = user)
+        .catch(error => notify.error(error))
+        .finally(() => (loading.value = false))
+    }
 
-    saveUser() {
-      this.saving = true
+    const saveUser = () => {
+      saving.value = true
 
       this.id
-          ? usersApi.updateUser(this.user)
-          : usersApi.createUser(this.user)
-              .then(user => (this.user = user))
-              .then(() => notify.success('Данные сохранены'))
-              .catch(error => notify.error(error))
-              .finally(() => (this.saving = false))
+        ? usersApi.updateUser(user.value)
+        : usersApi.createUser(user.value)
+          .then(user => (user.value = user))
+          .then(() => notify.success('Данные сохранены'))
+          .catch(error => notify.error(error))
+          .finally(() => (saving.value = false))
+    }
+
+    return {
+      loading,
+      saving,
+      roleOptions,
+      title,
+      user,
+      saveUser
     }
   }
 }
