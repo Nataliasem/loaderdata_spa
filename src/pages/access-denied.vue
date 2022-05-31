@@ -20,7 +20,7 @@
 import { defineAsyncComponent } from 'vue'
 
 export default {
-  name: 'access-denied',
+  name: 'AccessDenied',
   components: {
     AppIconWarning: defineAsyncComponent(() => import('~/components/icons/app-icon-warning.vue'))
   },

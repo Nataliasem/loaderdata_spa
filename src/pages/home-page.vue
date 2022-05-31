@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'home-page',
+  name: 'HomePage',
   computed: {
     /**
      * Флаг, что пользователь авторизован

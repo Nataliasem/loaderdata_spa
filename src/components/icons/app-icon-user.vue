@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'app-icon-user',
+  name: 'AppIconUser',
   props: {
     /**
      * Ширина

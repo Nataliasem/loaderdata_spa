@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'app-icon-warning',
+  name: 'AppIconWarning',
   props: {
     /**
      * Ширина

@@ -33,7 +33,7 @@ import AppIconEyeClosed from '~/components/icons/app-icon-eye-closed.vue'
 import AppIconEyeOpened from '~/components/icons/app-icon-eye-opened.vue'
 
 export default {
-  name: 'ld-field-password',
+  name: 'LdFieldPassword',
   components: {
     AppIconEyeOpened,
     AppIconEyeClosed

@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'app-icon-eye-opened',
+  name: 'AppIconEyeOpened',
   props: {
     /**
      * Ширина

@@ -73,7 +73,7 @@ import { ROLES } from '~/constants.ts'
 import notify from '~/plugins/notify.js';
 
 export default {
-  name: 'admin-user-edit',
+  name: 'AdminUserEdit',
   middleware: ['auth', 'admin'],
   data: () => ({
     loading: true,

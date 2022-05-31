@@ -6,6 +6,7 @@ const checkIsAdmin = () => {
     if(!user) {
         return false
     }
+
     const roleId = user.roleId
     if(!roleId) {
         return false
@@ -31,6 +32,7 @@ const getComponentMiddleware = matched => {
     if (!Component) {
         return []
     }
+
     return getMiddlewareNames(Component) || []
 }
 

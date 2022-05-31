@@ -9,7 +9,7 @@
 import { defineAsyncComponent } from 'vue'
 
 export default {
-  name: 'not-auth-layout',
+  name: 'NotAuthLayout',
   components: {
     AppNavbar: defineAsyncComponent(() => import('~/components/layouts/app-navbar.vue'))
   }

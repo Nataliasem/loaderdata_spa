@@ -57,7 +57,7 @@ import { ROLES } from '~/constants.ts'
 import notify from '~/plugins/notify.js';
 
 export default {
-  name: 'admin-dashboard',
+  name: 'AdminDashboard',
   middleware: ['auth', 'admin'],
   data: () => ({
     /**

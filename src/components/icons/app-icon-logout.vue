@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'app-icon-logout',
+  name: 'AppIconLogout',
   props: {
     /**
      * Ширина

@@ -9,7 +9,7 @@ import DefaultLayout from './layouts/default-layout.vue'
 import NotAuthLayout from './layouts/not-auth-layout.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     DefaultLayout,
     NotAuthLayout

@@ -78,7 +78,7 @@ import LdFieldInputPassword from '~/components/fields/ld-field-input-password.vu
 import notify from '~/plugins/notify.js'
 
 export default {
-  name: 'auth-login',
+  name: 'AuthLogin',
   components: {
     LdFieldInputPassword
   },

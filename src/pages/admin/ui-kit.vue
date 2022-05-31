@@ -115,7 +115,7 @@
 import { defineAsyncComponent } from 'vue'
 
 export default {
-  name: 'ui-kit',
+  name: 'UiKit',
   components: {
     AppIconWarning: defineAsyncComponent(() => import('~/components/icons/app-icon-warning.vue')),
     AppIconUser: defineAsyncComponent(() => import('~/components/icons/app-icon-user.vue')),
