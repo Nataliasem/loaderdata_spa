@@ -10,7 +10,6 @@ module.exports = {
   ],
   rules: {
     // ESLINT
-    'vue/no-multiple-template-root': 'off',
     'eol-last': ['error', 'always'],
     'quotes': ['error', 'single'],
     'curly': ['error', 'all'],
@@ -39,6 +38,9 @@ module.exports = {
     // PROMISE
     'promise/always-return': 'off',
     'promise/catch-or-return': ['error', { allowFinally: true }],
-    'promise/no-return-wrap': ['warn', { allowReject: true }]
+    'promise/no-return-wrap': ['warn', { allowReject: true }],
+
+    // VUE
+    'vue/no-multiple-template-root': 'off'
   }
 }
