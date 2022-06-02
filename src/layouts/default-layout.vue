@@ -13,10 +13,8 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';
-import { useStore } from 'vuex';
-import { computed } from 'vue/dist/vue';
-
+import { defineAsyncComponent, computed } from 'vue'
+import { useStore } from 'vuex'
 export default {
   name: 'DefaultLayout',
   components: {
