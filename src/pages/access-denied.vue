@@ -16,26 +16,17 @@
   </div>
 </template>
 
-<script>
-import { defineAsyncComponent } from 'vue'
+<script setup>
+import { defineAsyncComponent, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-export default {
-  name: 'AccessDenied',
-  components: {
-    AppIconWarning: defineAsyncComponent(() => import('~/components/icons/app-icon-warning.vue'))
-  },
-  computed: {
-    /**
-     * Ошибка доступа
-     * @type {object}
-     */
-    error() {
-      return this.$route.params.error || 'У вас нет прав для просмотра этой страницы'
-    }
-  }
-}
+const AppIconWarning = defineAsyncComponent(() => import('~/components/icons/app-icon-warning.vue'))
+
+const route = useRoute()
+const error = computed(() => {
+  return route.params.error || 'У вас нет прав для просмотра этой страницы'
+})
 </script>
-
 
 <style>
 .access-denied .error-message {

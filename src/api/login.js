@@ -12,12 +12,7 @@ export default {
    * @returns {Promise}
    */
   login(user) {
-    const data = {
-      username: user.username,
-      password: user.password
-    }
-
-    return axiosInstance.post('/api/users/login', data, config)
+    return axiosInstance.post('/api/users/login', user, config)
         .then(response => response.data)
         .then(response => response)
   },
@@ -28,13 +23,7 @@ export default {
    * @returns {Promise}
    */
   register(user) {
-    const data = {
-      username: user.username,
-      password: user.password,
-      roleId: user.roleId
-    }
-
-      return axiosInstance.post('/api/users/register', data, config)
+      return axiosInstance.post('/api/users/register', user, config)
           .then(response => response.data)
           .then(response => response)
   }
