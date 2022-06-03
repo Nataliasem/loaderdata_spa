@@ -7,15 +7,17 @@
   >
     <input
       id="register-username"
-      v-model="user.name"
+      v-model="user.username"
       name="username"
       placeholder="Логин"
       class="app-input"
     />
-    <ld-field-input-password
+    <input
       id="register-password"
       v-model="user.password"
+      type="password"
       placeholder="Пароль"
+      class="app-input"
     />
     <select
       v-model="user.roleId"
@@ -52,15 +54,17 @@
   >
     <input
       id="auth-username"
-      v-model="user.name"
+      v-model="user.username"
       name="username"
       placeholder="Логин"
       class="app-input"
     />
-    <ld-field-input-password
+    <input
       id="auth-password"
       v-model="user.password"
+      type="password"
       placeholder="Пароль"
+      class="app-input"
     />
     <button
       type="submit"
@@ -74,7 +78,6 @@
 
 <script setup>
 import logInApi from '~/api/login.js'
-import LdFieldInputPassword from '~/components/fields/ld-field-input-password.vue'
 import notify from '~/plugins/notify.js'
 import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
@@ -85,7 +88,7 @@ const route = useRoute()
 const store = useStore()
 
 const user = reactive({
-  name: '',
+  username: '',
   password: '',
   roleId: null
 })
