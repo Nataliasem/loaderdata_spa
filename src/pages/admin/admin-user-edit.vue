@@ -72,13 +72,13 @@ import usersApi from '~/api/users.js'
 import { ROLES } from '~/constants.ts'
 import notify from '~/plugins/notify.js';
 import { ref, reactive, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'AdminUserEdit',
   middleware: ['auth', 'admin'],
   setup() {
-    const route = useRouter()
+    const route = useRoute()
 
     const roleOptions = ref([
       {id: ROLES.ADMIN.ID, name: ROLES.ADMIN.NAME},
@@ -118,7 +118,7 @@ export default {
       loading.value = true
 
       usersApi.loadUser(id.value)
-        .then(user => user.value = user)
+        .then(response => (user.value = response))
         .catch(error => notify.error(error))
         .finally(() => (loading.value = false))
     }
@@ -126,13 +126,16 @@ export default {
     const saveUser = () => {
       saving.value = true
 
-      this.id
-        ? usersApi.updateUser(user.value)
-        : usersApi.createUser(user.value)
-          .then(user => (user.value = user))
-          .then(() => notify.success('Данные сохранены'))
-          .catch(error => notify.error(error))
-          .finally(() => (saving.value = false))
+      Promise.resolve()
+        .then(() => {
+          return id.value
+            ? usersApi.updateUser(user.value)
+            : usersApi.createUser(user.value)
+        })
+        .then(response => (user.value = response))
+        .then(() => notify.success('Данные сохранены'))
+        .catch(error => notify.error(error))
+        .finally(() => (saving.value = false))
     }
 
     return {

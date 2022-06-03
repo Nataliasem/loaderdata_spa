@@ -40,8 +40,8 @@
         <button
           type="button"
           :title="checkRemoval(user).reason"
-          :class="{ 'text-gray-3 cursor-not-allowed' : checkRemoval(user).available}"
-          :disabled="checkRemoval(user).available"
+          :class="{ 'text-gray-3 cursor-not-allowed' : !checkRemoval(user).available}"
+          :disabled="!checkRemoval(user).available"
           @click="deleteUser(user.id)"
         >
           Удалить
@@ -68,13 +68,14 @@ export default {
     const saving = ref(false)
 
     const users = ref([])
+
     onMounted(() => loadUsers())
 
     const loadUsers = () => {
       loading.value = true
 
       usersApi.loadUsersPaginated()
-        .then(users => users.value = users)
+        .then(response => (users.value = response))
         .catch(error => notify.error(error))
         .finally(() => (loading.value = false))
     }
@@ -104,14 +105,17 @@ export default {
       const isDeleted = user.isActive === false
 
       if(deleteSelf) {
+        removal.available = false
         removal.reason = 'Нельзя удалить самого себя'
       }
 
       if(isDeleted) {
+        removal.available = false
         removal.reason = 'Нельзя удалить деактивированного пользователя'
       }
 
       if(saving.value) {
+        removal.available = false
         removal.reason = 'Нельзя удалить, пока идёт сохранение'
       }
 
