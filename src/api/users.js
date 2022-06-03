@@ -8,7 +8,7 @@ export default {
      * @param {object} params - параметры загрузки
      * @returns {Promise}
      */
-    loadUsersPaginated(params) {
+    loadUsersPaginated(params = {}) {
         return axiosInstance
             .get('/api/admin/users', { params })
             .then(response => response.data)

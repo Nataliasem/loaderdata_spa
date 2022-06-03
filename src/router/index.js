@@ -5,7 +5,7 @@ import accessDenied from '~/pages/access-denied.vue'
 import adminDashboard from '~/pages/admin/admin-dashboard.vue'
 import adminUserEdit from '~/pages/admin/admin-user-edit.vue'
 import uiKit from '~/pages/admin/ui-kit.vue'
-import logIn from '~/pages/auth/login.vue'
+import logIn from '~/pages/auth/auth-login.vue'
 import homePage from '~/pages/home-page.vue'
 import notFound from '~/pages/not-found.vue'
 

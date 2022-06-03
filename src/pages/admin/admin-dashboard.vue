@@ -39,9 +39,9 @@
         <!-- УДАЛИТЬ -->
         <button
           type="button"
-          :title="getDeleteButtonDisabledText(user)"
-          :class="{ 'text-gray-3 cursor-not-allowed' : checkDeleteButtonDisabled(user)}"
-          :disabled="checkDeleteButtonDisabled(user)"
+          :title="checkRemoval(user).reason"
+          :class="{ 'text-gray-3 cursor-not-allowed' : !checkRemoval(user).available}"
+          :disabled="!checkRemoval(user).available"
           @click="deleteUser(user.id)"
         >
           Удалить
@@ -54,129 +54,95 @@
 <script>
 import usersApi from '~/api/users.js'
 import { ROLES } from '~/constants.ts'
-import notify from '~/plugins/notify.js';
+import notify from '~/plugins/notify.js'
+import { ref, onMounted } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   name: 'AdminDashboard',
   middleware: ['auth', 'admin'],
-  data: () => ({
-    /**
-     * Список пользователей
-     * @type {Array}
-     */
-    users: [],
+  setup() {
+    const store = useStore()
 
-    /**
-     * Флаг загрузки
-     * @type {boolean}
-     */
-    loading: false,
+    const loading = ref(false)
+    const saving = ref(false)
 
-    /**
-     * Флаг сохранения
-     * @type {boolean}
-     */
-    saving: false
-  }),
-  mounted() {
-    this.loadUsers()
-  },
-  methods: {
-    /**
-     * Загрузить пользователей
-     * @returns {void}
-     */
-    loadUsers() {
-      this.loading = true
+    const users = ref([])
+
+    onMounted(() => loadUsers())
+
+    const loadUsers = () => {
+      loading.value = true
 
       usersApi.loadUsersPaginated()
-          .then(users => this.users = users)
-          .catch(error => notify.error(error))
-          .finally(() => (this.loading = false))
-    },
+        .then(response => (users.value = response))
+        .catch(error => notify.error(error))
+        .finally(() => (loading.value = false))
+    }
 
-    /**
-     * Получить отображение роли пользователя
-     * @param {number} roleId - идентификатор роли
-     * @returns {string}
-     */
-    getFormattedRole(roleId) {
+    const getFormattedRole = roleId => {
       return roleId === 1 ? ROLES.ADMIN.NAME : ROLES.DEFAULT_USER.NAME
-    },
+    }
 
-    /**
-     * Получить отображение статуса пользователя
-     * @param {boolean} isActive - статус
-     * @returns {string}
-     */
-    getFormattedStatus(isActive) {
+    const getFormattedStatus = isActive => {
       return isActive ? 'Действующий' : 'Удалён'
-    },
+    }
 
-    /**
-     * Проверить блокировку кнопки удаления
-     * @param {object} user - пользователь
-     * @returns {boolean}
-     */
-    checkDeleteButtonDisabled(user) {
-      if (!user) {
-        return false
+    const checkRemoval = user => {
+      const removal = {
+        available : true,
+        reason: ''
       }
 
-      // Нельзя удалить самого себя
-      const currentUserId = this.$store.state.user && this.$store.state.user.id
-      const deleteSelf = user.id === currentUserId
-
-      // Нельзя удалить, если уже удалён (деактивирован)
-      const isDeleted = user.isActive === false
-
-      return deleteSelf || isDeleted || this.saving
-    },
-
-    /**
-     * Проверить блокировку кнопки удаления
-     * @param {object} user - пользователь
-     * @returns {string}
-     */
-    getDeleteButtonDisabledText(user) {
       if (!user) {
-        return false
+        removal.available = false
+        return removal
       }
 
-      // Нельзя удалить самого себя
-      const currentUserId = this.$store.state.user && this.$store.state.user.id
+      const currentUserId = store.state.user?.id
       const deleteSelf = user.id === currentUserId
 
-      // Нельзя удалить, если уже удалён (деактивирован)
       const isDeleted = user.isActive === false
 
       if(deleteSelf) {
-        return 'Нельзя удалить самого себя'
+        removal.available = false
+        removal.reason = 'Нельзя удалить самого себя'
       }
 
       if(isDeleted) {
-        return 'Нельзя удалить деактивированного пользователя'
+        removal.available = false
+        removal.reason = 'Нельзя удалить деактивированного пользователя'
       }
 
-      if(this.saving) {
-        return 'Нельзя удалить, пока идёт сохранение'
+      if(saving.value) {
+        removal.available = false
+        removal.reason = 'Нельзя удалить, пока идёт сохранение'
       }
 
-      return 'Пользователя нельзя удалить'
-    },
+      return removal
+    }
 
-    /**
-     * Удалить пользователя
-     * @param {number} id - идентификатор пользователя
-     * @returns {void}
-     */
-    deleteUser(id) {
+    const deleteUser = id => {
+      if(!id) {
+        return
+      }
+
       this.saving = true
 
       usersApi.deleteUser(id)
-          .then(() => notify.success('Пользователь удалён'))
-          .catch(error => notify.error(error))
-          .finally(() => (this.saving = false))
+        .then(() => notify.success('Пользователь удалён'))
+        .catch(error => notify.error(error))
+        .finally(() => (this.saving = false))
+    }
+
+    return {
+      loading,
+      saving,
+      users,
+      getFormattedRole,
+      getFormattedStatus,
+      checkRemoval,
+      deleteUser
     }
   }
 }

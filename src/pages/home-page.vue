@@ -17,17 +17,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomePage',
-  computed: {
-    /**
-     * Флаг, что пользователь авторизован
-     * @returns {boolean}
-     */
-    isAuthenticated() {
-      return this.$store.getters.isAuthenticated || false
-    }
-  }
-}
+<script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const isAuthenticated = computed(() => {
+  return store.getters.isAuthenticated || false
+})
+
 </script>

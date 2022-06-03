@@ -7,18 +7,20 @@
   >
     <input
       id="register-username"
-      v-model="username"
+      v-model="user.username"
       name="username"
       placeholder="Логин"
       class="app-input"
     />
-    <ld-field-input-password
+    <input
       id="register-password"
-      v-model="password"
+      v-model="user.password"
+      type="password"
       placeholder="Пароль"
+      class="app-input"
     />
     <select
-      v-model="roleId"
+      v-model="user.roleId"
       name="register-role"
       class="app-input"
     >
@@ -52,15 +54,17 @@
   >
     <input
       id="auth-username"
-      v-model="username"
+      v-model="user.username"
       name="username"
       placeholder="Логин"
       class="app-input"
     />
-    <ld-field-input-password
+    <input
       id="auth-password"
-      v-model="password"
+      v-model="user.password"
+      type="password"
       placeholder="Пароль"
+      class="app-input"
     />
     <button
       type="submit"
@@ -72,71 +76,49 @@
   </form>
 </template>
 
-<script>
+<script setup>
 import logInApi from '~/api/login.js'
-import LdFieldInputPassword from '~/components/fields/ld-field-input-password.vue'
 import notify from '~/plugins/notify.js'
+import { reactive, computed } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter, useRoute } from 'vue-router'
 
-export default {
-  name: 'AuthLogin',
-  components: {
-    LdFieldInputPassword
-  },
-  data: () => ({
-    username: '',
-    password: '',
-    roleId: null
-  }),
-  computed: {
-    disabled() {
-      return !this.username || !this.password
-    },
+const router = useRouter()
+const route = useRoute()
+const store = useStore()
 
-    formType() {
-      return this.$route.query.type || ''
-    }
-  },
-  methods: {
-    /**
-     * Войти в систему
-     * @returns {void}
-     */
-    loginUser() {
-      const user = {
-        username: this.username,
-        password: this.password
-      }
+const user = reactive({
+  username: '',
+  password: '',
+  roleId: null
+})
 
-      logInApi.login(user)
-        .then(user => this.setUser(user))
+const disabled = computed(() => {
+  return false
+  // return !user.name || !user.password
+})
+
+const formType = computed(() => {
+  return route.query.type || ''
+})
+
+const loginUser = () => {
+  logInApi.login(user)
+        .then(user => setUser(user))
         .catch(error => notify.error(error))
-    },
+}
 
-    registerUser() {
-      const user = {
-        username: this.username,
-        password: this.password,
-        roleId: this. roleId
-      }
+const registerUser = () => {
+  logInApi.register(user)
+    .then(user => setUser(user))
+    .then(() => notify.success('Вы успешно зарегистрировались в системе'))
+    .catch(error => notify.error(error))
+}
 
-      logInApi.register(user)
-          .then(user => this.setUser(user))
-          .then(() => notify.success('Вы успешно зарегистрировались в системе'))
-          .catch(error => notify.error(error))
-    },
+const setUser = user => {
+  store.commit('SET_USER', user)
 
-    /**
-     * Сохранить пользователя
-     * @param {object} user - информация о пользователе
-     * @returns {void}
-     */
-    setUser(user) {
-      this.$store.commit('SET_USER', user)
-
-      // На главную страницу
-      this.$router.push('/')
-    }
-  }
+  router.push('/')
 }
 </script>
 
