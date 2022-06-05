@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    browser: true,
     node: true
   },
   extends: [
@@ -8,7 +9,10 @@ module.exports = {
     'plugin:promise/recommended',
     'prettier'
   ],
+  plugins: ['prettier'],
   rules: {
+    'prettier/prettier': 'warn',
+
     // ESLINT
     'eol-last': ['error', 'always'],
     'quotes': ['error', 'single'],
