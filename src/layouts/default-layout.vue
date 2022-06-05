@@ -18,8 +18,12 @@ import { useStore } from 'vuex'
 export default {
   name: 'DefaultLayout',
   components: {
-    AppNavbar: defineAsyncComponent(() => import('~/components/layouts/app-navbar.vue')),
-    TopMenu: defineAsyncComponent(() => import('~/components/layouts/top-menu.vue'))
+    AppNavbar: defineAsyncComponent(() =>
+      import('~/components/layouts/app-navbar.vue')
+    ),
+    TopMenu: defineAsyncComponent(() =>
+      import('~/components/layouts/top-menu.vue')
+    )
   },
   setup() {
     const store = useStore()
@@ -32,7 +36,6 @@ export default {
   }
 }
 </script>
-
 
 <style>
 .page-wrapper {

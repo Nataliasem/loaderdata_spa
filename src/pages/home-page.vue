@@ -2,9 +2,7 @@
 
 <template>
   <div class="home-page">
-    <div v-if="isAuthenticated">
-      Привет, Username!
-    </div>
+    <div v-if="isAuthenticated">Привет, Username!</div>
     <div v-else class="text-center">
       <router-link to="/auth/login?type=auth" class="underline">
         Войти
@@ -25,5 +23,4 @@ const store = useStore()
 const isAuthenticated = computed(() => {
   return store.getters.isAuthenticated || false
 })
-
 </script>

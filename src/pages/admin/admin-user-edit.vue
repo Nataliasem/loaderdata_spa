@@ -6,9 +6,7 @@
     </div>
 
     <!-- ЛОАДЕР -->
-    <div v-if="loading">
-      Загрузка
-    </div>
+    <div v-if="loading">Загрузка</div>
 
     <!-- ПОЛЬЗОВАТЕЛЬ -->
     <form
@@ -38,39 +36,25 @@
       />
 
       <!-- РОЛЬ -->
-      <select
-        v-model="user.roleId"
-        name="edit-role"
-        class="app-input"
-      >
-        <option
-          v-for="role in roleOptions"
-          :key="role.id"
-          :value="role.id"
-        >
+      <select v-model="user.roleId" name="edit-role" class="app-input">
+        <option v-for="role in roleOptions" :key="role.id" :value="role.id">
           {{ role.name }}
         </option>
       </select>
 
       <!-- СОХРАНИТЬ -->
-      <button
-        type="submit"
-        :disabled="saving"
-        class="submit-button"
-      >
+      <button type="submit" :disabled="saving" class="submit-button">
         Сохранить
       </button>
     </form>
-    <div v-else>
-      Данные о пользователе недоступны
-    </div>
+    <div v-else>Данные о пользователе недоступны</div>
   </div>
 </template>
 
 <script>
 import usersApi from '~/api/users.js'
 import { ROLES } from '~/constants.ts'
-import notify from '~/plugins/notify.js';
+import notify from '~/plugins/notify.js'
 import { ref, reactive, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -81,8 +65,8 @@ export default {
     const route = useRoute()
 
     const roleOptions = ref([
-      {id: ROLES.ADMIN.ID, name: ROLES.ADMIN.NAME},
-      {id: ROLES.DEFAULT_USER.ID, name: ROLES.DEFAULT_USER.NAME}
+      { id: ROLES.ADMIN.ID, name: ROLES.ADMIN.NAME },
+      { id: ROLES.DEFAULT_USER.ID, name: ROLES.DEFAULT_USER.NAME }
     ])
 
     const loading = ref(true)
@@ -90,11 +74,10 @@ export default {
 
     const user = ref(null)
     const userModel = reactive({
-        name: '',
-        password: '',
-        roleId: null
-      }
-    )
+      name: '',
+      password: '',
+      roleId: null
+    })
 
     const id = computed(() => {
       return route.query.id || ''
@@ -108,8 +91,8 @@ export default {
       loadUser()
     })
 
-   const loadUser = () => {
-      if(!id.value) {
+    const loadUser = () => {
+      if (!id.value) {
         user.value = userModel
         loading.value = false
         return
@@ -117,9 +100,10 @@ export default {
 
       loading.value = true
 
-      usersApi.loadUser(id.value)
-        .then(response => (user.value = response))
-        .catch(error => notify.error(error))
+      usersApi
+        .loadUser(id.value)
+        .then((response) => (user.value = response))
+        .catch((error) => notify.error(error))
         .finally(() => (loading.value = false))
     }
 
@@ -132,9 +116,9 @@ export default {
             ? usersApi.updateUser(user.value)
             : usersApi.createUser(user.value)
         })
-        .then(response => (user.value = response))
+        .then((response) => (user.value = response))
         .then(() => notify.success('Данные сохранены'))
-        .catch(error => notify.error(error))
+        .catch((error) => notify.error(error))
         .finally(() => (saving.value = false))
     }
 
@@ -156,7 +140,7 @@ export default {
 }
 
 .admin-user-edit .app-input {
-  border: 1px solid #DBE2EA;
+  border: 1px solid #dbe2ea;
   border-radius: 3px;
   padding: 10px 15px;
   width: 100%;
@@ -166,14 +150,14 @@ export default {
 
 .admin-user-edit .app-input:focus {
   outline: none;
-  border-color: #0880AE;
+  border-color: #0880ae;
   border-width: 2px;
 }
 
 .admin-user-edit .submit-button {
   padding: 10px 15px;
   border-radius: 3px;
-  background-color: #0880AE;
+  background-color: #0880ae;
   color: white;
   outline: none;
   border: none;
@@ -182,7 +166,7 @@ export default {
 }
 
 .admin-user-edit .submit-button:disabled {
-  background-color: #DBE2EA;
+  background-color: #dbe2ea;
   color: #b1b5bf;
 }
 </style>

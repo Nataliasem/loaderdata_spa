@@ -2,91 +2,51 @@
   <div class="app-ui-kit space-y-40">
     <!-- КНОПКИ -->
     <div class="flex justify-center space-x-20">
-      <div class="font-bold text-size-42 w-1/4">
-        BUTTONS
-      </div>
+      <div class="font-bold text-size-42 w-1/4">BUTTONS</div>
 
       <div class="flex flex-grow-1 space-x-10 w-3/4">
         <!-- BUTTON-MAIN -->
         <div class="flex flex-col space-y-6">
-          <button
-            type="button"
-            class="app-button-main"
-          >
-            Main default
-          </button>
-          <button
-            type="button"
-            class="app-button-main hover"
-          >
+          <button type="button" class="app-button-main">Main default</button>
+          <button type="button" class="app-button-main hover">
             Main hover
           </button>
-          <button
-            type="button"
-            class="app-button-main active"
-          >
+          <button type="button" class="app-button-main active">
             Main active
           </button>
-          <button
-            type="button"
-            class="app-button-main disabled"
-          >
+          <button type="button" class="app-button-main disabled">
             Main disabled
           </button>
         </div>
 
         <!-- BUTTON-SECONDARY -->
         <div class="flex flex-col space-y-6">
-          <button
-            type="button"
-            class="app-button-secondary"
-          >
+          <button type="button" class="app-button-secondary">
             Secondary default
           </button>
-          <button
-            type="button"
-            class="app-button-secondary hover"
-          >
+          <button type="button" class="app-button-secondary hover">
             Secondary hover
           </button>
-          <button
-            type="button"
-            class="app-button-secondary active"
-          >
+          <button type="button" class="app-button-secondary active">
             Secondary active
           </button>
-          <button
-            type="button"
-            class="app-button-secondary disabled"
-          >
+          <button type="button" class="app-button-secondary disabled">
             Secondary disabled
           </button>
         </div>
 
         <!-- BUTTON-ICON -->
         <div class="flex flex-col space-y-6">
-          <button
-            type="button"
-            class="app-button-icon text-size-30"
-          >
+          <button type="button" class="app-button-icon text-size-30">
             &#9734;
           </button>
-          <button
-            type="button"
-            class="app-button-icon text-size-30 hover"
-          >
+          <button type="button" class="app-button-icon text-size-30 hover">
             &#9734;
           </button>
-          <button
-            type="button"
-            class="app-button-icon text-size-30 active"
-          >
+          <button type="button" class="app-button-icon text-size-30 active">
             &#9734;
           </button>
-          <button
-            type="button"
-            class="app-button-icon text-size-30 disabled"
-          >
+          <button type="button" class="app-button-icon text-size-30 disabled">
             &#9734;
           </button>
         </div>
@@ -95,9 +55,7 @@
 
     <!-- ИКОНКИ -->
     <div class="flex justify-center space-x-20">
-      <div class="font-bold text-size-42 w-1/4">
-        ICONS
-      </div>
+      <div class="font-bold text-size-42 w-1/4">ICONS</div>
 
       <div class="flex w-3/4 space-x-8">
         <app-icon-user class="text-green-1" />
@@ -110,17 +68,24 @@
   </div>
 </template>
 
-
 <script>
 import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'UiKit',
   components: {
-    AppIconWarning: defineAsyncComponent(() => import('~/components/icons/app-icon-warning.vue')),
-    AppIconUser: defineAsyncComponent(() => import('~/components/icons/app-icon-user.vue')),
-    AppIconLogout: defineAsyncComponent(() => import('~/components/icons/app-icon-logout.vue')),
-    AppIconLogin: defineAsyncComponent(() => import('~/components/icons/app-icon-login.vue'))
+    AppIconWarning: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-warning.vue')
+    ),
+    AppIconUser: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-user.vue')
+    ),
+    AppIconLogout: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-logout.vue')
+    ),
+    AppIconLogin: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-login.vue')
+    )
   },
   middleware: 'auth'
 }

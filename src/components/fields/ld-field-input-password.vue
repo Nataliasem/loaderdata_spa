@@ -1,8 +1,6 @@
 <!-- Поле для ввода пароля -->
 <template>
-  <div
-    class="ld-field-input-password"
-  >
+  <div class="ld-field-input-password">
     <input
       :id="id"
       name="password"
@@ -83,7 +81,7 @@ export default {
       title,
       togglePasswordVisibility
     }
-  },
+  }
 }
 </script>
 

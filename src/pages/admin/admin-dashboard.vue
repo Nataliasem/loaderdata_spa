@@ -2,23 +2,15 @@
   <!-- ЗАГОЛОВОК -->
   <div class="flex space-x-5">
     <div>Пользователи</div>
-    <router-link to="/admin/admin-user-edit">
-      Создать
-    </router-link>
+    <router-link to="/admin/admin-user-edit"> Создать </router-link>
   </div>
 
   <!-- ЗАГРУЗЧИК -->
-  <div v-if="loading">
-    Загрузка
-  </div>
+  <div v-if="loading">Загрузка</div>
 
   <!-- КАРТОЧКИ ПОЛЬЗОВАТЕЛЕЙ -->
   <template v-else>
-    <div
-      v-for="user in users"
-      :key="user.id"
-      class="user-card"
-    >
+    <div v-for="user in users" :key="user.id" class="user-card">
       <!-- СТАТУС -->
       <div :class="user.isActive ? 'text-green-1' : 'text-red-1'">
         {{ getFormattedStatus(user.isActive) }}
@@ -40,7 +32,9 @@
         <button
           type="button"
           :title="checkRemoval(user).reason"
-          :class="{ 'text-gray-3 cursor-not-allowed' : !checkRemoval(user).available}"
+          :class="{
+            'text-gray-3 cursor-not-allowed': !checkRemoval(user).available
+          }"
           :disabled="!checkRemoval(user).available"
           @click="deleteUser(user.id)"
         >
@@ -74,23 +68,24 @@ export default {
     const loadUsers = () => {
       loading.value = true
 
-      usersApi.loadUsersPaginated()
-        .then(response => (users.value = response))
-        .catch(error => notify.error(error))
+      usersApi
+        .loadUsersPaginated()
+        .then((response) => (users.value = response))
+        .catch((error) => notify.error(error))
         .finally(() => (loading.value = false))
     }
 
-    const getFormattedRole = roleId => {
+    const getFormattedRole = (roleId) => {
       return roleId === 1 ? ROLES.ADMIN.NAME : ROLES.DEFAULT_USER.NAME
     }
 
-    const getFormattedStatus = isActive => {
+    const getFormattedStatus = (isActive) => {
       return isActive ? 'Действующий' : 'Удалён'
     }
 
-    const checkRemoval = user => {
+    const checkRemoval = (user) => {
       const removal = {
-        available : true,
+        available: true,
         reason: ''
       }
 
@@ -104,17 +99,17 @@ export default {
 
       const isDeleted = user.isActive === false
 
-      if(deleteSelf) {
+      if (deleteSelf) {
         removal.available = false
         removal.reason = 'Нельзя удалить самого себя'
       }
 
-      if(isDeleted) {
+      if (isDeleted) {
         removal.available = false
         removal.reason = 'Нельзя удалить деактивированного пользователя'
       }
 
-      if(saving.value) {
+      if (saving.value) {
         removal.available = false
         removal.reason = 'Нельзя удалить, пока идёт сохранение'
       }
@@ -122,16 +117,17 @@ export default {
       return removal
     }
 
-    const deleteUser = id => {
-      if(!id) {
+    const deleteUser = (id) => {
+      if (!id) {
         return
       }
 
       this.saving = true
 
-      usersApi.deleteUser(id)
+      usersApi
+        .deleteUser(id)
         .then(() => notify.success('Пользователь удалён'))
-        .catch(error => notify.error(error))
+        .catch((error) => notify.error(error))
         .finally(() => (this.saving = false))
     }
 

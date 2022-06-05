@@ -19,29 +19,13 @@
       placeholder="Пароль"
       class="app-input"
     />
-    <select
-      v-model="user.roleId"
-      name="register-role"
-      class="app-input"
-    >
-      <option :value="1">
-        Owner
-      </option>
-      <option :value="2">
-        Admin
-      </option>
-      <option :value="3">
-        Advanced user
-      </option>
-      <option :value="4">
-        Default user
-      </option>
+    <select v-model="user.roleId" name="register-role" class="app-input">
+      <option :value="1">Owner</option>
+      <option :value="2">Admin</option>
+      <option :value="3">Advanced user</option>
+      <option :value="4">Default user</option>
     </select>
-    <button
-      type="submit"
-      :disabled="disabled"
-      class="submit-button"
-    >
+    <button type="submit" :disabled="disabled" class="submit-button">
       Зарегистрироваться
     </button>
   </form>
@@ -66,11 +50,7 @@
       placeholder="Пароль"
       class="app-input"
     />
-    <button
-      type="submit"
-      :disabled="disabled"
-      class="submit-button"
-    >
+    <button type="submit" :disabled="disabled" class="submit-button">
       Войти в систему
     </button>
   </form>
@@ -103,19 +83,21 @@ const formType = computed(() => {
 })
 
 const loginUser = () => {
-  logInApi.login(user)
-        .then(user => setUser(user))
-        .catch(error => notify.error(error))
+  logInApi
+    .login(user)
+    .then((user) => setUser(user))
+    .catch((error) => notify.error(error))
 }
 
 const registerUser = () => {
-  logInApi.register(user)
-    .then(user => setUser(user))
+  logInApi
+    .register(user)
+    .then((user) => setUser(user))
     .then(() => notify.success('Вы успешно зарегистрировались в системе'))
-    .catch(error => notify.error(error))
+    .catch((error) => notify.error(error))
 }
 
-const setUser = user => {
+const setUser = (user) => {
   store.commit('SET_USER', user)
 
   router.push('/')
@@ -129,7 +111,7 @@ const setUser = user => {
 }
 
 .login-form .app-input {
-  border: 1px solid #DBE2EA;
+  border: 1px solid #dbe2ea;
   border-radius: 3px;
   padding: 10px 15px;
   width: 100%;
@@ -139,14 +121,14 @@ const setUser = user => {
 
 .login-form .app-input:focus {
   outline: none;
-  border-color: #0880AE;
+  border-color: #0880ae;
   border-width: 2px;
 }
 
 .login-form .submit-button {
   padding: 10px 15px;
   border-radius: 3px;
-  background-color: #0880AE;
+  background-color: #0880ae;
   color: white;
   outline: none;
   border: none;
@@ -155,7 +137,7 @@ const setUser = user => {
 }
 
 .login-form .submit-button:disabled {
-  background-color: #DBE2EA;
+  background-color: #dbe2ea;
   color: #b1b5bf;
 }
 </style>

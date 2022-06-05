@@ -7,34 +7,34 @@ import store from '~/store/index.js'
 export const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 
 const axiosInstance = axios.create({
-    baseURL: API_URL
+  baseURL: API_URL
 })
 
-const errorHandler = error => {
-    if(!error || !error.response) {
-        return Promise.reject('Не удалось подключиться к серверу')
-    }
+const errorHandler = (error) => {
+  if (!error || !error.response) {
+    return Promise.reject('Не удалось подключиться к серверу')
+  }
 
-    if (error.response.status >= 500) {
-        error.message = 'Извините, возникла ошибка на сервере'
-    }
+  if (error.response.status >= 500) {
+    error.message = 'Извините, возникла ошибка на сервере'
+  }
 
-    const message = error.response.data.message
+  const message = error.response.data.message
 
-    return Promise.reject(message)
+  return Promise.reject(message)
 }
 
-const addBasicAuthToken = config => {
-    const token = (store.state.user && store.state.user.basicAuthToken) || ''
+const addBasicAuthToken = (config) => {
+  const token = (store.state.user && store.state.user.basicAuthToken) || ''
 
-    if (token) {
-        config.headers.common.Authorization = `Basic ${token}`
-    }
+  if (token) {
+    config.headers.common.Authorization = `Basic ${token}`
+  }
 
-    return config
+  return config
 }
 
 axiosInstance.interceptors.request.use(addBasicAuthToken)
-axiosInstance.interceptors.response.use(response => response, errorHandler)
+axiosInstance.interceptors.response.use((response) => response, errorHandler)
 
 export default axiosInstance

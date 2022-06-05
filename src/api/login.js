@@ -2,7 +2,7 @@
 import axiosInstance, { API_URL } from '~/plugins/axios.js'
 
 const config = {
-    baseURL: API_URL
+  baseURL: API_URL
 }
 
 export default {
@@ -12,9 +12,10 @@ export default {
    * @returns {Promise}
    */
   login(user) {
-    return axiosInstance.post('/api/users/login', user, config)
-        .then(response => response.data)
-        .then(response => response)
+    return axiosInstance
+      .post('/api/users/login', user, config)
+      .then((response) => response.data)
+      .then((response) => response)
   },
 
   /**
@@ -23,8 +24,9 @@ export default {
    * @returns {Promise}
    */
   register(user) {
-      return axiosInstance.post('/api/users/register', user, config)
-          .then(response => response.data)
-          .then(response => response)
+    return axiosInstance
+      .post('/api/users/register', user, config)
+      .then((response) => response.data)
+      .then((response) => response)
   }
 }

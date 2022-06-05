@@ -1,42 +1,26 @@
 <template>
   <div class="app-navbar">
     <!-- ЛОГОТИП -->
-    <div
-      class="logo"
-      @click="backToHomePage"
-    >
+    <div class="logo" @click="backToHomePage">
       Loader<span class="text-secondary">Data</span>
     </div>
 
     <div class="flex space-x-5">
       <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
-      <button
-        type="button"
-        class="text-gray-3 cursor-not-allowed"
-        disabled
-      >
+      <button type="button" class="text-gray-3 cursor-not-allowed" disabled>
         <span class="flex space-x-3">
           <app-icon-user class="inline-block" />
           <span>{{ userName }}</span>
         </span>
       </button>
 
-
       <!-- ВЫХОД ИЗ СИСТЕМЫ -->
-      <button
-        v-if="isAuthenticated"
-        type="button"
-        @click="logout"
-      >
+      <button v-if="isAuthenticated" type="button" @click="logout">
         <app-icon-logout class="inline-block" />
       </button>
 
       <!-- ВОЙТИ -->
-      <button
-        v-else
-        type="button"
-        @click="$router.push('/auth/login')"
-      >
+      <button v-else type="button" @click="$router.push('/auth/login')">
         <app-icon-login class="inline-block" />
       </button>
     </div>
@@ -51,9 +35,15 @@ import { useRouter } from 'vue-router'
 export default {
   name: 'AppNavbar',
   components: {
-    AppIconUser: defineAsyncComponent(() => import('~/components/icons/app-icon-user.vue')),
-    AppIconLogout: defineAsyncComponent(() => import('~/components/icons/app-icon-logout.vue')),
-    AppIconLogin: defineAsyncComponent(() => import('~/components/icons/app-icon-login.vue'))
+    AppIconUser: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-user.vue')
+    ),
+    AppIconLogout: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-logout.vue')
+    ),
+    AppIconLogin: defineAsyncComponent(() =>
+      import('~/components/icons/app-icon-login.vue')
+    )
   },
   setup() {
     const store = useStore()
@@ -65,7 +55,7 @@ export default {
 
     const userName = computed(() => {
       const user = store.state.user || null
-      return user && user.name || ''
+      return (user && user.name) || ''
     })
 
     const logout = () => {

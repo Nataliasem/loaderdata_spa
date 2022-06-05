@@ -1,16 +1,10 @@
 <template>
   <div class="top-menu">
     <div class="flex space-x-8">
-      <router-link
-        class="app-link"
-        to="/admin/dashboard"
-      >
+      <router-link class="app-link" to="/admin/dashboard">
         Панель администратора
       </router-link>
-      <router-link
-        class="app-link active"
-        to="/admin/ui-kit"
-      >
+      <router-link class="app-link active" to="/admin/ui-kit">
         Ui kit
       </router-link>
     </div>
