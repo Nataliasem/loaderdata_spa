@@ -31,12 +31,12 @@
         <!-- УДАЛИТЬ -->
         <button
           type="button"
-          :title="checkRemoval(user).reason"
+          :title="getDisabledRemovalReason(user)"
           :class="{
-            'text-gray-3 cursor-not-allowed': !checkRemoval(user).available
+            'text-gray-3 cursor-not-allowed': checkIsRemovalDisable(user)
           }"
-          :disabled="!checkRemoval(user).available"
-          @click="deleteUser(user.id)"
+          :disabled="checkIsRemovalDisable(user)"
+          @click="removeUser(user.id)"
         >
           Удалить
         </button>
@@ -45,14 +45,16 @@
   </template>
 </template>
 
-<script>
-import usersApi from '~/api/users.js'
-import { ROLES } from '~/constants.ts'
-import notify from '~/plugins/notify.js'
-import { ref, onMounted } from 'vue'
+<script lang="ts">
+import usersApi from '~/api/users'
+import { ROLES } from '~/constants'
+import notify from '~/plugins/notify'
+import { defineComponent, ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
+import { User } from '~/types/main'
+import type { Ref } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'AdminDashboard',
   middleware: ['auth', 'admin'],
   setup() {
@@ -61,74 +63,61 @@ export default {
     const loading = ref(false)
     const saving = ref(false)
 
-    const users = ref([])
+    const users: Ref<Array<User>> = ref([])
 
     onMounted(() => loadUsers())
 
-    const loadUsers = () => {
+    const loadUsers = (): void => {
       loading.value = true
 
       usersApi
         .loadUsersPaginated()
-        .then((response) => (users.value = response))
-        .catch((error) => notify.error(error))
+        .then((response: Array<User>) => (users.value = response))
+        .catch((error: string) => notify.error(error))
         .finally(() => (loading.value = false))
     }
 
-    const getFormattedRole = (roleId) => {
+    const getFormattedRole = (roleId: number): string => {
       return roleId === 1 ? ROLES.ADMIN.NAME : ROLES.DEFAULT_USER.NAME
     }
 
-    const getFormattedStatus = (isActive) => {
+    const getFormattedStatus = (isActive: boolean): string => {
       return isActive ? 'Действующий' : 'Удалён'
     }
 
-    const checkRemoval = (user) => {
-      const removal = {
-        available: true,
-        reason: ''
-      }
+    const checkIsRemovalDisable = (user: User): boolean => {
+      return Boolean(getDisabledRemovalReason(user))
+    }
 
-      if (!user) {
-        removal.available = false
-        return removal
+    const getDisabledRemovalReason = (user: User): string => {
+      if (saving.value) {
+        return 'Нельзя удалить, пока идёт сохранение'
       }
 
       const currentUserId = store.state.user?.id
-      const deleteSelf = user.id === currentUserId
-
-      const isDeleted = user.isActive === false
-
-      if (deleteSelf) {
-        removal.available = false
-        removal.reason = 'Нельзя удалить самого себя'
+      if (user.id === currentUserId) {
+        return 'Нельзя удалить самого себя'
       }
 
-      if (isDeleted) {
-        removal.available = false
-        removal.reason = 'Нельзя удалить деактивированного пользователя'
+      if (user.isActive === false) {
+        return 'Нельзя удалить деактивированного пользователя'
       }
 
-      if (saving.value) {
-        removal.available = false
-        removal.reason = 'Нельзя удалить, пока идёт сохранение'
-      }
-
-      return removal
+      return ''
     }
 
-    const deleteUser = (id) => {
+    const removeUser = (id: string) => {
       if (!id) {
         return
       }
 
-      this.saving = true
+      saving.value = true
 
       usersApi
-        .deleteUser(id)
+        .removeUser(id)
         .then(() => notify.success('Пользователь удалён'))
-        .catch((error) => notify.error(error))
-        .finally(() => (this.saving = false))
+        .catch((error: string) => notify.error(error))
+        .finally(() => (saving.value = false))
     }
 
     return {
@@ -137,11 +126,12 @@ export default {
       users,
       getFormattedRole,
       getFormattedStatus,
-      checkRemoval,
-      deleteUser
+      checkIsRemovalDisable,
+      getDisabledRemovalReason,
+      removeUser
     }
   }
-}
+})
 </script>
 
 <style>

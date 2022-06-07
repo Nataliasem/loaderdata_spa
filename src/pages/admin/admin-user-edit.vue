@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import usersApi from '~/api/users.js'
+import usersApi from '~/api/users.ts'
 import { ROLES } from '~/constants.ts'
 import notify from '~/plugins/notify.js'
 import { ref, reactive, computed, onMounted } from 'vue'
