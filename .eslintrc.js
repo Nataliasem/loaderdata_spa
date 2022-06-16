@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     node: true
@@ -10,13 +11,19 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
     'plugin:vue/recommended',
     'plugin:promise/recommended',
     'prettier'
   ],
-  plugins: ['prettier'],
+  plugins: ['prettier', 'import'],
   rules: {
+    // PRETTIER
     'prettier/prettier': 'warn',
+
+    // IMPORT
+    'import/no-unresolved': 'warn',
 
     // ESLINT
     'eol-last': ['error', 'always'],
@@ -52,5 +59,17 @@ module.exports = {
     // VUE
     'vue/no-multiple-template-root': 'off',
     'vue/component-api-style': ['warn', ['script-setup', 'composition']]
+  },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    'import/resolver': {
+      typescript: {},
+      alias: {
+        map: [['~', './src']],
+        extensions: ['.js', '.json', '.ts', '.vue']
+      }
+    }
   }
 }

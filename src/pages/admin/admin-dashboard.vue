@@ -46,12 +46,12 @@
 </template>
 
 <script lang="ts">
-import usersApi from '~/api/users'
-import { ROLES } from '~/constants'
-import notify from '~/plugins/notify'
+import usersApi from '../../api/users'
+import { ROLES } from '../../constants'
+import notify from '../../plugins/notify'
 import { defineComponent, ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
-import { User } from '~/types/main'
+import { User } from '../../types/main'
 import type { Ref } from 'vue'
 
 export default defineComponent({
@@ -99,7 +99,7 @@ export default defineComponent({
         return 'Нельзя удалить самого себя'
       }
 
-      if (user.isActive === false) {
+      if (!user.isActive) {
         return 'Нельзя удалить деактивированного пользователя'
       }
 

@@ -58,7 +58,7 @@
 
 <script setup>
 import logInApi from '~/api/login.js'
-import notify from '~/plugins/notify.js'
+import notify from '~/plugins/notify.ts'
 import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'

@@ -1,16 +1,16 @@
 // TODO: сделать простые уведомления
 
 export default {
-  info(message) {
+  info(message: string) {
     alert(message)
   },
-  success(message) {
+  success(message: string) {
     alert(message)
   },
-  warning(message) {
+  warning(message: string) {
     alert(message)
   },
-  error(message) {
+  error(message: string) {
     alert(message)
   }
 }

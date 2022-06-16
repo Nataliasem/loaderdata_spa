@@ -1,6 +1,6 @@
 // TODO: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
-import axiosInstance from '~/plugins/axios.js'
+import axiosInstance from '../plugins/axios'
 import { User } from '../types/main'
 
 export default {

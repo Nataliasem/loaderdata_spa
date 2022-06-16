@@ -51,11 +51,11 @@
   </div>
 </template>
 
-<script>
-import usersApi from '~/api/users.ts'
-import { ROLES } from '~/constants.ts'
-import notify from '~/plugins/notify.js'
-import { ref, reactive, computed, onMounted } from 'vue'
+<script lang="ts">
+import usersApi from '../../api/users'
+import { ROLES } from '../../constants'
+import notify from '../../plugins/notify'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 export default {
@@ -72,12 +72,13 @@ export default {
     const loading = ref(true)
     const saving = ref(false)
 
-    const user = ref(null)
-    const userModel = reactive({
+    const userModel = {
       name: '',
       password: '',
       roleId: null
-    })
+    }
+
+    const user = ref(userModel)
 
     const id = computed(() => {
       return route.query.id || ''
@@ -87,13 +88,8 @@ export default {
       return id.value ? 'Редактировать пользователя' : 'Создать пользователя'
     })
 
-    onMounted(() => {
-      loadUser()
-    })
-
     const loadUser = () => {
       if (!id.value) {
-        user.value = userModel
         loading.value = false
         return
       }
@@ -121,6 +117,8 @@ export default {
         .catch((error) => notify.error(error))
         .finally(() => (saving.value = false))
     }
+
+    loadUser()
 
     return {
       loading,
