@@ -52,9 +52,9 @@
 </template>
 
 <script lang="ts">
-import usersApi from '../../api/users'
-import { ROLES } from '../../constants'
-import notify from '../../plugins/notify'
+import usersApi from '~/api/users'
+import { ROLES } from '~/constants'
+import notify from '~/plugins/notify'
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 

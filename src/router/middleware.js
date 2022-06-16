@@ -1,5 +1,5 @@
 import { ROLES } from '~/constants.ts'
-import store from '../store'
+import store from '~/store'
 
 const checkIsAdmin = () => {
   const user = store.state.user
