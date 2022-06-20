@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { checkMiddleware } from './middleware.js'
 
 import accessDenied from '~/pages/access-denied.vue'
-import adminDashboard from '~/pages/admin/admin-dashboard.vue'
-import adminUserEdit from '~/pages/admin/admin-user-edit.vue'
+import adminDashboard from '~/pages/admin/users/users-dashboard.vue'
+import adminUserEdit from '~/pages/admin/users/user-details.vue'
 import uiKit from '~/pages/admin/ui-kit.vue'
-import logIn from '~/pages/auth/auth-login.vue'
+import logIn from '~/pages/auth/login-page.vue'
 import homePage from '~/pages/home-page.vue'
 import notFound from '~/pages/not-found.vue'
 

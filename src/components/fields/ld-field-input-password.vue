@@ -33,10 +33,10 @@ export default {
   name: 'LdFieldPassword',
   components: {
     AppIconEyeOpened: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-eye-opened.vue')
+      import('~/components/ui/icons/icon-eye-opened.vue')
     ),
     AppIconEyeClosed: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-eye-closed.vue')
+      import('~/components/ui/icons/icon-eye-closed.vue')
     )
   },
   props: {

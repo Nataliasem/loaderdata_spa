@@ -55,7 +55,6 @@ import { User } from '~/types/main'
 import type { Ref } from 'vue'
 
 export default defineComponent({
-  name: 'AdminDashboard',
   middleware: ['auth', 'admin'],
   setup() {
     const store = useStore()

@@ -1,6 +1,6 @@
 // Экземпляр плагина axios с необходимыми настройками
 
-import axios from 'axios'
+import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { BASE_URL } from '~/constants'
 import store from '~/store'
 
@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
   baseURL: API_URL
 })
 
-const errorHandler = (error) => {
+const errorHandler = (error: AxiosError) => {
   if (!error || !error.response) {
     return Promise.reject('Не удалось подключиться к серверу')
   }
@@ -24,8 +24,9 @@ const errorHandler = (error) => {
   return Promise.reject(message)
 }
 
-const addBasicAuthToken = (config) => {
-  const token = (store.state.user && store.state.user.basicAuthToken) || ''
+const addBasicAuthToken = (config: AxiosRequestConfig) => {
+  const token: string =
+    (store.state.user && store.state.user.basicAuthToken) || ''
 
   if (token) {
     config.headers.common.Authorization = `Basic ${token}`

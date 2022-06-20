@@ -19,10 +19,10 @@ export default {
   name: 'DefaultLayout',
   components: {
     AppNavbar: defineAsyncComponent(() =>
-      import('~/components/layouts/app-navbar.vue')
+      import('~/components/ui/ld-navbar.vue')
     ),
     TopMenu: defineAsyncComponent(() =>
-      import('~/components/layouts/top-menu.vue')
+      import('~/components/ui/ld-top-menu.vue')
     )
   },
   setup() {

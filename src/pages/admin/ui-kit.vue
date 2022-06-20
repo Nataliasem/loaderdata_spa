@@ -75,16 +75,16 @@ export default {
   name: 'UiKit',
   components: {
     AppIconWarning: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-warning.vue')
+      import('~/components/ui/icons/icon-warning.vue')
     ),
     AppIconUser: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-user.vue')
+      import('~/components/ui/icons/icon-user.vue')
     ),
     AppIconLogout: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-logout.vue')
+      import('~/components/ui/icons/icon-logout.vue')
     ),
     AppIconLogin: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-login.vue')
+      import('~/components/ui/icons/icon-login.vue')
     )
   },
   middleware: 'auth'

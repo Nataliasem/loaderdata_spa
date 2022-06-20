@@ -18,7 +18,7 @@ import { defineAsyncComponent, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const AppIconWarning = defineAsyncComponent(() =>
-  import('~/components/icons/app-icon-warning.vue')
+  import('~/components/ui/icons/icon-warning.vue')
 )
 
 const route = useRoute()

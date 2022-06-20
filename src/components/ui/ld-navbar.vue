@@ -36,13 +36,13 @@ export default {
   name: 'AppNavbar',
   components: {
     AppIconUser: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-user.vue')
+      import('~/components/ui/icons/icon-user.vue')
     ),
     AppIconLogout: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-logout.vue')
+      import('~/components/ui/icons/icon-logout.vue')
     ),
     AppIconLogin: defineAsyncComponent(() =>
-      import('~/components/icons/app-icon-login.vue')
+      import('~/components/ui/icons/icon-login.vue')
     )
   },
   setup() {

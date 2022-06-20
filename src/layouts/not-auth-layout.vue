@@ -12,7 +12,7 @@ export default {
   name: 'NotAuthLayout',
   components: {
     AppNavbar: defineAsyncComponent(() =>
-      import('~/components/layouts/app-navbar.vue')
+      import('~/components/ui/ld-navbar.vue')
     )
   }
 }
