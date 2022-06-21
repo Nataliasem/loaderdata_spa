@@ -1,8 +1,12 @@
 <template>
   <!-- ЗАГОЛОВОК -->
-  <div class="flex space-x-5 items-center justify-between pb-5 border-b border-b-grey-1 mb-5">
-    <div class="text-size-18">Управление пользователями</div>
-    <button type="button" class="lg-button-main">Создать</button>
+  <div
+    class="flex space-x-5 items-center justify-between pb-5 border-b border-b-grey-1 mb-5"
+  >
+    <div class="text-size-18 text-blue-2 font-bold">
+      Управление пользователями
+    </div>
+    <button type="button" class="ld-button-main">Создать</button>
   </div>
 
   <!-- ЗАГРУЗЧИК -->
@@ -11,9 +15,19 @@
   <!-- КАРТОЧКИ ПОЛЬЗОВАТЕЛЕЙ -->
   <div v-else class="space-y-4">
     <div v-for="user in users" :key="user.id" class="user-card">
-      <!-- СТАТУС -->
-      <div :class="user.isActive ? 'text-green' : 'text-red'">
-        {{ getFormattedStatus(user.isActive) }}
+      <div class="flex items-center space-x-6">
+        <!-- СТАТУС -->
+        <div :class="user.isActive ? 'ld-label-green' : 'ld-label-red'">
+          {{ getFormattedStatus(user.isActive) }}
+        </div>
+
+        <!-- БЛОКИРОВАТЬ/РАЗБЛОКИРОВАТЬ -->
+        <button v-if="user.isActive" type="button" title="Блокировать">
+          <icon-lock class="text-red" />
+        </button>
+        <button v-else title="Разблокировать">
+          <icon-unlock class="text-yellow" />
+        </button>
       </div>
 
       <!-- ИМЯ -->
@@ -27,19 +41,6 @@
         <router-link :to="`/admin/admin-user-edit?id=${user.id}`">
           Редактировать
         </router-link>
-
-        <!-- УДАЛИТЬ -->
-        <button
-          type="button"
-          :title="getDisabledRemovalReason(user)"
-          :class="{
-            'text-grey-1 cursor-not-allowed': checkIsRemovalDisable(user)
-          }"
-          :disabled="checkIsRemovalDisable(user)"
-          @click="removeUser(user.id)"
-        >
-          Удалить
-        </button>
       </div>
     </div>
   </div>
@@ -49,12 +50,20 @@
 import usersApi from '~/api/users'
 import { ROLES } from '~/constants'
 import notify from '~/plugins/notify'
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, defineAsyncComponent } from 'vue'
 import { useStore } from 'vuex'
 import { User } from '~/types/main'
 import type { Ref } from 'vue'
 
 export default defineComponent({
+  components: {
+    IconLock: defineAsyncComponent(
+      () => import('~/components/ui/icons/icon-lock.vue')
+    ),
+    IconUnlock: defineAsyncComponent(
+      () => import('~/components/ui/icons/icon-unlock.vue')
+    )
+  },
   middleware: ['auth', 'admin'],
   setup() {
     const store = useStore()
@@ -81,42 +90,7 @@ export default defineComponent({
     }
 
     const getFormattedStatus = (isActive: boolean): string => {
-      return isActive ? 'Действующий' : 'Удалён'
-    }
-
-    const checkIsRemovalDisable = (user: User): boolean => {
-      return Boolean(getDisabledRemovalReason(user))
-    }
-
-    const getDisabledRemovalReason = (user: User): string => {
-      if (saving.value) {
-        return 'Нельзя удалить, пока идёт сохранение'
-      }
-
-      const currentUserId = store.state.user?.id
-      if (user.id === currentUserId) {
-        return 'Нельзя удалить самого себя'
-      }
-
-      if (!user.isActive) {
-        return 'Нельзя удалить деактивированного пользователя'
-      }
-
-      return ''
-    }
-
-    const removeUser = (id: string) => {
-      if (!id) {
-        return
-      }
-
-      saving.value = true
-
-      usersApi
-        .removeUser(id)
-        .then(() => notify.success('Пользователь удалён'))
-        .catch((error: string) => notify.error(error))
-        .finally(() => (saving.value = false))
+      return isActive ? 'Активный' : 'Заблокирован'
     }
 
     return {
@@ -124,10 +98,7 @@ export default defineComponent({
       saving,
       users,
       getFormattedRole,
-      getFormattedStatus,
-      checkIsRemovalDisable,
-      getDisabledRemovalReason,
-      removeUser
+      getFormattedStatus
     }
   }
 })
@@ -135,7 +106,7 @@ export default defineComponent({
 
 <style>
 .user-card {
-  @apply py-8 px-6;
+  @apply py-8 px-6 space-y-4;
   background-color: #f7fafc;
 }
 </style>
