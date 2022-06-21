@@ -2,7 +2,7 @@
   <svg
     :width="width"
     :height="height"
-    viewBox="0 0 22 22"
+    viewBox="0 0 24 24"
     fill="none"
     stroke-width="2"
     stroke="currentColor"
@@ -11,14 +11,14 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M10 7L14 11M14 11L10 15M14 11H1M1.33782 6C3.06687 3.01099 6.29859 1 10 1C15.5228 1 20 5.47715 20 11C20 16.5228 15.5228 21 10 21C6.29859 21 3.06687 18.989 1.33782 16"
+      d="M12 8L16 12M16 12L12 16M16 12H3M3.33782 7C5.06687 4.01099 8.29859 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.29859 22 5.06687 19.989 3.33782 17"
     />
   </svg>
 </template>
 
 <script>
 export default {
-  name: 'AppIconLogin',
+  name: 'IconLogin',
   props: {
     /**
      * Ширина

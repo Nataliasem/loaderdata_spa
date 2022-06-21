@@ -2,7 +2,7 @@
   <svg
     :width="width"
     :height="height"
-    viewBox="0 0 22 22"
+    viewBox="0 0 24 24"
     fill="none"
     stroke-width="2"
     stroke="currentColor"
@@ -11,16 +11,14 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9"
+      d="M18 8L22 12M22 12L18 16M22 12H9M15 4.20404C13.7252 3.43827 12.2452 3 10.6667 3C5.8802 3 2 7.02944 2 12C2 16.9706 5.8802 21 10.6667 21C12.2452 21 13.7252 20.5617 15 19.796"
     />
-    <path d="M16 17L21 12L16 7" />
-    <path d="M21 12H9" />
   </svg>
 </template>
 
 <script>
 export default {
-  name: 'AppIconLogout',
+  name: 'IconLogout',
   props: {
     /**
      * Ширина

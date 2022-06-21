@@ -2,7 +2,7 @@
   <svg
     :width="width"
     :height="height"
-    viewBox="0 0 22 22"
+    viewBox="0 0 24 24"
     fill="none"
     stroke-width="2"
     stroke="currentColor"
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'AppIconLogin',
+  name: 'IconAtom',
   props: {
     /**
      * Ширина
