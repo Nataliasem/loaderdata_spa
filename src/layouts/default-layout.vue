@@ -1,12 +1,14 @@
 <template>
   <div class="default-layout">
     <div class="page-wrapper">
-      <app-navbar />
+      <ld-navbar />
 
-      <top-menu v-if="isAuthenticated" />
+      <div class="flex">
+        <ld-sidebar v-if="isAuthenticated" />
 
-      <div class="page-content">
-        <slot />
+        <div class="page-content">
+          <slot />
+        </div>
       </div>
     </div>
   </div>
@@ -18,11 +20,11 @@ import { useStore } from 'vuex'
 export default {
   name: 'DefaultLayout',
   components: {
-    AppNavbar: defineAsyncComponent(() =>
+    LdNavbar: defineAsyncComponent(() =>
       import('~/components/ui/ld-navbar.vue')
     ),
-    TopMenu: defineAsyncComponent(() =>
-      import('~/components/ui/ld-top-menu.vue')
+    LdSidebar: defineAsyncComponent(() =>
+      import('~/components/ui/ld-sidebar.vue')
     )
   },
   setup() {
@@ -43,6 +45,6 @@ export default {
 }
 
 .page-content {
-  @apply p-8;
+  @apply p-8 w-full;
 }
 </style>
