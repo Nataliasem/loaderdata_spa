@@ -1,18 +1,18 @@
 <template>
   <!-- ЗАГОЛОВОК -->
-  <div class="flex space-x-5">
-    <div>Пользователи</div>
-    <router-link to="/admin/admin-user-edit"> Создать </router-link>
+  <div class="flex space-x-5 items-center justify-between pb-5 border-b border-b-grey-1 mb-5">
+    <div class="text-size-18">Управление пользователями</div>
+    <button type="button" class="lg-button-main">Создать</button>
   </div>
 
   <!-- ЗАГРУЗЧИК -->
   <div v-if="loading">Загрузка</div>
 
   <!-- КАРТОЧКИ ПОЛЬЗОВАТЕЛЕЙ -->
-  <template v-else>
+  <div v-else class="space-y-4">
     <div v-for="user in users" :key="user.id" class="user-card">
       <!-- СТАТУС -->
-      <div :class="user.isActive ? 'text-green-1' : 'text-red-1'">
+      <div :class="user.isActive ? 'text-green' : 'text-red'">
         {{ getFormattedStatus(user.isActive) }}
       </div>
 
@@ -33,7 +33,7 @@
           type="button"
           :title="getDisabledRemovalReason(user)"
           :class="{
-            'text-gray-3 cursor-not-allowed': checkIsRemovalDisable(user)
+            'text-grey-1 cursor-not-allowed': checkIsRemovalDisable(user)
           }"
           :disabled="checkIsRemovalDisable(user)"
           @click="removeUser(user.id)"
@@ -42,7 +42,7 @@
         </button>
       </div>
     </div>
-  </template>
+  </div>
 </template>
 
 <script lang="ts">
@@ -135,6 +135,7 @@ export default defineComponent({
 
 <style>
 .user-card {
-  @apply pt-8 px-6;
+  @apply py-8 px-6;
+  background-color: #f7fafc;
 }
 </style>

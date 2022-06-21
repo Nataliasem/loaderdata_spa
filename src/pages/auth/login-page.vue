@@ -25,7 +25,7 @@
       <option :value="3">Advanced user</option>
       <option :value="4">Default user</option>
     </select>
-    <button type="submit" :disabled="disabled" class="submit-button">
+    <button type="submit" :disabled="disabled" class="lg-button-main">
       Зарегистрироваться
     </button>
   </form>
@@ -50,7 +50,7 @@
       placeholder="Пароль"
       class="app-input"
     />
-    <button type="submit" :disabled="disabled" class="submit-button">
+    <button type="submit" :disabled="disabled" class="lg-button-main">
       Войти в систему
     </button>
   </form>
@@ -123,21 +123,5 @@ const setUser = (user) => {
   outline: none;
   border-color: #0880ae;
   border-width: 2px;
-}
-
-.login-form .submit-button {
-  padding: 10px 15px;
-  border-radius: 3px;
-  background-color: #0880ae;
-  color: white;
-  outline: none;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.login-form .submit-button:disabled {
-  background-color: #dbe2ea;
-  color: #b1b5bf;
 }
 </style>

@@ -7,30 +7,30 @@
       <div class="flex flex-grow-1 space-x-10 w-3/4">
         <!-- BUTTON-MAIN -->
         <div class="flex flex-col space-y-6">
-          <button type="button" class="app-button-main">Main default</button>
-          <button type="button" class="app-button-main hover">
+          <button type="button" class="lg-button-main">Main default</button>
+          <button type="button" class="lg-button-main hover">
             Main hover
           </button>
-          <button type="button" class="app-button-main active">
+          <button type="button" class="lg-button-main active">
             Main active
           </button>
-          <button type="button" class="app-button-main disabled">
+          <button type="button" class="lg-button-main disabled">
             Main disabled
           </button>
         </div>
 
         <!-- BUTTON-SECONDARY -->
         <div class="flex flex-col space-y-6">
-          <button type="button" class="app-button-secondary">
+          <button type="button" class="lg-button-secondary">
             Secondary default
           </button>
-          <button type="button" class="app-button-secondary hover">
+          <button type="button" class="lg-button-secondary hover">
             Secondary hover
           </button>
-          <button type="button" class="app-button-secondary active">
+          <button type="button" class="lg-button-secondary active">
             Secondary active
           </button>
-          <button type="button" class="app-button-secondary disabled">
+          <button type="button" class="lg-button-secondary disabled">
             Secondary disabled
           </button>
         </div>
@@ -58,10 +58,10 @@
       <div class="font-bold text-size-42 w-1/4">ICONS</div>
 
       <div class="flex w-3/4 space-x-8">
-        <app-icon-user class="text-green-1" />
-        <app-icon-login class="text-green-1" />
-        <app-icon-logout class="text-green-1" />
-        <app-icon-warning class="text-green-1" />
+        <app-icon-user class="text-green" />
+        <app-icon-login class="text-green" />
+        <app-icon-logout class="text-green" />
+        <app-icon-warning class="text-green" />
       </div>
     </div>
     <!-- TODO: Шрифт -->

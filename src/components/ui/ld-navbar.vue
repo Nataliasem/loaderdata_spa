@@ -1,27 +1,30 @@
 <template>
-  <div class="app-navbar">
+  <div class="flex justify-between py-5 px-20 bg-blue-1">
     <!-- ЛОГОТИП -->
-    <div class="logo" @click="backToHomePage">
-      Loader<span class="text-secondary">Data</span>
+    <div
+      class="font-bold text-size-30 text-blue-1 cursor-pointer text-white"
+      @click="backToHomePage"
+    >
+      loader<span class="text-blue-3">.</span>
     </div>
 
-    <div class="flex space-x-5">
+    <div class="flex space-x-2">
       <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
-      <button type="button" class="text-gray-3 cursor-not-allowed" disabled>
+      <button type="button" class="text-grey-1 cursor-not-allowed" disabled>
         <span class="flex space-x-3">
-          <app-icon-user class="inline-block" />
+          <app-icon-user class="inline-block text-white" />
           <span>{{ userName }}</span>
         </span>
       </button>
 
       <!-- ВЫХОД ИЗ СИСТЕМЫ -->
       <button v-if="isAuthenticated" type="button" @click="logout">
-        <app-icon-logout class="inline-block" />
+        <app-icon-logout class="inline-block text-white" />
       </button>
 
       <!-- ВОЙТИ -->
       <button v-else type="button" @click="$router.push('/auth/login')">
-        <app-icon-login class="inline-block" />
+        <app-icon-login class="inline-block text-white" />
       </button>
     </div>
   </div>
@@ -77,13 +80,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.app-navbar {
-  @apply flex justify-between p-5;
-}
-
-.app-navbar .logo {
-  @apply font-bold text-size-30 text-primary cursor-pointer;
-}
-</style>

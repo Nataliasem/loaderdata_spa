@@ -43,7 +43,7 @@
       </select>
 
       <!-- СОХРАНИТЬ -->
-      <button type="submit" :disabled="saving" class="submit-button">
+      <button type="submit" :disabled="saving" class="lg-button-main">
         Сохранить
       </button>
     </form>
@@ -150,21 +150,5 @@ export default {
   outline: none;
   border-color: #0880ae;
   border-width: 2px;
-}
-
-.admin-user-edit .submit-button {
-  padding: 10px 15px;
-  border-radius: 3px;
-  background-color: #0880ae;
-  color: white;
-  outline: none;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.admin-user-edit .submit-button:disabled {
-  background-color: #dbe2ea;
-  color: #b1b5bf;
 }
 </style>

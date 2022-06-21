@@ -1,11 +1,11 @@
 <template>
   <div class="page-content access-denied">
     <div class="error-message">
-      <app-icon-warning class="text-red-1 inline-block" />
+      <app-icon-warning class="text-red inline-block" />
 
       <div class="flex flex-col">
         <span>{{ error }}</span>
-        <router-link class="app-link underline" to="/">
+        <router-link class="ld-link underline" to="/">
           Вернуться на главную
         </router-link>
       </div>
@@ -30,7 +30,7 @@ const error = computed(() => {
 <style>
 .access-denied .error-message {
   @apply flex space-x-2 flex-wrap;
-  @apply bg-red-3 p-4 w-1/2 mx-auto;
-  @apply border border-red-2 rounded-ld-md;
+  @apply bg-red p-4 w-1/2 mx-auto;
+  @apply border border-red rounded-ld-md;
 }
 </style>
