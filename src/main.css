@@ -1,80 +1,108 @@
 /*TODO: Не использовать импорт, добавить в проект */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-.ld-link {
-  @apply inline-block relative;
-  color: #2c5282
+/**** ld-button-main ****/
+.ld-button-main {
+  @apply text-white font-bold;
+  @apply bg-blue-3 py-3 px-8;
+  @apply border border-transparent rounded-ld-md;
+  box-shadow: 0 4px 10px 0 #109CF13D;
+  min-height: 32px;
 }
 
-.ld-link:hover,
-.ld-link.hover {
-  @apply text-green;
+.ld-button-main:hover,
+.ld-button-main.hover {
+  @apply bg-blue-4;
 }
 
-.ld-link:active:after,
-.ld-link.active:after {
-  content: '.';
-  position: absolute;
-  @apply font-bold text-yellow;
+.ld-button-main:active,
+.ld-button-main.active {
+  @apply bg-blue-5;
 }
 
-.lg-button-main {
-  @apply text-white bg-blue-3 py-3 px-6;
-  @apply border border-transparent;
-  border-radius: 12px;
-}
-
-.lg-button-main:hover,
-.lg-button-main.hover {
-  @apply bg-blue-3;
-}
-
-.lg-button-main:active,
-.lg-button-main.active {
-  @apply border;
-}
-
-.lg-button-main:disabled,
-.lg-button-main.disabled {
+.ld-button-main:disabled,
+.ld-button-main.disabled {
   @apply text-grey-2 bg-grey-1;
+  box-shadow: none;
 }
 
-.lg-button-secondary {
-  @apply text-grey-1 py-3 px-6;
-  border-width: 2px;
-  border-radius: 12px;
+/**** ld-button-secondary ****/
+.ld-button-secondary {
+  @apply text-blue-3 font-bold;
+  @apply py-3 px-8;
+  @apply border-2 border-blue-3 rounded-ld-md;
 }
 
-.lg-button-secondary:hover,
-.lg-button-secondary.hover {
-  @apply text-green;
+.ld-button-secondary:hover,
+.ld-button-secondary.hover {
+  @apply text-blue-4 border-blue-4;
 }
 
-.lg-button-secondary:active,
-.lg-button-secondary.active {
-  border-color: #858585;
-  color: #858585;
+.ld-button-secondary:active,
+.ld-button-secondary.active {
+  @apply text-blue-5 border-blue-5;
 }
 
-.lg-button-secondary:disabled,
-.lg-button-secondary.disabled {
-  @apply text-grey-2;
-  border-color: #9c9c9c;
+.ld-button-secondary:disabled,
+.ld-button-secondary.disabled {
+  @apply text-grey-1 border-grey-1;
 }
 
-.app-button-icon {
-  @apply border border-grey-1 px-2 py-1;
-  border-radius: 12px;
+/**** ld-button-link ****/
+.ld-button-link {
+  @apply text-blue-3 font-bold;
+}
+
+.ld-button-link:hover,
+.ld-button-link.hover {
+  @apply text-blue-4;
+}
+
+.ld-button-link:active,
+.ld-button-link.active {
+  @apply text-blue-5;
+}
+
+.ld-button-link:disabled,
+.ld-button-link.disabled {
+  @apply text-grey-1;
+}
+
+/**** ld-label ****/
+.ld-label-green,
+.ld-label-red,
+.ld-label-yellow,
+.ld-label-purple {
+  @apply border-2 rounded-full;
+  @apply px-4 py-1 font-bold;
+  @apply flex items-center justify-center;
+  max-width: max-content;
+}
+
+.ld-label-green {
+  @apply text-green-2 border-green-2;
+}
+
+.ld-label-yellow {
+  @apply text-yellow border-yellow;
+}
+
+.ld-label-purple {
+  @apply text-purple border-purple;
+}
+
+.ld-label-red {
+  @apply text-red border-red;
 }
 
 .ld-input {

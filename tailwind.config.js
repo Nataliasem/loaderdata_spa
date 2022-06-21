@@ -62,12 +62,16 @@ module.exports = {
       /* THEME COLORS */
       'blue-1': '#2d3748',
       'blue-2': '#2C5282',
-      'blue-3': '#2d9cdb',
-      'grey-1': '#edf2f7',
-      'grey-2': '#f7fafc',
-      'yellow': '#fdc107',
-      'green': '#219553',
-      'red': '#fc8181'
+      'blue-3': '#109CF1',
+      'blue-4': '#34AFF9',
+      'blue-5': '#098EDF',
+      'grey-1': '#C2CFE0',
+      'grey-2': '#90A0B7',
+      'yellow': '#fdb946',
+      'green-1': '#219553',
+      'green-2': '#9AE6B4',
+      'red': '#FC8181',
+      'purple': '#885af8'
     }
   }
 }
