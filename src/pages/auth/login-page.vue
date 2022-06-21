@@ -25,7 +25,7 @@
       <option :value="3">Advanced user</option>
       <option :value="4">Default user</option>
     </select>
-    <button type="submit" :disabled="disabled" class="lg-button-main">
+    <button type="submit" :disabled="disabled" class="ld-button-main">
       Зарегистрироваться
     </button>
   </form>
@@ -50,7 +50,7 @@
       placeholder="Пароль"
       class="app-input"
     />
-    <button type="submit" :disabled="disabled" class="lg-button-main">
+    <button type="submit" :disabled="disabled" class="ld-button-main">
       Войти в систему
     </button>
   </form>

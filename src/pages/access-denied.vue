@@ -5,7 +5,7 @@
 
       <div class="flex flex-col">
         <span>{{ error }}</span>
-        <router-link class="ld-link underline" to="/">
+        <router-link class="ld-button-link underline" to="/">
           Вернуться на главную
         </router-link>
       </div>
@@ -30,7 +30,7 @@ const error = computed(() => {
 <style>
 .access-denied .error-message {
   @apply flex space-x-2 flex-wrap;
-  @apply bg-red p-4 w-1/2 mx-auto;
+  @apply p-4 w-1/2 mx-auto;
   @apply border border-red rounded-ld-md;
 }
 </style>

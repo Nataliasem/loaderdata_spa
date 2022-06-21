@@ -1,92 +1,155 @@
 <template>
-  <div class="app-ui-kit space-y-40">
-    <!-- КНОПКИ -->
-    <div class="flex justify-center space-x-20">
-      <div class="font-bold text-size-42 w-1/4">BUTTONS</div>
-
-      <div class="flex flex-grow-1 space-x-10 w-3/4">
-        <!-- BUTTON-MAIN -->
-        <div class="flex flex-col space-y-6">
-          <button type="button" class="lg-button-main">Main default</button>
-          <button type="button" class="lg-button-main hover">
-            Main hover
-          </button>
-          <button type="button" class="lg-button-main active">
-            Main active
-          </button>
-          <button type="button" class="lg-button-main disabled">
-            Main disabled
-          </button>
-        </div>
-
-        <!-- BUTTON-SECONDARY -->
-        <div class="flex flex-col space-y-6">
-          <button type="button" class="lg-button-secondary">
-            Secondary default
-          </button>
-          <button type="button" class="lg-button-secondary hover">
-            Secondary hover
-          </button>
-          <button type="button" class="lg-button-secondary active">
-            Secondary active
-          </button>
-          <button type="button" class="lg-button-secondary disabled">
-            Secondary disabled
-          </button>
-        </div>
-
-        <!-- BUTTON-ICON -->
-        <div class="flex flex-col space-y-6">
-          <button type="button" class="app-button-icon text-size-30">
-            &#9734;
-          </button>
-          <button type="button" class="app-button-icon text-size-30 hover">
-            &#9734;
-          </button>
-          <button type="button" class="app-button-icon text-size-30 active">
-            &#9734;
-          </button>
-          <button type="button" class="app-button-icon text-size-30 disabled">
-            &#9734;
-          </button>
-        </div>
-      </div>
+  <div class="app-ui-kit">
+    <!-- ЗАГОЛОВОК -->
+    <div
+      class="text-size-18 text-blue-2 font-bold pb-5 border-b border-b-grey-1 mb-8"
+    >
+      Дизайн-система
     </div>
 
-    <!-- ИКОНКИ -->
-    <div class="flex justify-center space-x-20">
-      <div class="font-bold text-size-42 w-1/4">ICONS</div>
+    <div class="space-y-16">
+      <!-- КНОПКИ -->
+      <div class="flex space-x-10">
+        <div class="font-bold text-size-30 text-grey-2 w-1/3">BUTTONS</div>
 
-      <div class="flex w-3/4 space-x-8">
-        <app-icon-user class="text-green" />
-        <app-icon-login class="text-green" />
-        <app-icon-logout class="text-green" />
-        <app-icon-warning class="text-green" />
+        <div class="flex space-x-10">
+          <!-- BUTTON-MAIN -->
+          <div class="flex flex-col space-y-6">
+            <button type="button" class="ld-button-main">Main default</button>
+            <button type="button" class="ld-button-main hover">Main hover</button>
+            <button type="button" class="ld-button-main active">
+              Main active
+            </button>
+            <button type="button" class="ld-button-main disabled">
+              Main disabled
+            </button>
+          </div>
+
+          <!-- BUTTON-SECONDARY -->
+          <div class="flex flex-col space-y-6">
+            <button type="button" class="ld-button-secondary">
+              Secondary default
+            </button>
+            <button type="button" class="ld-button-secondary hover">
+              Secondary hover
+            </button>
+            <button type="button" class="ld-button-secondary active">
+              Secondary active
+            </button>
+            <button type="button" class="ld-button-secondary disabled">
+              Secondary disabled
+            </button>
+          </div>
+
+          <!-- BUTTON-LINK -->
+          <div class="flex flex-col space-y-6">
+            <button type="button" class="ld-button-link">Link default</button>
+            <button type="button" class="ld-button-link hover">Link hover</button>
+            <button type="button" class="ld-button-link active">
+              Link active
+            </button>
+            <button type="button" class="ld-button-link disabled">
+              Link disabled
+            </button>
+          </div>
+        </div>
       </div>
+
+      <!-- ИКОНКИ -->
+      <div class="flex space-x-10">
+        <div class="font-bold text-size-30 text-grey-2 w-1/3">ICONS</div>
+
+        <div
+          class="ds-icons-wrapper flex flex-col space-y-8"
+          :style="{ color: currentColor }"
+        >
+          <div class="flex space-x-5">
+            <label>
+              <input v-model="currentColor" type="color" />
+              <span class="ml-2">currentColor</span>
+            </label>
+          </div>
+
+          <div class="flex items-center space-x-8">
+            <icon-atom />
+            <icon-eye-closed />
+            <icon-eye-opened />
+            <icon-lightning />
+            <icon-user />
+            <icon-users />
+            <icon-login />
+            <icon-logout />
+            <icon-warning />
+            <icon-lock />
+            <icon-unlock />
+          </div>
+        </div>
+      </div>
+
+      <!-- ЛЕЙБЛЫ -->
+      <div class="flex space-x-10">
+        <div class="font-bold text-size-30 text-grey-2 w-1/3">LABELS</div>
+
+        <div class="space-y-4">
+          <div class="ld-label-green">Активный</div>
+          <div class="ld-label-red">Заблокированный</div>
+          <div class="ld-label-yellow">Ожидание</div>
+          <div class="ld-label-purple">Архив</div>
+        </div>
+      </div>
+
+      <!-- TODO: Шрифт -->
     </div>
-    <!-- TODO: Шрифт -->
   </div>
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, ref } from 'vue'
 
 export default {
   name: 'UiKit',
   components: {
-    AppIconWarning: defineAsyncComponent(() =>
-      import('~/components/ui/icons/icon-warning.vue')
+    IconAtom: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-atom.vue')
     ),
-    AppIconUser: defineAsyncComponent(() =>
+    IconEyeClosed: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-eye-closed.vue')
+    ),
+    IconEyeOpened: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-eye-opened.vue')
+    ),
+    IconLightning: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-lightning.vue')
+    ),
+    IconUser: defineAsyncComponent(() =>
       import('~/components/ui/icons/icon-user.vue')
     ),
-    AppIconLogout: defineAsyncComponent(() =>
+    IconUsers: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-users.vue')
+    ),
+    IconLogout: defineAsyncComponent(() =>
       import('~/components/ui/icons/icon-logout.vue')
     ),
-    AppIconLogin: defineAsyncComponent(() =>
+    IconLogin: defineAsyncComponent(() =>
       import('~/components/ui/icons/icon-login.vue')
+    ),
+    IconWarning: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-warning.vue')
+    ),
+    IconLock: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-lock.vue')
+    ),
+    IconUnlock: defineAsyncComponent(() =>
+      import('~/components/ui/icons/icon-unlock.vue')
     )
   },
-  middleware: 'auth'
+  middleware: 'auth',
+  setup() {
+    const currentColor = ref('#0077db')
+
+    return {
+      currentColor
+    }
+  }
 }
 </script>

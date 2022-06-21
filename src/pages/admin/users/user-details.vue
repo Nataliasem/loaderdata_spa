@@ -43,7 +43,7 @@
       </select>
 
       <!-- СОХРАНИТЬ -->
-      <button type="submit" :disabled="saving" class="lg-button-main">
+      <button type="submit" :disabled="saving" class="ld-button-main">
         Сохранить
       </button>
     </form>

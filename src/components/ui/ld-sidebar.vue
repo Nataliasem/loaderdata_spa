@@ -3,7 +3,7 @@
     <div v-for="link in sidebarLinks" :key="link.key" class="flex flex-col">
       <div class="flex items-center space-x-3 text-blue-2">
         <Component :is="link.icon" />
-        <router-link class="ld-link inline-block text-size-18" :to="link.to">
+        <router-link class="text-size-18" :to="link.to">
           {{ link.title }}
         </router-link>
       </div>
