@@ -29,19 +29,19 @@ const sidebarLinks: Ref<Array<SidebarLink>> = ref([
   {
     key: 'users',
     title: 'Пользователи',
-    icon: IconUsers.name,
+    icon: IconUsers,
     to: '/admin/dashboard'
   },
   {
     key: 'system',
     title: 'Система',
-    icon: IconLightning.name,
+    icon: IconLightning,
     to: '/admin/dashboard'
   },
   {
     key: 'ui-kit',
     title: 'UI-kit',
-    icon: IconAtom.name,
+    icon: IconAtom,
     to: '/admin/ui-kit'
   }
 ])
