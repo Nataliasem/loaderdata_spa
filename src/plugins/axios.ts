@@ -2,7 +2,7 @@
 
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { BASE_URL } from '~/constants'
-import store from '~/store'
+import { useUserStore } from '~/store/user'
 
 export const API_URL = `${BASE_URL.HOST}:${BASE_URL.PORT}`
 
@@ -25,11 +25,10 @@ const errorHandler = (error: AxiosError) => {
 }
 
 const addBasicAuthToken = (config: AxiosRequestConfig) => {
-  const token: string =
-    (store.state.user && store.state.user.basicAuthToken) || ''
+  const userStore = useUserStore()
 
-  if (token) {
-    config.headers.common.Authorization = `Basic ${token}`
+  if (userStore.token) {
+    config.headers.common.Authorization = `Basic ${userStore.token}`
   }
 
   return config

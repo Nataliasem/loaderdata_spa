@@ -6,18 +6,25 @@
 @tailwind utilities;
 
 body {
+  @apply m-0 p-0;
+  @apply bg-grey-2;
   font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
+}
+
+
+.ld-button-main,
+.ld-button-secondary {
+  @apply py-3 px-3 font-bold;
 }
 
 /**** ld-button-main ****/
 .ld-button-main {
-  @apply text-white font-bold;
-  @apply bg-blue-3 py-3 px-8;
+  @apply text-white;
+  @apply bg-blue-3;
   @apply border border-transparent rounded-ld-md;
   box-shadow: 0 4px 10px 0 #109CF13D;
   min-height: 32px;
+  /*background-color: #2a4265;*/
 }
 
 .ld-button-main:hover,
@@ -38,8 +45,7 @@ body {
 
 /**** ld-button-secondary ****/
 .ld-button-secondary {
-  @apply text-blue-3 font-bold;
-  @apply py-3 px-8;
+  @apply text-blue-3;
   @apply border-2 border-blue-3 rounded-ld-md;
 }
 
@@ -105,17 +111,14 @@ body {
   @apply text-red border-red;
 }
 
+/**** ld-input ****/
 .ld-input {
-  border: 1px solid #dbe2ea;
-  border-radius: 3px;
-  padding: 10px 15px;
-  width: 100%;
-  margin-bottom: 15px;
-  font-size: 16px;
+  @apply w-full rounded-ld-md border-2 border-transparent;
+  @apply px-4 py-4;
+  @apply bg-grey-3;
+  @apply text-size-16;
 }
 
 .ld-input:focus {
-  outline: none;
-  border-color: #0880ae;
-  border-width: 2px;
+  @apply outline-none border-blue-1;
 }

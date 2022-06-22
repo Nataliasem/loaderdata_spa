@@ -5,7 +5,8 @@ module.exports = {
       borderRadius: {
         'ld-xs': '1px',
         'ld-sm': '2px',
-        'ld-md': '4px'
+        'ld-md': '4px',
+        'ld-xl': '8px'
       }
     },
     spacing: {
@@ -66,7 +67,8 @@ module.exports = {
       'blue-4': '#34AFF9',
       'blue-5': '#098EDF',
       'grey-1': '#C2CFE0',
-      'grey-2': '#edf2f7',
+      'grey-2': '#f7fafc',
+      'grey-3': '#EDF2F7',
       'yellow': '#fdb946',
       'green-1': '#219553',
       'green-2': '#9AE6B4',

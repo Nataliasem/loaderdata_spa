@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between py-5 px-20 bg-blue-1">
+  <div class="flex justify-between py-5 pl-20 pr-10 bg-blue-1">
     <!-- ЛОГОТИП -->
     <div
       class="font-bold text-size-30 text-blue-1 cursor-pointer text-white"
@@ -8,19 +8,21 @@
       loader<span class="text-blue-3">.</span>
     </div>
 
-    <div class="flex space-x-2">
-      <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
-      <button type="button" class="text-grey-1 cursor-not-allowed" disabled>
-        <span class="flex space-x-3">
-          <app-icon-user class="inline-block text-white" />
-          <span>{{ userName }}</span>
-        </span>
-      </button>
+    <div class="flex space-x-8">
+      <template v-if="userStore.isAuthenticated">
+        <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
+        <button type="button" class="text-grey-1 cursor-not-allowed" disabled>
+          <span class="flex space-x-2 items-center">
+            <app-icon-user class="inline-block text-white" />
+            <span>{{ userName }}</span>
+          </span>
+        </button>
 
-      <!-- ВЫХОД ИЗ СИСТЕМЫ -->
-      <button v-if="isAuthenticated" type="button" @click="logout">
-        <app-icon-logout class="inline-block text-white" />
-      </button>
+        <!-- ВЫХОД ИЗ СИСТЕМЫ -->
+        <button type="button" @click="logout">
+          <app-icon-logout class="inline-block text-white" />
+        </button>
+      </template>
 
       <!-- ВОЙТИ -->
       <button v-else type="button" @click="$router.push('/auth/login')">
@@ -32,7 +34,7 @@
 
 <script>
 import { defineAsyncComponent, computed } from 'vue'
-import { useStore } from 'vuex'
+import { useUserStore } from '~/store/user'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -49,20 +51,16 @@ export default {
     )
   },
   setup() {
-    const store = useStore()
+    const userStore = useUserStore()
     const router = useRouter()
 
-    const isAuthenticated = computed(() => {
-      return store.getters.isAuthenticated || false
-    })
-
     const userName = computed(() => {
-      const user = store.state.user || null
+      const user = userStore.user || null
       return (user && user.name) || ''
     })
 
     const logout = () => {
-      store.commit('SET_USER', null)
+      userStore.setUser(null)
 
       backToHomePage()
     }
@@ -72,7 +70,7 @@ export default {
     }
 
     return {
-      isAuthenticated,
+      userStore,
       userName,
       logout,
       backToHomePage

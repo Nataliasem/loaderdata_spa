@@ -10,7 +10,7 @@
     <div class="space-y-16">
       <!-- КНОПКИ -->
       <div class="flex space-x-10">
-        <div class="font-bold text-size-30 text-grey-2 w-1/3">BUTTONS</div>
+        <div class="font-bold text-size-30 text-grey-1 w-1/3">BUTTONS</div>
 
         <div class="flex space-x-10">
           <!-- BUTTON-MAIN -->
@@ -57,7 +57,7 @@
 
       <!-- ИКОНКИ -->
       <div class="flex space-x-10">
-        <div class="font-bold text-size-30 text-grey-2 w-1/3">ICONS</div>
+        <div class="font-bold text-size-30 text-grey-1 w-1/3">ICONS</div>
 
         <div
           class="ds-icons-wrapper flex flex-col space-y-8"
@@ -88,7 +88,7 @@
 
       <!-- ЛЕЙБЛЫ -->
       <div class="flex space-x-10">
-        <div class="font-bold text-size-30 text-grey-2 w-1/3">LABELS</div>
+        <div class="font-bold text-size-30 text-grey-1 w-1/3">LABELS</div>
 
         <div class="space-y-4">
           <div class="ld-label-green">Активный</div>

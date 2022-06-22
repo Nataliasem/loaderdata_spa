@@ -1,6 +1,6 @@
-enum RoleId {
-  ADMIN = 1,
-  DEFAULT_USER = 2
+export enum RoleId {
+  Admin = 1,
+  DefaultUser = 2
 }
 
 // TODO: новые поля с бэка
@@ -9,4 +9,8 @@ export interface User {
   username: string
   roleId: RoleId
   isActive: boolean
+  basicAuthToken: string
+  createdAt: string
+  deletedAt: string
+  updatedAt: string
 }

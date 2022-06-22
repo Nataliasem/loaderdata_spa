@@ -1,13 +1,9 @@
 import { ROLES } from '~/constants.ts'
-import store from '~/store'
+import { useUserStore } from '~/store/user'
 
 const checkIsAdmin = () => {
-  const user = store.state.user
-  if (!user) {
-    return false
-  }
-
-  const roleId = user.roleId
+  const userStore = useUserStore()
+  const roleId = (userStore.user && userStore.user.roleId) || ''
   if (!roleId) {
     return false
   }
@@ -16,7 +12,10 @@ const checkIsAdmin = () => {
 }
 
 const MIDDLEWARE = {
-  auth: () => store.getters.isAuthenticated || false,
+  auth: () => {
+    const userStore = useUserStore()
+    return userStore.isAuthenticated || false
+  },
   admin: checkIsAdmin
 }
 
