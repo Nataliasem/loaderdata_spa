@@ -8,7 +8,7 @@ const config = {
 }
 
 interface UserInfo {
-  login: string
+  username: string
   password: string
 }
 

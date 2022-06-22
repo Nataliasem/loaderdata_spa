@@ -1,7 +1,5 @@
 <template>
-  <app-navbar>
-    <div>Войти в систему</div>
-  </app-navbar>
+  <ld-navbar />
   <slot />
 </template>
 
@@ -11,7 +9,7 @@ import { defineAsyncComponent } from 'vue'
 export default {
   name: 'NotAuthLayout',
   components: {
-    AppNavbar: defineAsyncComponent(() =>
+    LdNavbar: defineAsyncComponent(() =>
       import('~/components/ui/ld-navbar.vue')
     )
   }

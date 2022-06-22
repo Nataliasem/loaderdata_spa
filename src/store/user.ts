@@ -1,6 +1,6 @@
 import { Ref, ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { User } from '~/types/main'
+import { RoleId, User } from '~/types/main'
 import { StorageSerializers, useLocalStorage } from '@vueuse/core'
 
 export const useUserStore = defineStore('user', () => {
@@ -13,11 +13,15 @@ export const useUserStore = defineStore('user', () => {
   )
 
   const token = computed(() => {
-    return (user.value && user.value.basicAuthToken) || ''
+    return user.value?.basicAuthToken || ''
   })
 
   const isAuthenticated = computed(() => {
     return Boolean(token.value)
+  })
+
+  const isAdmin = computed(() => {
+    return (user.value?.roleId || '') === RoleId.Admin
   })
 
   const setUser = (newUser: User) => {
@@ -28,6 +32,7 @@ export const useUserStore = defineStore('user', () => {
     user,
     token,
     isAuthenticated,
+    isAdmin,
     setUser
   }
 })

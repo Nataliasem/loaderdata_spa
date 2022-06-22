@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between py-5 px-20 bg-blue-1">
+  <div class="flex justify-between py-5 pl-20 pr-10 bg-blue-1">
     <!-- ЛОГОТИП -->
     <div
       class="font-bold text-size-30 text-blue-1 cursor-pointer text-white"
@@ -8,19 +8,21 @@
       loader<span class="text-blue-3">.</span>
     </div>
 
-    <div class="flex space-x-2">
-      <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
-      <button type="button" class="text-grey-1 cursor-not-allowed" disabled>
-        <span class="flex space-x-3">
-          <app-icon-user class="inline-block text-white" />
-          <span>{{ userName }}</span>
-        </span>
-      </button>
+    <div class="flex space-x-8">
+      <template v-if="userStore.isAuthenticated">
+        <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
+        <button type="button" class="text-grey-1 cursor-not-allowed" disabled>
+          <span class="flex space-x-2 items-center">
+            <app-icon-user class="inline-block text-white" />
+            <span>{{ userName }}</span>
+          </span>
+        </button>
 
-      <!-- ВЫХОД ИЗ СИСТЕМЫ -->
-      <button v-if="userStore.isAuthenticated" type="button" @click="logout">
-        <app-icon-logout class="inline-block text-white" />
-      </button>
+        <!-- ВЫХОД ИЗ СИСТЕМЫ -->
+        <button type="button" @click="logout">
+          <app-icon-logout class="inline-block text-white" />
+        </button>
+      </template>
 
       <!-- ВОЙТИ -->
       <button v-else type="button" @click="$router.push('/auth/login')">

@@ -1,126 +1,100 @@
 <template>
-  <form
-    v-if="formType === 'register'"
-    name="registration"
-    class="login-form"
-    @submit.prevent="registerUser"
-  >
-    <input
-      id="register-username"
-      v-model="user.username"
-      name="username"
-      placeholder="Логин"
-      class="app-input"
-    />
-    <input
-      id="register-password"
-      v-model="user.password"
-      type="password"
-      placeholder="Пароль"
-      class="app-input"
-    />
-    <select v-model="user.roleId" name="register-role" class="app-input">
-      <option :value="1">Owner</option>
-      <option :value="2">Admin</option>
-      <option :value="3">Advanced user</option>
-      <option :value="4">Default user</option>
-    </select>
-    <button type="submit" :disabled="disabled" class="ld-button-main">
-      Зарегистрироваться
-    </button>
-  </form>
+  <div class="flex items-center justify-center h-screen">
+    <div class="bg-white p-11 rounded-ld-xl space-y-6">
+      <!-- ЛОГОТИП-->
+      <div class="font-bold text-size-30 text-blue-1 text-center">
+        loader<span class="text-blue-3">.</span>
+      </div>
 
-  <form
-    v-else
-    name="authentication"
-    class="login-form"
-    @submit.prevent="loginUser"
-  >
-    <input
-      id="auth-username"
-      v-model="user.username"
-      name="username"
-      placeholder="Логин"
-      class="app-input"
-    />
-    <input
-      id="auth-password"
-      v-model="user.password"
-      type="password"
-      placeholder="Пароль"
-      class="app-input"
-    />
-    <button type="submit" :disabled="disabled" class="ld-button-main">
-      Войти в систему
-    </button>
-  </form>
+      <form name="auth" class="space-y-8" @submit.prevent="handleAuth">
+        <!-- ЛОГИН-->
+        <label class="inline-block w-full">
+          <input
+            id="username"
+            v-model="user.username"
+            name="username"
+            placeholder="Логин"
+            class="ld-input"
+          />
+        </label>
+
+        <!-- ПАРОЛЬ -->
+        <label class="inline-block w-full">
+          <input
+            id="password"
+            v-model="user.password"
+            type="password"
+            PLACEHOLDER="Пароль"
+            class="ld-input"
+          />
+        </label>
+
+        <!-- ВОЙТИ В СИСТЕМУ -->
+        <div class="flex items-center space-x-6">
+          <button
+            type="submit"
+            :disabled="disabled"
+            class="ld-button-main"
+            @click="loginMode = true"
+          >
+            Войти в систему
+          </button>
+
+          <!-- ЗАРЕГИСТРИРОВАТЬСЯ -->
+          <button
+            type="submit"
+            :disabled="disabled"
+            class="ld-button-link"
+            @click="loginMode = false"
+          >
+            Зарегистрироваться
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import logInApi from '~/api/login.ts'
 import notify from '~/plugins/notify.ts'
-import { reactive, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, reactive, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '~/store/user'
 
 const router = useRouter()
-const route = useRoute()
 const userStore = useUserStore()
 
 const user = reactive({
   username: '',
-  password: '',
-  roleId: null
+  password: ''
 })
 
 const disabled = computed(() => {
   return !user.username || !user.password
 })
 
-const formType = computed(() => {
-  return route.query.type || ''
-})
+const loginMode = ref(true)
+
+const handleAuth = () => {
+  Promise.resolve()
+    .then(() => (loginMode.value ? loginUser() : registerUser()))
+    .then((user) => userStore.setUser(user))
+    .then(() => router.push('/'))
+    .catch((error) => notify.error(error))
+}
 
 const loginUser = () => {
-  logInApi
-    .login(user)
-    .then((user) => setUser(user))
-    .catch((error) => notify.error(error))
+  return logInApi.login(user).then((user) => {
+    notify.success(`С возвращением, ${user.name}`)
+    return user
+  })
 }
 
 const registerUser = () => {
-  logInApi
-    .register(user)
-    .then((user) => setUser(user))
-    .then(() => notify.success('Вы успешно зарегистрировались в системе'))
-    .catch((error) => notify.error(error))
-}
-
-const setUser = (user) => {
-  userStore.setUser(user)
-
-  router.push('/')
+  return logInApi.register(user).then((user) => {
+    notify.success('Вы успешно зарегистрировались в системе')
+    return user
+  })
 }
 </script>
-
-<style>
-.login-form {
-  width: 600px;
-  margin: 200px auto;
-}
-
-.login-form .app-input {
-  border: 1px solid #dbe2ea;
-  border-radius: 3px;
-  padding: 10px 15px;
-  width: 100%;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
-
-.login-form .app-input:focus {
-  outline: none;
-  border-color: #0880ae;
-  border-width: 2px;
-}
-</style>
