@@ -1,9 +1,16 @@
 import { Ref, ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { User } from '~/types/main'
+import { StorageSerializers, useLocalStorage } from '@vueuse/core'
 
 export const useUserStore = defineStore('user', () => {
-  const user: Ref<User | null> = ref(null)
+  // Указать сериалайзер, чтобы начальным значением был null
+  // https://vueuse.org/core/useStorage/#custom-serialization
+  const user: Ref<User | null> = ref(
+    useLocalStorage('userStore', null, {
+      serializer: StorageSerializers.object
+    })
+  )
 
   const token = computed(() => {
     return (user.value && user.value.basicAuthToken) || ''
