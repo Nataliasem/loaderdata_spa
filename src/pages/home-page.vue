@@ -17,10 +17,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useStore } from 'vuex'
+import { useUserStore } from '~/store/user'
 
-const store = useStore()
+const userStore = useUserStore()
 const isAuthenticated = computed(() => {
-  return store.getters.isAuthenticated || false
+  return userStore.isAuthenticated || false
 })
 </script>

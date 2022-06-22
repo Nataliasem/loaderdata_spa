@@ -51,7 +51,6 @@ import usersApi from '~/api/users'
 import { ROLES } from '~/constants'
 import notify from '~/plugins/notify'
 import { defineComponent, ref, onMounted, defineAsyncComponent } from 'vue'
-import { useStore } from 'vuex'
 import { User } from '~/types/main'
 import type { Ref } from 'vue'
 
@@ -66,8 +65,6 @@ export default defineComponent({
   },
   middleware: ['auth', 'admin'],
   setup() {
-    const store = useStore()
-
     const loading = ref(false)
     const saving = ref(false)
 

@@ -16,7 +16,7 @@
 
 <script>
 import { defineAsyncComponent, computed } from 'vue'
-import { useStore } from 'vuex'
+import { useUserStore } from '~/store/user'
 export default {
   name: 'DefaultLayout',
   components: {
@@ -28,10 +28,10 @@ export default {
     )
   },
   setup() {
-    const store = useStore()
+    const userStore = useUserStore()
 
     const isAuthenticated = computed(() => {
-      return store.getters.isAuthenticated || false
+      return userStore.isAuthenticated || false
     })
 
     return { isAuthenticated }

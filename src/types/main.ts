@@ -9,4 +9,8 @@ export interface User {
   username: string
   roleId: RoleId
   isActive: boolean
+  basicAuthToken: string
+  createdAt: string
+  deletedAt: string
+  updatedAt: string
 }

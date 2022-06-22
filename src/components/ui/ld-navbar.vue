@@ -18,7 +18,7 @@
       </button>
 
       <!-- ВЫХОД ИЗ СИСТЕМЫ -->
-      <button v-if="isAuthenticated" type="button" @click="logout">
+      <button v-if="userStore.isAuthenticated" type="button" @click="logout">
         <app-icon-logout class="inline-block text-white" />
       </button>
 
@@ -32,7 +32,7 @@
 
 <script>
 import { defineAsyncComponent, computed } from 'vue'
-import { useStore } from 'vuex'
+import { useUserStore } from '~/store/user'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -49,20 +49,16 @@ export default {
     )
   },
   setup() {
-    const store = useStore()
+    const userStore = useUserStore()
     const router = useRouter()
 
-    const isAuthenticated = computed(() => {
-      return store.getters.isAuthenticated || false
-    })
-
     const userName = computed(() => {
-      const user = store.state.user || null
+      const user = userStore.user || null
       return (user && user.name) || ''
     })
 
     const logout = () => {
-      store.commit('SET_USER', null)
+      userStore.setUser(null)
 
       backToHomePage()
     }
@@ -72,7 +68,7 @@ export default {
     }
 
     return {
-      isAuthenticated,
+      userStore,
       userName,
       logout,
       backToHomePage

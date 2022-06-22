@@ -60,12 +60,12 @@
 import logInApi from '~/api/login.ts'
 import notify from '~/plugins/notify.ts'
 import { reactive, computed } from 'vue'
-import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'
+import { useUserStore } from '~/store/user'
 
 const router = useRouter()
 const route = useRoute()
-const store = useStore()
+const userStore = useUserStore()
 
 const user = reactive({
   username: '',
@@ -74,8 +74,7 @@ const user = reactive({
 })
 
 const disabled = computed(() => {
-  return false
-  // return !user.name || !user.password
+  return !user.username || !user.password
 })
 
 const formType = computed(() => {
@@ -98,7 +97,7 @@ const registerUser = () => {
 }
 
 const setUser = (user) => {
-  store.commit('SET_USER', user)
+  userStore.setUser(user)
 
   router.push('/')
 }
