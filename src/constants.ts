@@ -1,3 +1,5 @@
+import { RoleId } from '~/types/main'
+
 export const BASE_URL = {
   HOST: 'http://localhost',
   PORT: '8090'
@@ -5,7 +7,7 @@ export const BASE_URL = {
 
 export const ROLES = {
   ADMIN: {
-    ID: 1,
+    ID: RoleId.Admin,
     AUTHORITIES: [
       'manage_users',
       'manage_settings',
@@ -15,7 +17,7 @@ export const ROLES = {
     NAME: 'Администратор'
   },
   DEFAULT_USER: {
-    ID: 2,
+    ID: RoleId.DefaultUser,
     AUTHORITIES: ['view_some_pages'],
     NAME: 'Пользователь'
   }

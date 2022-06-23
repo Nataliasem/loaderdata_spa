@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { checkMiddleware } from './middleware.js'
+import { checkMiddleware } from './middleware'
 
 import accessDenied from '~/pages/access-denied.vue'
 import adminDashboard from '~/pages/admin/users/users-dashboard.vue'

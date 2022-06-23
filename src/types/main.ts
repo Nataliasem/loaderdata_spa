@@ -1,4 +1,4 @@
-export enum RoleId {
+export const enum RoleId {
   Admin = 1,
   DefaultUser = 2
 }

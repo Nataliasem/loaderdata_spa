@@ -1,5 +1,6 @@
-import { ROLES } from '~/constants.ts'
+import { ROLES } from '~/constants'
 import { useUserStore } from '~/store/user'
+import { RouteRecordNormalized } from 'vue-router'
 
 const checkIsAdmin = () => {
   const userStore = useUserStore()
@@ -19,7 +20,7 @@ const MIDDLEWARE = {
   admin: checkIsAdmin
 }
 
-const getComponentMiddleware = (matched) => {
+const getComponentMiddleware = (matched: RouteRecordNormalized[]) => {
   const last = matched[matched.length - 1]
   if (!last) {
     return []
