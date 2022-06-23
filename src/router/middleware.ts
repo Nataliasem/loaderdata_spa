@@ -1,6 +1,11 @@
 import { ROLES } from '~/constants'
 import { useUserStore } from '~/store/user'
-import { RouteRecordNormalized } from 'vue-router'
+import { RouteRecordNormalized, RouteLocationNormalized } from 'vue-router'
+
+interface Middleware {
+  auth: () => boolean
+  admin: () => boolean
+}
 
 const checkIsAdmin = () => {
   const userStore = useUserStore()
@@ -12,7 +17,7 @@ const checkIsAdmin = () => {
   return roleId === ROLES.ADMIN.ID
 }
 
-const MIDDLEWARE = {
+const MIDDLEWARE: Middleware = {
   auth: () => {
     const userStore = useUserStore()
     return userStore.isAuthenticated || false
@@ -49,14 +54,14 @@ const getMiddlewareNames = (Component) => {
  * @param {object} to - объект маршрута, на который переходим
  * @returns {boolean}
  */
-export const checkMiddleware = (to) => {
+export const checkMiddleware = (to: RouteLocationNormalized) => {
   const middlewareArray = getComponentMiddleware(to.matched)
 
   if (!middlewareArray || middlewareArray.length === 0) {
     return true
   }
 
-  return middlewareArray.every((middlewareName) => {
+  return middlewareArray.every((middlewareName: 'auth' | 'admin') => {
     const middlewareFunction = MIDDLEWARE[middlewareName]
 
     if (!middlewareFunction) {
