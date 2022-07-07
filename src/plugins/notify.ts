@@ -2,7 +2,9 @@
 import { useToast } from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
 
-const $toast = useToast()
+const $toast = useToast({
+  position: 'top-right'
+})
 
 export default {
   default(message: string) {
