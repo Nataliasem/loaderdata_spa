@@ -1,16 +1,23 @@
 // TODO: сделать простые уведомления
+import { useToast } from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
+
+const $toast = useToast()
 
 export default {
+  default(message: string) {
+    $toast.default(message)
+  },
   info(message: string) {
-    alert(message)
+    $toast.info(message)
   },
   success(message: string) {
-    alert(message)
+    $toast.success(message)
   },
   warning(message: string) {
-    alert(message)
+    $toast.warning(message)
   },
   error(message: string) {
-    alert(message)
+    $toast.error(message)
   }
 }
