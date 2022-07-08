@@ -66,6 +66,7 @@ module.exports = {
       'blue-3': '#109CF1',
       'blue-4': '#34AFF9',
       'blue-5': '#098EDF',
+      'blue-6': '#E5F7FF',
       'grey-1': '#C2CFE0',
       'grey-2': '#f7fafc',
       'grey-3': '#EDF2F7',
@@ -73,6 +74,7 @@ module.exports = {
       'green-1': '#219553',
       'green-2': '#9AE6B4',
       'red': '#FC8181',
+      'red-2': '#F7685B',
       'purple': '#885af8'
     }
   }
