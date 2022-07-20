@@ -16,7 +16,9 @@
           <!-- BUTTON-MAIN -->
           <div class="flex flex-col space-y-6">
             <button type="button" class="ld-button-main">Main default</button>
-            <button type="button" class="ld-button-main hover">Main hover</button>
+            <button type="button" class="ld-button-main hover">
+              Main hover
+            </button>
             <button type="button" class="ld-button-main active">
               Main active
             </button>
@@ -44,7 +46,9 @@
           <!-- BUTTON-LINK -->
           <div class="flex flex-col space-y-6">
             <button type="button" class="ld-button-link">Link default</button>
-            <button type="button" class="ld-button-link hover">Link hover</button>
+            <button type="button" class="ld-button-link hover">
+              Link hover
+            </button>
             <button type="button" class="ld-button-link active">
               Link active
             </button>

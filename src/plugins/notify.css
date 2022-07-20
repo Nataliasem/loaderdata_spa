@@ -1,0 +1,44 @@
+.fade-in {
+    animation: fadeIn ease 0.5s;
+    transition: all 0.6s ease-out;
+}
+
+.fade-out {
+    animation: fadeOut ease 0.5s;
+    transition: all 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@keyframes fadeOut {
+    from {opacity:1;}
+    to {opacity:0;}
+}
+
+
+#ld-alert-wrapper {
+    @apply absolute top-4 right-4;
+    @apply space-y-4;
+    z-index: 9999;
+}
+
+.ld-alert {
+    transition: all 0.5s ease-out;
+    @apply flex items-center space-x-6 py-4 px-5;
+    @apply border rounded-ld-xl;
+}
+
+.ld-alert-default {
+    @apply border-blue-1 bg-blue-6;
+}
+
+.ld-alert-error {
+    @apply border-red-2 bg-red;
+}
+
+.ld-alert-success {
+    @apply border-green-1 bg-green-2;
+}
