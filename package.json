@@ -7,7 +7,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --no-fix src",
-    "format": "prettier .  --write"
+    "format": "prettier .  --write",
+    "test": "vitest run src"
   },
   "dependencies": {
     "@vueuse/core": "9.1.0",

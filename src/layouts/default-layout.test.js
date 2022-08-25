@@ -2,7 +2,14 @@ import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import { useUserStore } from '~/store/user'
 import defaultLayout from '~/layouts/default-layout.vue'
-import { describe, expect, test, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
+
+const componentFactory = (props = {}) => {
+  return mount(defaultLayout, {
+    ...mountingOptions,
+    props: props
+  })
+}
 
 const mountingOptions = {
   global: {
@@ -21,30 +28,31 @@ const mountingOptions = {
 const userStore = useUserStore()
 
 describe('defaultLayout.vue', () => {
-  test('должен быть экземпляром Vue', () => {
-    expect(defaultLayout).toBeDefined()
+  describe('пользователь прошёл аутентифицирован', () => {
+    it('показывает навбар', () => {
+      userStore.isAuthenticated = true
+      const wrapper = componentFactory()
+      expect(wrapper.findComponent({ name: 'LdNavbar' }).exists()).toBe(true)
+    })
+
+    it('показывает сайдбар', () => {
+      userStore.isAuthenticated = true
+      const wrapper = componentFactory()
+      expect(wrapper.findComponent({ name: 'LdSidebar' }).exists()).toBe(true)
+    })
   })
 
-  test('должен показывать навбар', () => {
-    const wrapper = mount(defaultLayout, mountingOptions)
+  describe('пользователь не прошёл аутентификацию', () => {
+    it('показывает навбар', () => {
+      userStore.isAuthenticated = false
+      const wrapper = componentFactory()
+      expect(wrapper.findComponent({ name: 'LdNavbar' }).exists()).toBe(true)
+    })
 
-    // expect(wrapper.exists()).toBe(true)
-
-    console.log(wrapper.html())
-
-    const LdNavbar = wrapper.findComponent({ name: 'LdNavbar' })
-
-    expect(LdNavbar.exists()).toBe(true)
-  })
-
-  test('должен показывать сайдбар, если пользователь аутентифицирован', () => {
-    const wrapper = mount(defaultLayout, mountingOptions)
-    userStore.isAuthenticated = true
-
-    console.log(wrapper.html())
-  })
-
-  test('должен скрывать сайдбар, если пользователь не прошёл аутентификацию', () => {
-    expect(defaultLayout).toBeDefined()
+    it('скрывает сайдбар', () => {
+      userStore.isAuthenticated = false
+      const wrapper = componentFactory()
+      expect(wrapper.findComponent({ name: 'LdSidebar' }).exists()).toBe(false)
+    })
   })
 })
