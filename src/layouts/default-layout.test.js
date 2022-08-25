@@ -28,7 +28,7 @@ const mountingOptions = {
 const userStore = useUserStore()
 
 describe('defaultLayout.vue', () => {
-  describe('пользователь прошёл аутентифицирован', () => {
+  describe('пользователь прошёл аутентификацию', () => {
     it('показывает навбар', () => {
       userStore.isAuthenticated = true
       const wrapper = componentFactory()
