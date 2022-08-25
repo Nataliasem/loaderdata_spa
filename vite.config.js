@@ -8,5 +8,9 @@ export default defineConfig({
       '~': path.resolve(__dirname, './src')
     }
   },
-  plugins: [vue()]
+  plugins: [vue()],
+  test: {
+    globals: true,
+    environment: 'happy-dom'
+  }
 })
