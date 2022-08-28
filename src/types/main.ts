@@ -3,14 +3,34 @@ export const enum RoleId {
   DefaultUser = 2
 }
 
-// TODO: новые поля с бэка
+enum adminAuthorities {
+  MANAGE_USERS,
+  MANAGE_SETTINGS,
+  MANAGE_SELF
+}
+
+enum userAuthorities {
+  MANAGE_SELF
+}
+
 export interface User {
   id: string
-  username: string
+  name: string
   roleId: RoleId
+  avatarId: number
   isActive: boolean
   basicAuthToken: string
+  authorities: adminAuthorities[] | userAuthorities[]
   createdAt: string
   deletedAt: string
   updatedAt: string
+}
+
+export type UserId = User['id']
+
+export interface UserInfo {
+  id?: User['id']
+  name: User['name']
+  password: string
+  roleId: RoleId
 }

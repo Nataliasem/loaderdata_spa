@@ -1,48 +1,86 @@
 // TODO: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
 import axiosInstance from '~/plugins/axios'
-import { User } from '~/types/main'
+import { User, UserId, UserInfo } from '~/types/main'
 import { AxiosResponse } from 'axios'
 
+export type SortColumn = 'id' | 'roleId' | 'name'
+export type SortDirection = 'asc' | 'desc'
+
+export interface ApiParams {
+  limit: number
+  offset: number
+  active?: boolean
+  name?: string
+  sortColumn?: SortColumn
+  sortDirection?: SortDirection
+}
+
+const DEFAULT_LIMIT = 15
+const DEFAULT_OFFSET = 0
+
+const defaultApiParams: ApiParams = {
+  limit: DEFAULT_LIMIT,
+  offset: DEFAULT_OFFSET
+}
+
+type Base64 = string
+
+export interface Avatar {
+  id: number
+  userId: number
+  avatarName: string
+  avatarData: Base64
+  size: number
+  createdAt: string
+  updatedAt: string
+}
+
 export default {
-  /**
-   * Загрузить список пользователей с пагинацией
-   * @param {object} params - параметры загрузки
-   * @returns {Promise}
-   */
-  // TODO: Узнать параметры с бэка
-  loadUsersPaginated(params = {}): Promise<User[]> {
+  loadUsersPaginated(params: ApiParams = defaultApiParams): Promise<User[]> {
     return axiosInstance
       .get('/api/admin/users', { params })
       .then((response: AxiosResponse) => response.data)
       .then((response: Array<User>) => response)
   },
 
-  loadUser(id: string): Promise<User> {
+  loadUser(id: UserId): Promise<User> {
     return axiosInstance
       .get(`/api/admin/users/${id}`)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
 
-  createUser(user: User): Promise<User> {
+  createUser(userInfo: UserInfo): Promise<User> {
     return axiosInstance
-      .post('/api/admin/users', user)
+      .post('/api/admin/users', userInfo)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
 
-  updateUser(user: User): Promise<User> {
-    const id = user.id
+  updateUser(userInfo: UserInfo): Promise<User> {
+    const id = userInfo.id
 
     return axiosInstance
-      .put(`/api/admin/users/${id}`, user)
+      .put(`/api/admin/users/${id}`, userInfo)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
 
-  // TODO: Узнать, что возвращает эндпоинт
-  removeUser(id: string): Promise<void> {
+  deactivateUser(id: UserId): Promise<void> {
     return axiosInstance.delete(`/api/admin/users/${id}`)
+  },
+
+  loadAvatar(id: UserId): Promise<Avatar> {
+    return axiosInstance
+      .get(`/api/users/${id}/avatar`)
+      .then((response: AxiosResponse) => response.data)
+      .then((response: Avatar) => response)
+  },
+
+  // TODO: uploadAvatar() {}, '/api/users/${userId}/avatar', post, formData
+
+  deleteAvatar(id: UserId): Promise<Avatar> {
+    return axiosInstance.delete(`/api/users/${id}/avatar/delete`)
   }
 }

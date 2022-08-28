@@ -7,20 +7,20 @@ const config = {
   baseURL: API_URL
 }
 
-interface UserInfo {
-  username: string
+interface AccountInfo {
+  name: string
   password: string
 }
 
 export default {
-  login(userInfo: UserInfo): Promise<User> {
+  login(userInfo: AccountInfo): Promise<User> {
     return axiosInstance
       .post('/api/users/login', userInfo, config)
       .then((response: AxiosResponse) => response.data)
       .then((response: Promise<User>) => response)
   },
 
-  register(userInfo: UserInfo): Promise<User> {
+  register(userInfo: AccountInfo): Promise<User> {
     return axiosInstance
       .post('/api/users/register', userInfo, config)
       .then((response: AxiosResponse) => response.data)
