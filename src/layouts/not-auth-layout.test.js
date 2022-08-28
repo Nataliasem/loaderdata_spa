@@ -1,16 +1,19 @@
-import { mount } from '@vue/test-utils'
+import { shallowMount, enableAutoUnmount } from '@vue/test-utils'
 import NotAuthLayout from '~/layouts/not-auth-layout.vue'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, afterEach } from 'vitest'
 
-describe('defaultLayout.vue', () => {
+enableAutoUnmount(afterEach)
+
+describe('NotAuthLayout.vue', () => {
   it('показывает навбар', () => {
-    const wrapper = mount(NotAuthLayout, {
+    const wrapper = shallowMount(NotAuthLayout, {
       global: {
         stubs: {
           LdNavbar: true
         }
       }
     })
+
     expect(wrapper.findComponent({ name: 'LdNavbar' }).exists()).toBe(true)
   })
 })
