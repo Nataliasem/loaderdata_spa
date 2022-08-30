@@ -20,19 +20,11 @@
 export default {
   name: 'IconEyeClosed',
   props: {
-    /**
-     * Ширина
-     * @type {number}
-     */
     width: {
       type: Number,
       default: 24
     },
 
-    /**
-     * Высота
-     * @type {number}
-     */
     height: {
       type: Number,
       default: 24

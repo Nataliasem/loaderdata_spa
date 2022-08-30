@@ -1,32 +1,39 @@
 <template>
-  <div class="flex justify-between py-5 pl-20 pr-10 bg-blue-1">
+  <div class="ld-navbar">
     <!-- ЛОГОТИП -->
-    <div
-      class="font-bold text-size-30 text-blue-1 cursor-pointer text-white"
-      @click="backToHomePage"
-    >
+    <div class="ld-logo" @click="backToHomePage">
       loader<span class="text-blue-3">.</span>
     </div>
 
     <div class="flex space-x-8">
-      <template v-if="userStore.isAuthenticated">
+      <template v-if="isAuthenticated">
         <!-- АККАУНТ ПОЛЬЗОВАТЕЛЯ -->
-        <button type="button" class="text-grey-1 cursor-not-allowed" disabled>
+        <button
+          id="account-button"
+          type="button"
+          class="text-grey-1 cursor-not-allowed"
+          disabled
+        >
           <span class="flex space-x-2 items-center">
-            <app-icon-user class="inline-block text-white" />
-            <span>{{ userName }}</span>
+            <icon-user class="inline-block text-white" />
+            <span>{{ name }}</span>
           </span>
         </button>
 
         <!-- ВЫХОД ИЗ СИСТЕМЫ -->
-        <button type="button" @click="logout">
-          <app-icon-logout class="inline-block text-white" />
+        <button id="logout-button" type="button" @click="logout">
+          <icon-logout class="inline-block text-white" />
         </button>
       </template>
 
       <!-- ВОЙТИ -->
-      <button v-else type="button" @click="$router.push('/auth/login')">
-        <app-icon-login class="inline-block text-white" />
+      <button
+        v-else
+        id="login-button"
+        type="button"
+        @click="$router.push('/auth/login')"
+      >
+        <icon-login class="inline-block text-white" />
       </button>
     </div>
   </div>
@@ -38,15 +45,15 @@ import { useUserStore } from '~/store/user'
 import { useRouter } from 'vue-router'
 
 export default {
-  name: 'AppNavbar',
+  name: 'LdNavbar',
   components: {
-    AppIconUser: defineAsyncComponent(() =>
+    IconUser: defineAsyncComponent(() =>
       import('~/components/ui/icons/icon-user.vue')
     ),
-    AppIconLogout: defineAsyncComponent(() =>
+    IconLogout: defineAsyncComponent(() =>
       import('~/components/ui/icons/icon-logout.vue')
     ),
-    AppIconLogin: defineAsyncComponent(() =>
+    IconLogin: defineAsyncComponent(() =>
       import('~/components/ui/icons/icon-login.vue')
     )
   },
@@ -54,7 +61,11 @@ export default {
     const userStore = useUserStore()
     const router = useRouter()
 
-    const userName = computed(() => {
+    const isAuthenticated = computed(() => {
+      return userStore.isAuthenticated || false
+    })
+
+    const name = computed(() => {
       const user = userStore.user || null
       return (user && user.name) || ''
     })
@@ -70,11 +81,21 @@ export default {
     }
 
     return {
-      userStore,
-      userName,
+      isAuthenticated,
+      name,
       logout,
       backToHomePage
     }
   }
 }
 </script>
+
+<style>
+.ld-navbar {
+  @apply flex justify-between py-5 pl-20 pr-10 bg-blue-1;
+}
+
+.ld-navbar .ld-logo {
+  @apply font-bold text-size-30 text-blue-1 cursor-pointer text-white;
+}
+</style>
