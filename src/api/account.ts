@@ -15,14 +15,14 @@ interface AccountInfo {
 export default {
   login(userInfo: AccountInfo): Promise<User> {
     return axiosInstance
-      .post('/api/users/login', userInfo, config)
+      .post('/api/account/login', userInfo, config)
       .then((response: AxiosResponse) => response.data)
       .then((response: Promise<User>) => response)
   },
 
   register(userInfo: AccountInfo): Promise<User> {
     return axiosInstance
-      .post('/api/users/register', userInfo, config)
+      .post('/api/account/register', userInfo, config)
       .then((response: AxiosResponse) => response.data)
       .then((response: Promise<User>) => response)
   }
