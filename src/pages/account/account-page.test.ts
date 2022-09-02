@@ -101,8 +101,9 @@ const componentFactory = () => {
 
 const mockUser: User = {
   id: 'b0b54ee6-ad85-4437-8839-4436a1801bc9',
-  username: 'username',
+  name: 'username',
   roleId: 1,
+  avatarId: 1,
   isActive: true,
   basicAuthToken: 'basicAuthToken',
   createdAt: 'createdAt',
