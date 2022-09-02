@@ -18,8 +18,13 @@ export interface User {
 export type UserId = User['id']
 
 export interface UserInfo {
-  id?: User['id']
+  id?: UserId
   name: User['name']
   password: string
-  roleId: RoleId
+  roleId?: RoleId
+}
+
+export interface AccountInfo {
+  name: string
+  password: string
 }
