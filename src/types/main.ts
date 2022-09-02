@@ -3,14 +3,28 @@ export const enum RoleId {
   DefaultUser = 2
 }
 
-// TODO: новые поля с бэка
 export interface User {
   id: string
-  username: string
+  name: string
   roleId: RoleId
+  avatarId: number
   isActive: boolean
   basicAuthToken: string
   createdAt: string
   deletedAt: string
   updatedAt: string
+}
+
+export type UserId = User['id']
+
+export interface UserInfo {
+  id?: UserId
+  name: User['name']
+  password: string
+  roleId?: RoleId
+}
+
+export interface AccountInfo {
+  name: string
+  password: string
 }
