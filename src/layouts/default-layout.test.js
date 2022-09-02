@@ -23,9 +23,9 @@ const mountingOptions = {
   }
 }
 
-const userStore = useUserStore()
-
 describe('defaultLayout.vue', () => {
+  const userStore = useUserStore()
+
   let wrapper
 
   const findLdNavbar = () => wrapper.findComponent({ name: 'LdNavbar' })

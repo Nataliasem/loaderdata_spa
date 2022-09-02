@@ -20,19 +20,11 @@
 export default {
   name: 'IconAtom',
   props: {
-    /**
-     * Ширина
-     * @type {number}
-     */
     width: {
       type: Number,
       default: 22
     },
 
-    /**
-     * Высота
-     * @type {number}
-     */
     height: {
       type: Number,
       default: 22

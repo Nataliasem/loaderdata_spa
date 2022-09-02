@@ -10,9 +10,9 @@
         <!-- ЛОГИН-->
         <label class="inline-block w-full">
           <input
-            id="username"
-            v-model="user.username"
-            name="username"
+            id="name"
+            v-model="user.name"
+            name="name"
             placeholder="Логин"
             class="ld-input"
           />
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import logInApi from '~/api/login.ts'
+import logInApi from '~/api/account.ts'
 import notify from '~/plugins/notify.ts'
 import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
@@ -66,12 +66,12 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const user = reactive({
-  username: '',
+  name: '',
   password: ''
 })
 
 const disabled = computed(() => {
-  return !user.username || !user.password
+  return !user.name || !user.password
 })
 
 const loginMode = ref(true)
