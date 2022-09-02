@@ -3,16 +3,6 @@ export const enum RoleId {
   DefaultUser = 2
 }
 
-enum adminAuthorities {
-  MANAGE_USERS,
-  MANAGE_SETTINGS,
-  MANAGE_SELF
-}
-
-enum userAuthorities {
-  MANAGE_SELF
-}
-
 export interface User {
   id: string
   name: string
@@ -20,7 +10,6 @@ export interface User {
   avatarId: number
   isActive: boolean
   basicAuthToken: string
-  authorities: adminAuthorities[] | userAuthorities[]
   createdAt: string
   deletedAt: string
   updatedAt: string
