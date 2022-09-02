@@ -3,7 +3,7 @@ import { checkMiddleware } from './middleware'
 
 import accessDenied from '~/pages/access-denied.vue'
 import adminDashboard from '~/pages/admin/users/users-dashboard.vue'
-import adminUserEdit from '~/pages/admin/users/user-details.vue'
+import adminUserEdit from '~/components/user/user-edit.vue'
 import uiKit from '~/pages/admin/ui-kit.vue'
 import logIn from '~/pages/auth/login-page.vue'
 import homePage from '~/pages/home-page.vue'
