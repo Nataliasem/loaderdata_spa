@@ -56,12 +56,7 @@ const AccountPage = {
         return true
       }
 
-      const test = () => {
-        return true
-      }
-
       onMounted(() => {
-        test()
         loadUser()
       })
 
@@ -70,8 +65,7 @@ const AccountPage = {
         user,
         isUserEmpty,
         loadUser,
-        updateUser,
-        test
+        updateUser
       }
     }
 
