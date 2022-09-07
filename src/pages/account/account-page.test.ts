@@ -56,7 +56,12 @@ const AccountPage = {
         return true
       }
 
+      const test = () => {
+        return true
+      }
+
       onMounted(() => {
+        test()
         loadUser()
       })
 
@@ -65,7 +70,8 @@ const AccountPage = {
         user,
         isUserEmpty,
         loadUser,
-        updateUser
+        updateUser,
+        test
       }
     }
 
@@ -119,13 +125,13 @@ describe('AccountPage.vue', () => {
   const findUserEdit = () => wrapper.findComponent({ name: 'UserEdit' })
   const findUserPreview = () => wrapper.findComponent({ name: 'UserPreview' })
 
+  usersApi.loadUser = vi
+    .fn()
+    .mockResolvedValueOnce(mockUser)
+    .mockRejectedValueOnce(new Error('Пользователь не загрузился'))
+
   it('загружает данные пользователя', async () => {
     wrapper = componentFactory()
-
-    usersApi.loadUser = vi
-      .fn()
-      .mockResolvedValue(mockUser)
-      .mockRejectedValue(new Error('Пользователь не загрузился'))
 
     // загружаются
     expect(findLoader().exists()).toBe(true)
@@ -134,19 +140,37 @@ describe('AccountPage.vue', () => {
     expect(findUserPreview().exists()).toBe(false)
 
     // ждём первый мок - успех
-    // await flushPromises()
-    //
-    // expect(findLoader().exists()).toBe(false)
-    // expect(findDataError().exists()).toBe(false)
-    // expect(findUserEdit().exists()).toBe(false)
-    // expect(findUserPreview().exists()).toBe(true)
+    await flushPromises()
+
+    expect(usersApi.loadUser).toHaveBeenCalled()
+    expect(usersApi.loadUser).toHaveBeenCalledTimes(1)
+
+    expect(findLoader().exists()).toBe(false)
+    expect(findDataError().exists()).toBe(false)
+    expect(findUserEdit().exists()).toBe(false)
+    expect(findUserPreview().exists()).toBe(true)
+  })
+
+  it('показывает ошибку при загрузке данных пользователя', async () => {
+    wrapper = componentFactory()
+
+    // загружаются
+    expect(findLoader().exists()).toBe(true)
+    expect(findDataError().exists()).toBe(false)
+    expect(findUserEdit().exists()).toBe(false)
+    expect(findUserPreview().exists()).toBe(false)
 
     // ждём второй мок - неудача
-    // await flushPromises()
-    //
-    // expect(findLoader().exists()).toBe(false)
-    // expect(findDataError().exists()).toBe(true)
-    // expect(findUserEdit().exists()).toBe(false)
-    // expect(findUserPreview().exists()).toBe(false)
+    await flushPromises()
+
+    console.log(wrapper.html())
+
+    expect(usersApi.loadUser).toHaveBeenCalled()
+    expect(usersApi.loadUser).toHaveBeenCalledTimes(2) // mockClear
+
+    expect(findLoader().exists()).toBe(false)
+    expect(findDataError().exists()).toBe(true)
+    expect(findUserEdit().exists()).toBe(false)
+    expect(findUserPreview().exists()).toBe(false)
   })
 })
