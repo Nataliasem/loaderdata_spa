@@ -28,6 +28,11 @@ const mockUser: User = {
   updatedAt: 'updatedAt'
 }
 
+usersApi.loadUser = vi
+  .fn()
+  .mockResolvedValueOnce(mockUser)
+  .mockRejectedValueOnce(new Error('Пользователь не загрузился'))
+
 describe('AccountPage.vue', () => {
   let wrapper: VueWrapper
 
@@ -36,24 +41,19 @@ describe('AccountPage.vue', () => {
   const findUserEdit = () => wrapper.findComponent({ name: 'UserEdit' })
   const findUserPreview = () => wrapper.findComponent({ name: 'UserPreview' })
 
-  usersApi.loadUser = vi
-    .fn()
-    .mockResolvedValueOnce(mockUser)
-    .mockRejectedValueOnce(new Error('Пользователь не загрузился'))
-
-  it('загружает данные пользователя', async () => {
+  it('корректно отображает страницу во время загрузки данных', () => {
     wrapper = componentFactory()
 
-    // загружаются
     expect(findLoader().exists()).toBe(true)
     expect(findDataError().exists()).toBe(false)
     expect(findUserEdit().exists()).toBe(false)
     expect(findUserPreview().exists()).toBe(false)
+  })
 
-    // ждём первый мок - успех
+  it('корректно отображает страницу после успешной загрузки данных', async () => {
+    wrapper = componentFactory()
+
     await flushPromises()
-
-    expect(usersApi.loadUser).toHaveBeenCalled()
     expect(usersApi.loadUser).toHaveBeenCalledTimes(1)
 
     expect(findLoader().exists()).toBe(false)
@@ -62,22 +62,11 @@ describe('AccountPage.vue', () => {
     expect(findUserPreview().exists()).toBe(true)
   })
 
-  it('показывает ошибку при загрузке данных пользователя', async () => {
+  it('корректно отображает страницу в случае ошибки загрузки', async () => {
     wrapper = componentFactory()
 
-    // загружаются
-    expect(findLoader().exists()).toBe(true)
-    expect(findDataError().exists()).toBe(false)
-    expect(findUserEdit().exists()).toBe(false)
-    expect(findUserPreview().exists()).toBe(false)
-
-    // ждём второй мок - неудача
     await flushPromises()
-
-    console.log(wrapper.html())
-
-    expect(usersApi.loadUser).toHaveBeenCalled()
-    expect(usersApi.loadUser).toHaveBeenCalledTimes(2) // mockClear
+    expect(usersApi.loadUser).toHaveBeenCalledTimes(1)
 
     expect(findLoader().exists()).toBe(false)
     expect(findDataError().exists()).toBe(true)

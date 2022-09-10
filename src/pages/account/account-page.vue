@@ -18,6 +18,7 @@ import UserPreview from '~/components/user/user-preview.vue'
 import UserEdit from '~/components/user/user-edit.vue'
 import { computed, onMounted, Ref, ref } from 'vue'
 import { User } from '~/types/main'
+import { useRoute } from 'vue-router'
 import usersApi from '~/api/users'
 import notify from '~/plugins/notify'
 
@@ -28,10 +29,13 @@ export default {
     UserEdit
   },
   setup() {
-    const isEditing = ref(false)
+    const route = useRoute()
 
-    // id пользователя из стора
-    const id = '4905bc62-cfdb-40e7-b9b8-15de8b83f888'
+    const id = computed(() => {
+      return (route.query?.id || '').toString()
+    })
+
+    const isEditing = ref(false)
 
     // composable
     const useUser = (id: string) => {
@@ -69,14 +73,15 @@ export default {
       }
     }
 
-    const { isLoading, user, isUserEmpty, updateUser } = useUser(id)
+    const { isLoading, user, isUserEmpty, updateUser } = useUser(id.value)
 
     return {
+      id,
+      isEditing,
       isLoading,
       user,
       isUserEmpty,
-      updateUser,
-      isEditing
+      updateUser
     }
   }
 }
