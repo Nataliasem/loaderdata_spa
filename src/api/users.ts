@@ -39,21 +39,21 @@ export interface Avatar {
 export default {
   loadUsersPaginated(params: ApiParams = defaultApiParams): Promise<User[]> {
     return axiosInstance
-      .get('/api/admin/users', { params })
+      .get('/api/users', { params })
       .then((response: AxiosResponse) => response.data)
       .then((response: Array<User>) => response)
   },
 
   loadUser(id: UserId): Promise<User> {
     return axiosInstance
-      .get(`/api/admin/users/${id}`)
+      .get(`/api/users/${id}`)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
 
   createUser(userInfo: UserInfo): Promise<User> {
     return axiosInstance
-      .post('/api/admin/users', userInfo)
+      .post('/api/users', userInfo)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
@@ -62,13 +62,13 @@ export default {
     const id = userInfo.id
 
     return axiosInstance
-      .put(`/api/admin/users/${id}`, userInfo)
+      .put(`/api/users/${id}`, userInfo)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
 
   deactivateUser(id: UserId): Promise<void> {
-    return axiosInstance.delete(`/api/admin/users/${id}`)
+    return axiosInstance.delete(`/api/users/${id}`)
   },
 
   loadAvatar(id: UserId): Promise<Avatar> {

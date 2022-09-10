@@ -3,6 +3,8 @@
     <div v-if="isLoading" class="ld-loader">Загрузка</div>
 
     <template v-else>
+      <div>user: {{ user }}</div>
+
       <div v-if="isUserEmpty" class="data-error">
         Данные не загрузились. Попробуйте обновить страницу
       </div>
@@ -47,6 +49,10 @@ export default {
       })
 
       const loadUser = () => {
+        if (!id) {
+          return
+        }
+
         isLoading.value = true
 
         usersApi

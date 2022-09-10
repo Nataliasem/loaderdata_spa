@@ -8,6 +8,7 @@ import uiKit from '~/pages/admin/ui-kit.vue'
 import logIn from '~/pages/auth/login-page.vue'
 import homePage from '~/pages/home-page.vue'
 import notFound from '~/pages/not-found.vue'
+import accountPage from '~/pages/account/account-page.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,6 +25,13 @@ const router = createRouter({
       component: logIn,
       meta: {
         layout: 'not-auth-layout'
+      }
+    },
+    {
+      path: '/account',
+      component: accountPage,
+      meta: {
+        layout: 'default-layout'
       }
     },
     {
