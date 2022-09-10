@@ -5,19 +5,16 @@ import {
   VueWrapper
 } from '@vue/test-utils'
 
-import { describe, expect, it, vi, afterEach } from 'vitest'
+import { describe, expect, it, vi, afterEach, beforeEach } from 'vitest'
 import { User } from '~/types/main'
 import AccountPage from '~/pages/account/account-page.vue'
 import usersApi from '~/api/users'
+import { createRouterMock, injectRouterMock } from 'vue-router-mock'
 
-enableAutoUnmount(afterEach)
+const TEST_USER_ID = '733da1f7-34ec-4870-9123-f1217bc25d68'
 
-const componentFactory = () => {
-  return shallowMount(AccountPage)
-}
-
-const mockUser: User = {
-  id: 'b0b54ee6-ad85-4437-8839-4436a1801bc9',
+const MOCK_USER: User = {
+  id: '733da1f7-34ec-4870-9123-f1217bc25d68',
   name: 'username',
   roleId: 1,
   avatarId: 1,
@@ -28,12 +25,23 @@ const mockUser: User = {
   updatedAt: 'updatedAt'
 }
 
-usersApi.loadUser = vi
-  .fn()
-  .mockResolvedValueOnce(mockUser)
-  .mockRejectedValueOnce(new Error('Пользователь не загрузился'))
+enableAutoUnmount(afterEach)
+
+const componentFactory = () => {
+  return shallowMount(AccountPage)
+}
 
 describe('AccountPage.vue', () => {
+  const router = createRouterMock()
+
+  router.setQuery({
+    id: TEST_USER_ID
+  })
+
+  beforeEach(() => {
+    injectRouterMock(router)
+  })
+
   let wrapper: VueWrapper
 
   const findLoader = () => wrapper.find('.ld-loader')
@@ -51,10 +59,14 @@ describe('AccountPage.vue', () => {
   })
 
   it('корректно отображает страницу после успешной загрузки данных', async () => {
+    usersApi.loadUser = vi.fn().mockResolvedValueOnce(MOCK_USER)
+
     wrapper = componentFactory()
 
     await flushPromises()
+
     expect(usersApi.loadUser).toHaveBeenCalledTimes(1)
+    expect(usersApi.loadUser).toHaveBeenCalledWith(TEST_USER_ID)
 
     expect(findLoader().exists()).toBe(false)
     expect(findDataError().exists()).toBe(false)
@@ -62,11 +74,17 @@ describe('AccountPage.vue', () => {
     expect(findUserPreview().exists()).toBe(true)
   })
 
-  it('корректно отображает страницу в случае ошибки загрузки', async () => {
+  it('корректно отображает страницу в случае ошибки при загрузке', async () => {
+    usersApi.loadUser = vi
+      .fn()
+      .mockRejectedValueOnce(new Error('Пользователь не загрузился'))
+
     wrapper = componentFactory()
 
     await flushPromises()
+
     expect(usersApi.loadUser).toHaveBeenCalledTimes(1)
+    expect(usersApi.loadUser).toHaveBeenCalledWith(TEST_USER_ID)
 
     expect(findLoader().exists()).toBe(false)
     expect(findDataError().exists()).toBe(true)

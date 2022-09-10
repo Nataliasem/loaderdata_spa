@@ -73,7 +73,9 @@ export default {
       }
     }
 
-    const { isLoading, user, isUserEmpty, updateUser } = useUser(id.value)
+    const { isLoading, user, isUserEmpty, loadUser, updateUser } = useUser(
+      id.value
+    )
 
     return {
       id,
@@ -81,6 +83,7 @@ export default {
       isLoading,
       user,
       isUserEmpty,
+      loadUser,
       updateUser
     }
   }
