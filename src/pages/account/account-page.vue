@@ -1,23 +1,14 @@
 <template>
   <div class="account-page">
-    <div v-if="isLoading" class="ld-loader">Загрузка</div>
-
-    <div v-else-if="isUserEmpty" class="data-error">
-      Данные не загрузились. Попробуйте обновить страницу
-    </div>
-
-    <user-edit v-else :user="user" @update="updateUser" />
+    <user-edit :user="user" @update="updateUser" />
   </div>
 </template>
 
 <script lang="ts">
 import UserEdit from '~/components/user-edit.vue'
-import { computed, onMounted, Ref, ref } from 'vue'
+import { computed, ComputedRef } from 'vue'
 import { User } from '~/types/main'
-import { useRoute } from 'vue-router'
-import usersApi from '~/api/users'
-import notify from '~/plugins/notify'
-
+import { useUserStore } from '~/store/user'
 export default {
   name: 'AccountPage',
   components: {
@@ -25,65 +16,22 @@ export default {
   },
   middleware: ['auth'],
   setup() {
-    const route = useRoute()
+    const userStore = useUserStore()
 
-    const id = computed(() => {
-      return (route.query?.id || '').toString()
+    const user: ComputedRef<User | null> = computed(() => {
+      return userStore.user
     })
 
-    const isEditing = ref(false)
-
-    // composable
-    const useUser = (id: string) => {
-      const isLoading = ref(true)
-      const user: Ref<User | null> = ref(null)
-
-      const isUserEmpty = computed(() => {
-        return !user.value
-      })
-
-      const loadUser = () => {
-        if (!id) {
-          return
-        }
-
-        isLoading.value = true
-
-        usersApi
-          .loadUser(id)
-          .then((userResponse) => (user.value = userResponse))
-          .catch((error) => notify.error(error))
-          .finally(() => (isLoading.value = false))
+    const updateUser = (user: User) => {
+      if (!user) {
+        return
       }
 
-      const updateUser = () => {
-        return true
-      }
-
-      onMounted(() => {
-        loadUser()
-      })
-
-      return {
-        isLoading,
-        user,
-        isUserEmpty,
-        loadUser,
-        updateUser
-      }
+      userStore.setUser(user)
     }
 
-    const { isLoading, user, isUserEmpty, loadUser, updateUser } = useUser(
-      id.value
-    )
-
     return {
-      id,
-      isEditing,
-      isLoading,
       user,
-      isUserEmpty,
-      loadUser,
       updateUser
     }
   }
