@@ -3,12 +3,12 @@ import { checkMiddleware } from './middleware'
 
 import accessDenied from '~/pages/access-denied.vue'
 import adminDashboard from '~/pages/admin/users-dashboard.vue'
-import adminUserEdit from '~/components/user-edit.vue'
 import uiKit from '~/pages/admin/ui-kit.vue'
 import logIn from '~/pages/auth/login-page.vue'
 import homePage from '~/pages/home-page.vue'
 import notFound from '~/pages/not-found.vue'
 import accountPage from '~/pages/account/account-page.vue'
+import userDetails from '~/pages/admin/user-details.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -49,8 +49,8 @@ const router = createRouter({
       }
     },
     {
-      path: '/admin/admin-user-edit',
-      component: adminUserEdit,
+      path: '/admin/user-details',
+      component: userDetails,
       meta: {
         layout: 'default-layout'
       }
