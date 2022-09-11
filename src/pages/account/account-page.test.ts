@@ -47,7 +47,6 @@ describe('AccountPage.vue', () => {
   const findLoader = () => wrapper.find('.ld-loader')
   const findDataError = () => wrapper.find('.data-error')
   const findUserEdit = () => wrapper.findComponent({ name: 'UserEdit' })
-  const findUserPreview = () => wrapper.findComponent({ name: 'UserPreview' })
 
   it('корректно отображает страницу во время загрузки данных', () => {
     wrapper = componentFactory()
@@ -55,7 +54,6 @@ describe('AccountPage.vue', () => {
     expect(findLoader().exists()).toBe(true)
     expect(findDataError().exists()).toBe(false)
     expect(findUserEdit().exists()).toBe(false)
-    expect(findUserPreview().exists()).toBe(false)
   })
 
   it('корректно отображает страницу после успешной загрузки данных', async () => {
@@ -70,8 +68,7 @@ describe('AccountPage.vue', () => {
 
     expect(findLoader().exists()).toBe(false)
     expect(findDataError().exists()).toBe(false)
-    expect(findUserEdit().exists()).toBe(false)
-    expect(findUserPreview().exists()).toBe(true)
+    expect(findUserEdit().exists()).toBe(true)
   })
 
   it('корректно отображает страницу в случае ошибки при загрузке', async () => {
@@ -89,6 +86,5 @@ describe('AccountPage.vue', () => {
     expect(findLoader().exists()).toBe(false)
     expect(findDataError().exists()).toBe(true)
     expect(findUserEdit().exists()).toBe(false)
-    expect(findUserPreview().exists()).toBe(false)
   })
 })

@@ -2,22 +2,16 @@
   <div class="account-page">
     <div v-if="isLoading" class="ld-loader">Загрузка</div>
 
-    <template v-else>
-      <div>user: {{ user }}</div>
+    <div v-else-if="isUserEmpty" class="data-error">
+      Данные не загрузились. Попробуйте обновить страницу
+    </div>
 
-      <div v-if="isUserEmpty" class="data-error">
-        Данные не загрузились. Попробуйте обновить страницу
-      </div>
-
-      <user-edit v-else-if="isEditing" :user="user" @update="updateUser" />
-      <user-preview v-else :user="user" @update="updateUser" />
-    </template>
+    <user-edit v-else :user="user" @update="updateUser" />
   </div>
 </template>
 
 <script lang="ts">
-import UserPreview from '~/components/user/user-preview.vue'
-import UserEdit from '~/components/user/user-edit.vue'
+import UserEdit from '~/components/user-edit.vue'
 import { computed, onMounted, Ref, ref } from 'vue'
 import { User } from '~/types/main'
 import { useRoute } from 'vue-router'
@@ -27,9 +21,9 @@ import notify from '~/plugins/notify'
 export default {
   name: 'AccountPage',
   components: {
-    UserPreview,
     UserEdit
   },
+  middleware: ['auth'],
   setup() {
     const route = useRoute()
 
