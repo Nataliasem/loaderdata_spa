@@ -24,6 +24,18 @@ export interface UserInfo {
   roleId?: RoleId
 }
 
+type Base64 = string
+
+export interface Avatar {
+  id: number
+  userId: number
+  avatarName: string
+  avatarData: Base64
+  size: number
+  createdAt: string
+  updatedAt: string
+}
+
 export interface AccountInfo {
   name: string
   password: string

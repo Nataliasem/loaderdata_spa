@@ -1,7 +1,7 @@
 // TODO: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
 import axiosInstance from '~/plugins/axios'
-import { User, UserId, UserInfo } from '~/types/main'
+import { User, UserId, UserInfo, Avatar } from '~/types/main'
 import { AxiosResponse } from 'axios'
 
 export type SortColumn = 'id' | 'roleId' | 'name'
@@ -22,18 +22,6 @@ const DEFAULT_OFFSET = 0
 const defaultApiParams: ApiParams = {
   limit: DEFAULT_LIMIT,
   offset: DEFAULT_OFFSET
-}
-
-type Base64 = string
-
-export interface Avatar {
-  id: number
-  userId: number
-  avatarName: string
-  avatarData: Base64
-  size: number
-  createdAt: string
-  updatedAt: string
 }
 
 export default {
