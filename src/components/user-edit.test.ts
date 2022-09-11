@@ -45,7 +45,7 @@ describe('AccountPage.vue', () => {
   let wrapper: VueWrapper
 
   const findLoader = () => wrapper.find('.ld-loader')
-  const findDataError = () => wrapper.find('.data-error')
+  const findDataError = () => wrapper.find('.ld-data-error')
   const findUserEdit = () => wrapper.findComponent({ name: 'UserEdit' })
 
   it('корректно отображает страницу во время загрузки данных', () => {

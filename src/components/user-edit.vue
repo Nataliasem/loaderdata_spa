@@ -1,9 +1,10 @@
 <template>
   <div class="admin-user-edit">
-    <!-- ЗАГОЛОВОК СТРНИЦЫ -->
-    <div class="text-size-18 font-bold mb-4">
-      {{ title }}
+    <div>
+      <img :src="avatarData" />
     </div>
+
+    <pre>{{ avatar }}</pre>
 
     <!-- ЛОАДЕР -->
     <div v-if="loading">Загрузка</div>
@@ -56,14 +57,17 @@ import usersApi from '~/api/users'
 import { ROLES } from '~/constants'
 import notify from '~/plugins/notify'
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
 
 export default {
   name: 'AdminUserEdit',
   middleware: ['auth', 'admin'],
-  setup() {
-    const route = useRoute()
-
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
     const roleOptions = ref([
       { id: ROLES.ADMIN.ID, name: ROLES.ADMIN.NAME },
       { id: ROLES.DEFAULT_USER.ID, name: ROLES.DEFAULT_USER.NAME }
@@ -79,9 +83,14 @@ export default {
     }
 
     const user = ref(userModel)
+    const avatar = ref(null)
+
+    const avatarData = computed(() => {
+      return `data:image/png;base64, ${avatar.value.avatarData}`
+    })
 
     const id = computed(() => {
-      return route.query.id || ''
+      return props.user?.id || ''
     })
 
     const title = computed(() => {
@@ -97,8 +106,8 @@ export default {
       loading.value = true
 
       usersApi
-        .loadUser(id.value)
-        .then((response) => (user.value = response))
+        .loadAvatar(id.value)
+        .then((response) => (avatar.value = response))
         .catch((error) => notify.error(error))
         .finally(() => (loading.value = false))
     }
@@ -124,8 +133,8 @@ export default {
       loading,
       saving,
       roleOptions,
-      title,
-      user,
+      avatar,
+      avatarData,
       saveUser
     }
   }
