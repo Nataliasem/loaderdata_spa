@@ -1,6 +1,6 @@
 <template>
   <div class="admin-user-edit">
-    <div>
+    <div v-if="avatar">
       <img :src="avatarData" />
     </div>
 
@@ -91,10 +91,6 @@ export default {
 
     const id = computed(() => {
       return props.user?.id || ''
-    })
-
-    const title = computed(() => {
-      return id.value ? 'Редактировать пользователя' : 'Создать пользователя'
     })
 
     const loadUser = () => {
