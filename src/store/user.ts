@@ -24,7 +24,7 @@ export const useUserStore = defineStore('user', () => {
     return (user.value?.roleId || '') === RoleId.Admin
   })
 
-  const setUser = (newUser: User) => {
+  const setUser = (newUser: User | null) => {
     user.value = newUser
   }
 

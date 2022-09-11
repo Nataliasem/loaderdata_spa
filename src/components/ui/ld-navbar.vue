@@ -11,8 +11,8 @@
         <button
           id="account-button"
           type="button"
-          class="text-grey-1 cursor-not-allowed"
-          disabled
+          class="text-grey-1"
+          @click="redirectToAccount"
         >
           <span class="flex space-x-2 items-center">
             <icon-user class="inline-block text-white" />
@@ -76,6 +76,15 @@ export default {
       backToHomePage()
     }
 
+    const redirectToAccount = () => {
+      router.push({
+        path: '/account',
+        query: {
+          id: userStore.user?.id || ''
+        }
+      })
+    }
+
     const backToHomePage = () => {
       router.push('/')
     }
@@ -84,6 +93,7 @@ export default {
       isAuthenticated,
       name,
       logout,
+      redirectToAccount,
       backToHomePage
     }
   }

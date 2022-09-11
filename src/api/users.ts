@@ -1,7 +1,7 @@
 // TODO: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
 import axiosInstance from '~/plugins/axios'
-import { User, UserId, UserInfo } from '~/types/main'
+import { User, UserId, UserInfo, Avatar } from '~/types/main'
 import { AxiosResponse } from 'axios'
 
 export type SortColumn = 'id' | 'roleId' | 'name'
@@ -24,36 +24,24 @@ const defaultApiParams: ApiParams = {
   offset: DEFAULT_OFFSET
 }
 
-type Base64 = string
-
-export interface Avatar {
-  id: number
-  userId: number
-  avatarName: string
-  avatarData: Base64
-  size: number
-  createdAt: string
-  updatedAt: string
-}
-
 export default {
   loadUsersPaginated(params: ApiParams = defaultApiParams): Promise<User[]> {
     return axiosInstance
-      .get('/api/admin/users', { params })
+      .get('/api/users', { params })
       .then((response: AxiosResponse) => response.data)
       .then((response: Array<User>) => response)
   },
 
   loadUser(id: UserId): Promise<User> {
     return axiosInstance
-      .get(`/api/admin/users/${id}`)
+      .get(`/api/users/${id}`)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
 
   createUser(userInfo: UserInfo): Promise<User> {
     return axiosInstance
-      .post('/api/admin/users', userInfo)
+      .post('/api/users', userInfo)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
@@ -62,13 +50,13 @@ export default {
     const id = userInfo.id
 
     return axiosInstance
-      .put(`/api/admin/users/${id}`, userInfo)
+      .put(`/api/users/${id}`, userInfo)
       .then((response: AxiosResponse) => response.data)
       .then((response: User) => response)
   },
 
   deactivateUser(id: UserId): Promise<void> {
-    return axiosInstance.delete(`/api/admin/users/${id}`)
+    return axiosInstance.delete(`/api/users/${id}`)
   },
 
   loadAvatar(id: UserId): Promise<Avatar> {

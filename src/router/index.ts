@@ -2,12 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { checkMiddleware } from './middleware'
 
 import accessDenied from '~/pages/access-denied.vue'
-import adminDashboard from '~/pages/admin/users/users-dashboard.vue'
-import adminUserEdit from '~/pages/admin/users/user-details.vue'
+import adminDashboard from '~/pages/admin/users-dashboard.vue'
+import adminUserEdit from '~/components/user-edit.vue'
 import uiKit from '~/pages/admin/ui-kit.vue'
 import logIn from '~/pages/auth/login-page.vue'
 import homePage from '~/pages/home-page.vue'
 import notFound from '~/pages/not-found.vue'
+import accountPage from '~/pages/account/account-page.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,6 +25,13 @@ const router = createRouter({
       component: logIn,
       meta: {
         layout: 'not-auth-layout'
+      }
+    },
+    {
+      path: '/account',
+      component: accountPage,
+      meta: {
+        layout: 'default-layout'
       }
     },
     {
