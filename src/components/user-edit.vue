@@ -1,54 +1,78 @@
 <template>
   <div class="admin-user-edit">
-    <div v-if="avatar">
-      <img :src="avatarData" />
-    </div>
-
-    <pre>{{ avatar }}</pre>
-
     <!-- ЛОАДЕР -->
     <div v-if="loading">Загрузка</div>
 
+    <!-- ОШИБКА -->
+    <div v-else-if="!user">Данные о пользователе недоступны</div>
+
     <!-- ПОЛЬЗОВАТЕЛЬ -->
-    <form
-      v-else-if="loading === false && user"
-      name="edit-user"
-      class="user-form"
-      @submit.prevent="saveUser"
-    >
-      <!-- ИМЯ -->
-      <input
-        id="edit-name"
-        v-model="user.name"
-        name="name"
-        placeholder="Имя пользователя"
-        class="app-input"
-      />
+    <div v-else class="flex items-center space-x-10">
+      <img class="rounded-full w-2/12" alt="Аватар" :src="avatarSrc" />
 
-      <!-- ПАРОЛЬ -->
-      <input
-        id="register-password"
-        v-model="user.password"
-        name="password"
-        type="password"
-        placeholder="Пароль"
-        class="app-input"
-        autocomplete="password"
-      />
+      <div class="space-y-5">
+        <!-- ИМЯ -->
+        <div class="flex space-x-4 items-center">
+          <span>Имя:</span>
 
-      <!-- РОЛЬ -->
-      <select v-model="user.roleId" name="edit-role" class="app-input">
-        <option v-for="role in roleOptions" :key="role.id" :value="role.id">
-          {{ role.name }}
-        </option>
-      </select>
+          <input
+            v-if="isEditingName"
+            id="edit-name"
+            v-model="userLocal.name"
+            class="app-input"
+            name="name"
+            placeholder="Имя пользователя"
+          />
 
-      <!-- СОХРАНИТЬ -->
-      <button type="submit" :disabled="saving" class="ld-button-main">
-        Сохранить
-      </button>
-    </form>
-    <div v-else>Данные о пользователе недоступны</div>
+          <div v-else class="flex space-x-2">
+            <span>{{ userLocal.name }}</span>
+            <span
+              class="cursor-pointer text-blue-2"
+              @click="isEditingName = true"
+            >
+              <icon-edit />
+            </span>
+          </div>
+        </div>
+
+        <!-- РОЛЬ -->
+        <div class="flex space-x-4 items-center">
+          <span>Роль:</span>
+
+          <select
+            v-if="isEditingRole"
+            v-model="userLocal.roleId"
+            name="edit-role"
+            class="app-input"
+          >
+            <option v-for="role in roleOptions" :key="role.id" :value="role.id">
+              {{ role.name }}
+            </option>
+          </select>
+
+          <div v-else class="flex space-x-2">
+            <span>{{ userLocal.roleId }}</span>
+            <span
+              class="cursor-pointer text-blue-2"
+              @click="isEditingRole = true"
+            >
+              <icon-edit />
+            </span>
+          </div>
+        </div>
+
+        <!-- СОХРАНИТЬ -->
+        <button
+          v-if="isEditingName || isEditingRole"
+          type="button"
+          :disabled="saving"
+          class="ld-button-main"
+          @click="updateUser"
+        >
+          Сохранить
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -56,10 +80,18 @@
 import usersApi from '~/api/users'
 import { ROLES } from '~/constants'
 import notify from '~/plugins/notify'
-import { ref, computed } from 'vue'
+import { ref, computed, defineAsyncComponent, onMounted, Ref } from 'vue'
+import { User, Avatar } from '~/types/main'
+
+const IconEdit = defineAsyncComponent(
+  () => import('~/components/ui/icons/icon-edit.vue')
+)
 
 export default {
   name: 'AdminUserEdit',
+  components: {
+    IconEdit
+  },
   middleware: ['auth', 'admin'],
   props: {
     user: {
@@ -67,33 +99,32 @@ export default {
       required: true
     }
   },
-  setup(props) {
+  setup(props, { emit }) {
     const roleOptions = ref([
       { id: ROLES.ADMIN.ID, name: ROLES.ADMIN.NAME },
       { id: ROLES.DEFAULT_USER.ID, name: ROLES.DEFAULT_USER.NAME }
     ])
 
+    const isEditingName = ref(false)
+    const isEditingRole = ref(false)
+
+    const userLocal = ref({ ...props.user })
+
+    // Загрузить аватар
     const loading = ref(true)
-    const saving = ref(false)
 
-    const userModel = {
-      name: '',
-      password: '',
-      roleId: null
-    }
+    const avatar: Ref<Avatar | null> = ref(null)
+    const avatarSrc = computed(() => {
+      const data = avatar.value?.avatarData || ''
 
-    const user = ref(userModel)
-    const avatar = ref(null)
-
-    const avatarData = computed(() => {
-      return `data:image/png;base64, ${avatar.value.avatarData}`
+      return data ? `data:image/png;base64, ${data}` : '/public/favicon'
     })
 
     const id = computed(() => {
       return props.user?.id || ''
     })
 
-    const loadUser = () => {
+    const loadAvatar = () => {
       if (!id.value) {
         loading.value = false
         return
@@ -108,30 +139,34 @@ export default {
         .finally(() => (loading.value = false))
     }
 
-    const saveUser = () => {
+    // Обновить пользователя
+    const saving = ref(false)
+    const updateUser = () => {
       saving.value = true
 
-      Promise.resolve()
-        .then(() => {
-          return id.value
-            ? usersApi.updateUser(user.value)
-            : usersApi.createUser(user.value)
-        })
-        .then((response) => (user.value = response))
+      usersApi
+        .updateUser(userLocal.value)
+        .then((response) => (userLocal.value = response))
         .then(() => notify.success('Данные сохранены'))
+        .then(() => emit('update', userLocal))
         .catch((error) => notify.error(error))
         .finally(() => (saving.value = false))
     }
 
-    loadUser()
+    onMounted(() => {
+      loadAvatar()
+    })
 
     return {
+      isEditingName,
+      isEditingRole,
       loading,
       saving,
       roleOptions,
+      userLocal,
       avatar,
-      avatarData,
-      saveUser
+      avatarSrc,
+      updateUser
     }
   }
 }
@@ -147,7 +182,6 @@ export default {
   border-radius: 3px;
   padding: 10px 15px;
   width: 100%;
-  margin-bottom: 15px;
   font-size: 16px;
 }
 
