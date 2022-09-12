@@ -49,7 +49,9 @@ const sidebarLinks: Ref<Array<SidebarLink>> = ref([
 
 <style>
 .ld-sidebar {
-  @apply h-screen py-16 px-16 space-y-5;
-  @apply bg-grey-2;
+  @apply p-8 space-y-5;
+  @apply bg-white;
+  min-width: 256px;
+  box-shadow: 0 2px 10px 0 #00000014;
 }
 </style>

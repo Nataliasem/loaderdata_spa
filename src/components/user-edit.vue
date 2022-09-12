@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-user-edit">
+  <div class="user-edit">
     <!-- ЛОАДЕР -->
     <div v-if="loading">Загрузка</div>
 
@@ -7,66 +7,52 @@
     <div v-else-if="!user">Данные о пользователе недоступны</div>
 
     <!-- ПОЛЬЗОВАТЕЛЬ -->
-    <div v-else class="flex items-center space-x-10">
-      <img class="rounded-full w-2/12" alt="Аватар" :src="avatarSrc" />
+    <div v-else class="space-y-16 flex flex-col items-center">
+      <!-- АВАТАР -->
+      <img class="avatar" alt="Аватар" :src="avatarSrc" />
+      <input type="file" @input.prevent="updateAvatar" />
 
-      <div class="space-y-5">
-        <!-- ИМЯ -->
-        <div class="flex space-x-4 items-center">
-          <span>Имя:</span>
+      <div class="max-w-1/2">
+        <div class="space-4-5">
+          <!-- ИМЯ -->
+          <div class="space-y-4 items-center">
+            <label for="name" class="input-label mr-3">Имя:</label>
 
-          <input
-            v-if="isEditingName"
-            id="edit-name"
-            v-model="userLocal.name"
-            class="app-input"
-            name="name"
-            placeholder="Имя пользователя"
-          />
-
-          <div v-else class="flex space-x-2">
-            <span>{{ userLocal.name }}</span>
-            <span
-              class="cursor-pointer text-blue-2"
-              @click="isEditingName = true"
-            >
-              <icon-edit />
-            </span>
+            <input
+              id="name"
+              v-model="userLocal.name"
+              class="user-input"
+              name="name"
+              placeholder="Имя пользователя"
+            />
           </div>
-        </div>
 
-        <!-- РОЛЬ -->
-        <div class="flex space-x-4 items-center">
-          <span>Роль:</span>
+          <!-- РОЛЬ -->
+          <div class="space-y-5">
+            <label for="role" class="input-label mr-3">Роль:</label>
 
-          <select
-            v-if="isEditingRole"
-            v-model="userLocal.roleId"
-            name="edit-role"
-            class="app-input"
-          >
-            <option v-for="role in roleOptions" :key="role.id" :value="role.id">
-              {{ role.name }}
-            </option>
-          </select>
-
-          <div v-else class="flex space-x-2">
-            <span>{{ userLocal.roleId }}</span>
-            <span
-              class="cursor-pointer text-blue-2"
-              @click="isEditingRole = true"
+            <select
+              id="role"
+              v-model="userLocal.roleId"
+              class="user-input ld-select"
+              name="edit-role"
             >
-              <icon-edit />
-            </span>
+              <option
+                v-for="role in roleOptions"
+                :key="role.id"
+                :value="role.id"
+              >
+                {{ role.name }}
+              </option>
+            </select>
           </div>
         </div>
 
         <!-- СОХРАНИТЬ -->
         <button
-          v-if="isEditingName || isEditingRole"
           type="button"
           :disabled="saving"
-          class="ld-button-main"
+          class="ld-button-main mt-10"
           @click="updateUser"
         >
           Сохранить
@@ -153,6 +139,10 @@ export default {
         .finally(() => (saving.value = false))
     }
 
+    const updateAvatar = (event) => {
+      console.log(event)
+    }
+
     onMounted(() => {
       loadAvatar()
     })
@@ -166,6 +156,7 @@ export default {
       userLocal,
       avatar,
       avatarSrc,
+      updateAvatar,
       updateUser
     }
   }
@@ -173,21 +164,35 @@ export default {
 </script>
 
 <style>
-.admin-user-edit .user-form {
-  max-width: 600px;
+.user-edit {
+  @apply border border-grey-3;
+  @apply bg-white;
+  @apply p-10;
+  box-shadow: 0 2px 10px 0 #00000014;
 }
 
-.admin-user-edit .app-input {
-  border: 1px solid #dbe2ea;
-  border-radius: 3px;
-  padding: 10px 15px;
-  width: 100%;
+.user-edit .user-input {
+  @apply pb-2;
+  border-bottom: 1px solid #c2cfe0;
+  min-width: 300px;
   font-size: 16px;
 }
 
-.admin-user-edit .app-input:focus {
+.user-edit .user-input:focus {
   outline: none;
   border-color: #0880ae;
-  border-width: 2px;
+}
+
+.ld-select {
+  background: white;
+}
+
+.input-label {
+  @apply text-size-13;
+  color: #818e9b;
+}
+
+.user-edit .avatar {
+  @apply rounded-full w-53 h-53;
 }
 </style>

@@ -6,7 +6,10 @@
       Ошибка при загрузке данных пользователя. Попробуйте обновить страницу
     </div>
 
-    <user-edit v-else :user="user" @update="updateUser" />
+    <template v-else>
+      <user-edit :user="user" @update="updateUser" />
+      <div class="user-activities">Компонент активности пользователя</div>
+    </template>
   </div>
 </template>
 
@@ -78,3 +81,16 @@ export default {
   }
 }
 </script>
+
+<style>
+.user-details {
+  @apply flex space-x-8;
+}
+
+.user-activities {
+  @apply border border-grey-3;
+  @apply bg-white;
+  @apply py-10 pl-16 w-full h-screen;
+  box-shadow: 0 2px 10px 0 #00000014;
+}
+</style>
