@@ -25,6 +25,15 @@ module.exports = {
     // IMPORT
     'import/no-unresolved': 'warn',
 
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        ts: 'never'
+      }
+    ],
+
     // ESLINT
     'eol-last': ['error', 'always'],
     'quotes': ['error', 'single'],
