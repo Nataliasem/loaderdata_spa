@@ -56,8 +56,8 @@
 </template>
 
 <script setup>
-import logInApi from '~/api/account.ts'
-import notify from '~/plugins/notify.ts'
+import logInApi from '~/api/account'
+import notify from '~/plugins/notify'
 import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '~/store/user'
