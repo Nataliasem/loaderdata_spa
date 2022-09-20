@@ -1,0 +1,11 @@
+<template>
+  <input type="text" />
+</template>
+
+<script>
+export default {
+  name: 'LdInput'
+}
+</script>
+
+<style scoped></style>
