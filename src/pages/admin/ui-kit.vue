@@ -107,8 +107,10 @@
 
         <!-- ИНПУТЫ -->
         <div class="flex flex-col space-y-5">
-          <ld-input />
-          <ld-password />
+          <div class="flex space-x-5">
+            <ld-input />
+            <ld-password />
+          </div>
           <ld-textarea />
           <ld-checkbox />
           <ld-radiobutton />
