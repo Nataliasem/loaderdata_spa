@@ -102,6 +102,19 @@
         </div>
       </div>
 
+      <div class="flex space-x-10">
+        <div class="font-bold text-size-30 text-grey-1 w-1/3">INPUTS</div>
+
+        <!-- ИНПУТЫ -->
+        <div class="flex flex-col space-y-5">
+          <ld-input />
+          <ld-password />
+          <ld-textarea />
+          <ld-checkbox />
+          <ld-radiobutton />
+        </div>
+      </div>
+
       <!-- TODO: Шрифт -->
     </div>
   </div>
@@ -145,9 +158,24 @@ export default {
     ),
     IconUnlock: defineAsyncComponent(() =>
       import('~/components/ui/icons/icon-unlock.vue')
+    ),
+    LdInput: defineAsyncComponent(() =>
+      import('~/components/fields/ld-input.vue')
+    ),
+    LdTextarea: defineAsyncComponent(() =>
+      import('~/components/fields/ld-textarea.vue')
+    ),
+    LdCheckbox: defineAsyncComponent(() =>
+      import('~/components/fields/ld-checkbox.vue')
+    ),
+    LdRadiobutton: defineAsyncComponent(() =>
+      import('~/components/fields/ld-radiobutton.vue')
+    ),
+    LdPassword: defineAsyncComponent(() =>
+      import('~/components/fields/ld-password.vue')
     )
   },
-  middleware: 'auth',
+  // middleware: 'auth',
   setup() {
     const currentColor = ref('#0077db')
 

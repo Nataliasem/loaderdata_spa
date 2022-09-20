@@ -1,6 +1,6 @@
 <template>
   <div class="admin-user-edit">
-    <!-- ЗАГОЛОВОК СТРНИЦЫ -->
+    <!-- ЗАГОЛОВОК СТРАНИЦЫ -->
     <div class="text-size-18 font-bold mb-4">
       {{ title }}
     </div>
