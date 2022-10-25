@@ -38,7 +38,7 @@
 
       <div class="space-x-5">
         <!-- РЕДАКТИРОВАТЬ -->
-        <router-link :to="`/admin/admin-user-edit?id=${user.id}`">
+        <router-link :to="`/admin/user-details?id=${user.id}`">
           Редактировать
         </router-link>
       </div>
