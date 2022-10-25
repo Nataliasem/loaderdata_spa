@@ -11,11 +11,18 @@
     @focus="$emit('focus', $event)"
     @input="$emit('input', $event)"
   />
+  <el-input v-model="inputValue" placeholder="Приветик" />
 </template>
 
 <script lang="ts">
+import { ElInput } from 'element-plus'
+import { ref } from 'vue'
+
 export default {
   name: 'LdInput',
+  components: {
+    ElInput
+  },
   props: {
     modelValue: {
       type: [String, Number],
@@ -41,6 +48,11 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  setup(props) {
+    const inputValue = ref(props.modelValue)
+
+    return { inputValue }
   }
 }
 </script>
