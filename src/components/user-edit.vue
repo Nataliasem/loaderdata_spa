@@ -1,5 +1,10 @@
 <template>
   <div class="user-edit">
+    <!-- ЗАГОЛОВОК СТРАНИЦЫ -->
+    <div class="text-size-18 font-bold mb-4">
+      {{ title }}
+    </div>
+
     <!-- ЛОАДЕР -->
     <div v-if="loading">Загрузка</div>
 
