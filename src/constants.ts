@@ -1,7 +1,7 @@
 import { RoleId } from '~/types/main'
 
 export const BASE_URL = {
-  HOST: 'http://localhost',
+  HOST: 'http://192.168.0.129',
   PORT: '8090'
 }
 
