@@ -7,7 +7,7 @@ import {
 
 import { describe, expect, it, vi, afterEach, beforeEach } from 'vitest'
 import { User } from '~/types/main'
-import UserEdit from '~/components/user-edit.vue'
+import UserDetails from '~/pages/admin/user-details.vue'
 import usersApi from '~/api/users'
 import { createRouterMock, injectRouterMock } from 'vue-router-mock'
 
@@ -28,7 +28,7 @@ const MOCK_USER: User = {
 enableAutoUnmount(afterEach)
 
 const componentFactory = () => {
-  return shallowMount(UserEdit)
+  return shallowMount(UserDetails)
 }
 
 describe('AccountPage.vue', () => {

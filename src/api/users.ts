@@ -66,7 +66,10 @@ export default {
       .then((response: Avatar) => response)
   },
 
-  // TODO: uploadAvatar() {}, '/api/users/${userId}/avatar', post, formData
+  updateAvatar(id: UserId, avatar: Avatar) {
+    return axiosInstance
+        .post(`/api/users/${id}/avatar`)
+  },
 
   deleteAvatar(id: UserId): Promise<Avatar> {
     return axiosInstance.delete(`/api/users/${id}/avatar/delete`)

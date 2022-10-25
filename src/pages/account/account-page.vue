@@ -1,6 +1,7 @@
 <template>
   <div class="account-page">
     <user-edit :user="user" @update="updateUser" />
+    <div class="user-notifications">Компонент уведомлений</div>
   </div>
 </template>
 
@@ -37,3 +38,15 @@ export default {
   }
 }
 </script>
+
+<style>
+.account-page {
+  @apply flex space-x-8;
+}
+.user-notifications {
+  @apply border border-grey-3;
+  @apply bg-white;
+  @apply py-10 pl-16 w-full h-screen;
+  box-shadow: 0 2px 10px 0 #00000014;
+}
+</style>

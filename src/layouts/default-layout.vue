@@ -45,6 +45,6 @@ export default {
 }
 
 .page-content {
-  @apply p-8 w-full;
+  @apply p-16 w-full;
 }
 </style>
