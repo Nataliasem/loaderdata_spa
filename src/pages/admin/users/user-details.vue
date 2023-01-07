@@ -8,7 +8,6 @@
 
     <template v-else>
       <user-edit :user="user" @update="updateUser" />
-      <div class="user-activities">Компонент активности пользователя</div>
     </template>
   </div>
 </template>

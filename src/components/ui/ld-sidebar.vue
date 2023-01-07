@@ -33,12 +33,6 @@ const sidebarLinks: Ref<Array<SidebarLink>> = ref([
     to: '/admin/dashboard'
   },
   {
-    key: 'system',
-    title: 'Система',
-    icon: 'lightning',
-    to: '/admin/dashboard'
-  },
-  {
     key: 'ui-kit',
     title: 'UI-kit',
     icon: 'atom',

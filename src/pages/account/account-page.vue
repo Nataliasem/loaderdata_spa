@@ -1,7 +1,6 @@
 <template>
   <div class="account-page">
     <user-edit :user="user" @update="updateUser" />
-    <div class="user-notifications">Компонент уведомлений</div>
   </div>
 </template>
 
