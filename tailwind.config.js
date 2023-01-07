@@ -7,6 +7,12 @@ module.exports = {
         'ld-sm': '2px',
         'ld-md': '4px',
         'ld-xl': '8px'
+      },
+      minWidth: {
+        sidebar: '256px'
+      },
+      boxShadow: {
+        'ld-sm': '0 2px 10px 0 #00000014'
       }
     },
     spacing: {
