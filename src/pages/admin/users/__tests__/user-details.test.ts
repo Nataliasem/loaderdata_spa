@@ -7,7 +7,7 @@ import {
 
 import { describe, expect, it, vi, afterEach, beforeEach } from 'vitest'
 import { User } from '~/types/main'
-import UserDetails from '~/pages/admin/user-details.vue'
+import UserDetails from '~/pages/admin/users/user-details.vue'
 import usersApi from '~/api/users'
 import { createRouterMock, injectRouterMock } from 'vue-router-mock'
 

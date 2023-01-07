@@ -1,7 +1,7 @@
 <template>
   <input
     class="ld-input"
-    :value="modelValue"
+    :value="inputValue"
     :type="type"
     :name="name"
     :autocomplete="autocomplete"
@@ -11,18 +11,13 @@
     @focus="$emit('focus', $event)"
     @input="$emit('input', $event)"
   />
-  <el-input v-model="inputValue" placeholder="Приветик" />
 </template>
 
 <script lang="ts">
-import { ElInput } from 'element-plus'
 import { ref } from 'vue'
 
 export default {
   name: 'LdInput',
-  components: {
-    ElInput
-  },
   props: {
     modelValue: {
       type: [String, Number],
