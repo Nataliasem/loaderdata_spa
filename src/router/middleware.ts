@@ -31,7 +31,7 @@ const getComponentMiddleware = (matched: RouteRecordNormalized[]) => {
     return []
   }
 
-  const Component = last.components.default
+  const Component = last.components?.default
 
   if (!Component) {
     return []
