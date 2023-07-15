@@ -1,51 +1,69 @@
 <template>
   <div class="ld-sidebar">
-    <div v-for="link in sidebarLinks" :key="link.key" class="flex flex-col">
-      <div class="flex items-center space-x-3 text-blue-2">
-        <Component :is="link.icon" />
-        <router-link class="text-size-18" :to="link.to">
-          {{ link.title }}
-        </router-link>
-      </div>
+    <div
+      v-for="link in sidebarLinks"
+      :key="link.key"
+      class="link"
+      :class="setActiveStyle(link.key)"
+      @click="changeActiveLink(link.key)"
+    >
+      <Component :is="link.icon" />
+      <router-link class="text-size-18" :to="link.to">
+        {{ link.title }}
+      </router-link>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import IconUsers from '~/components/ui/icons/icon-users.vue'
-import IconLightning from '~/components/ui/icons/icon-lightning.vue'
 import IconAtom from '~/components/ui/icons/icon-atom.vue'
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 interface SidebarLink {
   key: string
   title: string
-  icon: string
+  icon: object
   to: string
 }
 
-const activeLink = ref('')
-
-const sidebarLinks: Ref<Array<SidebarLink>> = ref([
+const sidebarLinks: Array<SidebarLink> = [
   {
     key: 'users',
     title: 'Пользователи',
-    icon: 'users',
+    icon: IconUsers,
     to: '/admin/dashboard'
   },
   {
     key: 'ui-kit',
     title: 'UI-kit',
-    icon: 'atom',
+    icon: IconAtom,
     to: '/admin/ui-kit'
   }
-])
+]
+
+const DEFAULT_SIDEBAR_LINK = sidebarLinks[0].key
+
+const activeLink = ref(DEFAULT_SIDEBAR_LINK)
+const changeActiveLink = (link: string) => {
+  activeLink.value = link
+}
+
+const setActiveStyle = (link: string) => {
+  return link === activeLink.value ? 'active' : ''
+}
 </script>
 
 <style>
 .ld-sidebar {
-  @apply p-8 space-y-5;
-  @apply bg-white;
-  min-width: 256px;
-  box-shadow: 0 2px 10px 0 #00000014;
+  @apply px-8 py-10 space-y-8 h-screen;
+  @apply bg-white min-w-sidebar shadow-ld-sm;
+}
+
+.ld-sidebar .link {
+  @apply flex items-center space-x-3 text-blue-2;
+}
+
+.ld-sidebar .link.active {
+  @apply text-purple border-dashed;
 }
 </style>

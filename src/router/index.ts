@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { checkMiddleware } from './middleware'
 
+import DefaultLayout from '~/layouts/default-layout.vue'
+import NotAuthLayout from '~/layouts/not-auth-layout.vue'
 import accessDenied from '~/pages/access-denied.vue'
 import adminDashboard from '~/pages/admin/users/users-dashboard.vue'
 import uiKit from '~/pages/admin/ui-kit.vue'
@@ -17,42 +19,42 @@ const router = createRouter({
       path: '/',
       component: homePage,
       meta: {
-        layout: 'default-layout'
+        layout: DefaultLayout
       }
     },
     {
       path: '/auth/login',
       component: logIn,
       meta: {
-        layout: 'not-auth-layout'
+        layout: NotAuthLayout
       }
     },
     {
       path: '/account',
       component: accountPage,
       meta: {
-        layout: 'default-layout'
+        layout: DefaultLayout
       }
     },
     {
       path: '/admin/dashboard',
       component: adminDashboard,
       meta: {
-        layout: 'default-layout'
+        layout: DefaultLayout
       }
     },
     {
       path: '/admin/ui-kit',
       component: uiKit,
       meta: {
-        layout: 'default-layout'
+        layout: DefaultLayout
       }
     },
     {
       path: '/admin/user-details',
       component: userDetails,
       meta: {
-        layout: 'default-layout'
+        layout: DefaultLayout
       }
     },
     {
@@ -60,14 +62,14 @@ const router = createRouter({
       path: '/access-denied',
       component: accessDenied,
       meta: {
-        layout: 'not-auth-layout'
+        layout: NotAuthLayout
       }
     },
     {
       path: '/:pathMatch(.*)*',
       component: notFound,
       meta: {
-        layout: 'not-auth-layout'
+        layout: NotAuthLayout
       }
     }
   ]

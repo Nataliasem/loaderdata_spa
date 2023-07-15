@@ -4,21 +4,13 @@
   </component>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import DefaultLayout from '~/layouts/default-layout.vue'
-import NotAuthLayout from '~/layouts/not-auth-layout.vue'
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    DefaultLayout,
-    NotAuthLayout
-  },
-  computed: {
-    layout() {
-      return this.$route.meta.layout || 'default-layout'
-    }
-  }
+const route = useRoute()
+
+const layout = computed(() => {
+  return route.meta.layout
 })
 </script>
